@@ -5,7 +5,11 @@ var bcrypt = require('bcrypt');
 
 var urls = {
   default: 'http://default.gif',
-  coding: 'http://coding.gif'
+  coding: 'http://coding.gif',
+  dead: 'http://dead.gif',
+  sick: 'http://sick.gif',
+  happy: 'http://happy.gif',
+  runaway: 'http://runaway.gif'
 };
 
 module.exports = {
