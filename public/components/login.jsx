@@ -17,8 +17,9 @@ class Login extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     console.log(this.state)
-    fetch('https://localhost:3000', {
-      method: 'post'
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      data: this.state
     }).then(function(response) {
       console.log('got response!')
     }).catch(function(err) {

@@ -60,17 +60,17 @@ module.exports = {
               })
             } else {
               console.log('Wrong password');
-              res.redirect('/login');
+              res.redirect('/');
             }
           })
         } else {
           console.log('Username not found');
-          res.redirect('/login');
+          res.redirect('/');
         }
       })
       .catch(function(err) {
         console.log(err);
-        res.redirect('/login');
+        res.redirect('/');
       })
   },
 
