@@ -1,5 +1,7 @@
+// image generator with different icons based on pet mood
 var Image = function(props) {
   var icon = props.icon;
+  var levelProgress = props.level * 10 + '%';
 
   var o = {
     happy: function() {
@@ -14,15 +16,20 @@ var Image = function(props) {
 }
 
 
-var Petbox = (props) => (
+var Petbox = (props) => {
+  // progress bar that represents level
+  var progressStyle = {
+    width: props.pet.level * 10 + '%'
+  }
+
+  return (
   <div className='petView container'>
     <div className='row'>
       <div className='col-md-6 col-xs-6'>
         <img className="pet-image" src={props.pet.img}></img>
       </div>
       <div className='stats col-md-6 col-xs-6'>
-
-        <div className='container'>
+        <div className='stats container'>
           <h1>Stats</h1>
             <div className='row'>
               Name: {props.pet.name} <Image icon='happy'/>
@@ -31,21 +38,21 @@ var Petbox = (props) => (
               Mood: {props.pet.mood} <Image icon={props.pet.mood}/>
             </div>
             <div className='row'>
-              Level: {props.pet.level}
+              Level: {props.pet.level} / 10
+              <div className='progress'>
+                  <div className="progress-bar" role="progressbar" style={progressStyle}>
+                  </div>
+              </div>
+             <span className="sr-only">10% Complete</span>
             </div>
             <div className='row'>
               Phys: {props.pet.phys} <Image icon='hsdfy'/>
             </div>
-            <div className='progress'>
-                <div className="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style={{'width': '40%'}}>
-    <span className="sr-only">70% Complete</span>
-                </div>
-            </div>
         </div>
       </div>
-
     </div>
   </div>
-)
+  )
+}
 
 window.Petbox = Petbox;

@@ -22,6 +22,7 @@ class App extends React.Component {
 
   constructor(props){
     super(props);
+
     this.state = {
       name: null,
       mood: null,
@@ -54,6 +55,9 @@ class App extends React.Component {
 
     return (
       <div className='app container'>
+        <div>
+        <Login />
+        </div>
         <div className='row'>
           <div className='col-md-12 col-xs-12'>
             <h1>HRGotchi</h1>
