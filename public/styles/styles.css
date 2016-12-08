@@ -7,12 +7,25 @@ img {
 	height:200px;
 }
 
+label {
+	margin: 2px;
+	width: 300px;
+}
+
 .app {
 	width:600px;
 }
 
 .icon {
 	height: 20px;
+}
+
+.signin-box {
+	width: 300px;
+}
+
+.singin-box > input {
+	margin:10px;
 }
 
 .pet-image {
@@ -29,6 +42,10 @@ img {
 	margin-right: auto;
 }
 
+.stats {
+	width: 200px;
+}
+
 .progress {
-	width:70px;
+	width:150px;
 }
