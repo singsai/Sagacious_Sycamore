@@ -18,7 +18,7 @@ module.exports = {
       .then(function(query) {
         var pet = query.dataValues;
         res.statusCode = 200;
-        res.end(JSON.stringify(pet));
+        res.json(pet);
       })
   },
   post: function(req, res, next) {
