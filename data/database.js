@@ -31,6 +31,7 @@ var Pet = db.define('Pets', {
 
 //creates any missing tables
 //pass in {force: true} to clear tables
+//insert into Users (username, password) values ("test","test");
 User.sync();
 Pet.sync();
 

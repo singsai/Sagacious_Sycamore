@@ -1,6 +1,7 @@
 var db = require('../data/database.js');
 var Pet = db.Pet;
 var User = db.User;
+var bcrypt = require('bcrypt');
 
 var urls = {
   default: 'http://default.gif',
@@ -39,21 +40,27 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
 
-    User.findOne({username: username})
+    User.findOne({ where: {username: username} })
       .then(function(user){
-        if(user){
+        if (user) {
           user = user.dataValues;
           //Update here to hash your password;
-          if(password === user.password) {
-            req.session.regenerate(function() {
-              req.session.user = user;
-              res.redirect('/');
-            });
-          } else {
-            console.log('Wrong password');
-            res.end();
-          }
+          bcrypt.compare(password, user.password, function(err, match) {
+            if (err) {
+              throw err;
+            } else if (match) {
+              console.log('Login successful');
+              req.session.regenerate(function() {
+                req.session.user = user.username;
+                res.redirect('/');
+              })
+            } else {
+              console.log('Wrong password');
+              res.redirect('/login');
+            }
+          })
         } else {
+          console.log('Username not found');
           res.redirect('/login');
         }
       })
@@ -72,18 +79,25 @@ module.exports = {
   signup: function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
-    console.log({username: username})
-    User.findOne({username: username})
-      .then(function(user){
-        user = user.dataValues;
+    User.find({ where: {username: username} })
+      .then(function(user) {
         if (!user) {
-          var newUser = new User({
-            username: username,
-            password: password
-          });
-          newUser.save().then(function() {
-            redirect('/login');
-          });
+          bcrypt.genSalt(10, function(err, salt) {
+            if (err) {
+              throw err;
+            } else {
+              bcrypt.hash(password, salt, function(err, hash) {
+                if (err) {
+                  throw err;
+                } else {
+                  User.create({username: username, password: hash}).then(function() {
+                    console.log('Saved user.');
+                    res.redirect('/login');
+                  });
+                }
+              })
+            }
+          })          
         } else {
           console.log('Account already exists');
           res.redirect('/login');
