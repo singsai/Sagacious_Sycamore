@@ -45,7 +45,7 @@ class Login extends React.Component {
         <form className='form-signin' onSubmit={this.handleSubmit}>
           <h2 className='form-signin-header'>HR50 Sign In</h2>
           <label><input onChange={this.handleUserChange} type='text' id='username' className='form-control' placeholder='Enter username'></input></label>
-          <label><input onChange={this.handlePasswordChange} type='text' id='password' className='form-control' placeholder='Enter password'></input></label>
+          <label><input onChange={this.handlePasswordChange} type='password' id='password' className='form-control' placeholder='Enter password'></input></label>
 
           <label><input type='checkbox' value='remember-me' /> Remember Me </label>
           <button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button>

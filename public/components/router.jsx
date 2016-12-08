@@ -24,7 +24,7 @@ var getData = function(data, cb){
 // React router that switches between signin and pet app
 var MainRouter = () => (
   <Router history={browserHistory}>
-    <Route path='/' component={Login}/> 
+    <Route path='/' component={App}/> 
     <Route path='login' component={Login}/> 
   </Router>
 )
