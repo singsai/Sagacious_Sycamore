@@ -9,7 +9,9 @@ var db = new Sequelize('hrgotchi', 'root', '', {
 //user schema
 var User = db.define('Users', {
   username: {type: Sequelize.STRING, unique: true},
-  password: Sequelize.STRING
+  password: Sequelize.STRING,
+  createdAt: {type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
+  updatedAt: {type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')}
 });
 
 //pet schema
