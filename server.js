@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var cors = require('cors');
 var db = require('./data/database.js').db;
 var controller = require('./server/controller.js');
 var poll = require('./server/worker.js').poll;
@@ -26,6 +27,7 @@ var app = express();
 app.use(express.static(__dirname + '../public'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json()); 
+app.use(cors());
 
 //use cookieparser & session
 app.use(cookieParser('cookies!!!'));
@@ -46,6 +48,7 @@ app.get('/', function(req, res) {
 //api requests
 app.get('/api/pet', controller.get);
 app.post('/api/pet', controller.post);
+app.post('/api/newPet', controller.new);
 app.get('/api/test', function(req, res) {
   console.log('testing polling function...');
   poll();
