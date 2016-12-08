@@ -18,7 +18,7 @@ module.exports = {
       .then(function(query) {
         var pet = query.dataValues;
         res.statusCode = 200;
-        res.end(JSON.stringify(pet));
+        res.json(pet);
       })
   },
   post: function(req, res, next) {
@@ -36,7 +36,17 @@ module.exports = {
         } else {
           console.log('no pets found!');
         }
-      })
+      });
+  },
+
+  new: function(req, res, next) {
+    var name = req.body.name;
+    Pet.destroy({ where: {} });
+    Pet.create({ name: name })
+      .then(function(pet) {
+        console.log('Created new pet.');
+        res.end();
+      });
   },
 
   //User Authentication

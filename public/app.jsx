@@ -47,7 +47,23 @@ class App extends React.Component {
 
   componentWillMount(){
     // get request to server and set current state with response
-    getData(fakeData, this.getCurrentState.bind(this))
+    var that = this;
+    // getData(, this.getCurrentState.bind(this))
+    fetch('http://localhost:3000/api/pet', {
+      method: 'GET'
+    }).then(function(parse) {
+      parse.json().then(function (data) {
+        that.setState({
+          name: data.name, //string 'cat'
+          mood: data.mood, //string 'happy, grumpy, depressed'
+          level: data.level, //int 1, 2, 10
+          phys: data.phys, //string 'healthy, sick, tired, hungry'
+          img: data.img, //string - url 'http'
+          status: data.status //string 'coding, sleeping, eating'
+        });
+      });
+      console.log('current state', that.state);
+    });
   }
 
   render() {
