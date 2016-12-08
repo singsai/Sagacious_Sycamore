@@ -1,10 +1,10 @@
 // fake data for testing - should represent http.get
 var fakeData = {
   name: 'Chad',
-  mood: 'happy',
+  mood: 'sad',
   level: 1,
   phys: 'hungry',
-  img: 'http://i.imgur.com/g3D5jNz.jpg',
+  img: 'https://68.media.tumblr.com/f9163301bc2421f19511504438af351a/tumblr_nla0f65UNA1rllm0ko1_400.gif',
   status: 'normal'
 }
 
@@ -13,6 +13,10 @@ var getData = function(data, cb){
   cb(data);
 }
 
+//feed
+//code
+//sleep
+//love
 // component for main App
 class App extends React.Component {
 
@@ -40,43 +44,29 @@ class App extends React.Component {
     })
   }
 
-  componentDidMount(){
+  componentWillMount(){
     // get request to server and set current state with response
     this.props.getData(fakeData, this.getCurrentState.bind(this))
   }
 
   render() {
+    console.log('state', this.state)
+
     return (
-      <div>
-        <div>Hello world test again</div>
-        <petBox />
-        <petCommands>
+      <div className='app container'>
+        <div className='row'>
+          <div className='col-md-12 col-xs-12'>
+            <h1>HRGotchi</h1>
+            <div>
+              <Petbox pet={this.state}/>
+            </div>
+            <button>Refresh</button>
+          </div>
+        </div>
       </div>
     )
   }
 }
-
-
-        {this.props.getData}
-        {this.state.name}
-        <div className='container'>
-          <div className='row'>
-            <div className='image col-md-6'>
-              <img src={this.state.img}></img>
-            </div>
-            <div className='stats col-md-3'>
-              <h1>Stats</h1>
-              <ul>
-                <li>Name: {this.state.name}</li>
-                <li>Mood: {this.state.mood}</li>
-                <li>Level: {this.state.level}</li>
-                <li>Phys: {this.state.phys}</li>
-              </ul>
-            </div>
-            <span className='glyphicon glyphicon-heart'></span>
-          </div>
-        </div>
-
 
 
 window.App = App;
