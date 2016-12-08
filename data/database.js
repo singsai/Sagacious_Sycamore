@@ -20,6 +20,7 @@ var Pet = db.define('Pets', {
   status: {type: Sequelize.STRING, defaultValue: 'normal'},
   feed: {type: Sequelize.INTEGER, defaultValue: 5},
   health: {type: Sequelize.INTEGER, defaultValue: 5},
+  love: {type: Sequelize.INTEGER, defaultValue: 2},
   experience: {type: Sequelize.INTEGER, defaultValue: 0},
   level: {type: Sequelize.INTEGER, defaultValue: 1},
   mood: {type: Sequelize.STRING, defaultValue: 'normal'},
@@ -31,6 +32,7 @@ var Pet = db.define('Pets', {
 
 //creates any missing tables
 //pass in {force: true} to clear tables
+//insert into Users (username, password) values ("test","test");
 User.sync();
 Pet.sync();
 
