@@ -2,8 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var db = require('../data/database.js').db;
-var controller = require('./controller.js');
+var db = require('./data/database.js').db;
+var controller = require('./server/controller.js');
 
 //start sequelize database
 db.authenticate()
@@ -22,7 +22,7 @@ db.authenticate()
 var app = express();
 
 //use bodyparser middleware
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '../public'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json()); 
 
@@ -37,12 +37,12 @@ app.use(session({
 
 //default index route
 app.get('/', function(req, res) {
-  res.sendFile('../public/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 //use controller.js as middleware
-app.get('/api/pet', controller.get); //todo add method
-app.post('/api/pet', controller.post); //todo add method
+app.get('/api/pet', controller.get);
+app.post('/api/pet', controller.post);
 
 //route to controller.js
 app.get('/login', function(req, res) {

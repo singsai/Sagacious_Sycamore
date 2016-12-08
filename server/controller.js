@@ -72,6 +72,7 @@ module.exports = {
   signup: function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
+    console.log({username: username})
     User.findOne({username: username})
       .then(function(user){
         user = user.dataValues;
