@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var db = require('./data/database.js').db;
 var controller = require('./server/controller.js');
+var poll = require('./server/worker.js').poll;
 
 //start sequelize database
 db.authenticate()
@@ -40,17 +41,27 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-//use controller.js as middleware
+//server routes, controller.js handles requests
+
+//api requests
 app.get('/api/pet', controller.get);
 app.post('/api/pet', controller.post);
+app.get('/api/test', function(req, res) {
+  console.log('testing polling function...');
+  poll();
+  res.end();
+});
 
-//route to controller.js
 app.get('/login', function(req, res) {
-  res.redirect('/api/pet');
+  res.sendFile(__dirname + '/public/login.html');
+  res.end();
 })
-app.post('/login', controller.login);
 app.get('/logout', controller.logout);
+app.post('/login', controller.login);
 app.post('/signup', controller.signup);
+
+// Uncomment to poll database reguarly
+// setInterval(poll, 20000);
 
 app.listen(3000);
 console.log('Server listening on 3000...');
