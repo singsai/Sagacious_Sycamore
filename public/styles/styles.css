@@ -46,6 +46,10 @@ label {
 	width: 200px;
 }
 
+.status {
+	color: red;
+}
+
 .progress {
 	width:150px;
 }

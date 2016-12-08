@@ -47,7 +47,7 @@ class App extends React.Component {
 
   componentWillMount(){
     // get request to server and set current state with response
-    this.props.getData(fakeData, this.getCurrentState.bind(this))
+    getData(fakeData, this.getCurrentState.bind(this))
   }
 
   render() {
@@ -55,12 +55,10 @@ class App extends React.Component {
 
     return (
       <div className='app container'>
-        <div>
-        <Login />
-        </div>
         <div className='row'>
           <div className='col-md-12 col-xs-12'>
             <h1>HRGotchi</h1>
+            <h3>{this.state.name} is currently <span className='status'>{this.state.status}ing</span>!</h3>
             <div>
               <Petbox pet={this.state}/>
             </div>
@@ -75,4 +73,5 @@ class App extends React.Component {
 
 window.App = App;
 
-ReactDOM.render(<App getData={getData}/>, document.getElementById('app'))
+// ReactDOM.render(<App getData={getData}/>, document.getElementById('app'))
+
