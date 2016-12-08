@@ -1,0 +1,24 @@
+{
+  "name": "HRgotchi",
+  "homepage": "https://github.com/bloodymushroom/Sagacious_Sycamore",
+  "authors": [
+    "SS"
+  ],
+  "description": "greenfield",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^0.14.7",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "babel": "^5.8.38"
+  }
+}
