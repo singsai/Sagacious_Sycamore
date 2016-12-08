@@ -7,24 +7,28 @@ var db = new Sequelize('hrgotchi', 'root', '', {
 });
 
 //user schema
-var User = db.define('User', {
+var User = db.define('Users', {
   username: {type: Sequelize.STRING, unique: true},
   password: Sequelize.STRING
 });
 
 //pet schema
-var Pet = db.define('Pet', {
-  name: {type: Sequelize.STRING, unique: true},
-  love: {type: Sequelize.INTEGER, defaultValue: 0},
-  feed:{type: Sequelize.INTEGER, defaultValue: 0},
-  feedTime: {type: Sequelize.DATE, defaultValue: Sequelize.NOW},
-  sleep: {type: Sequelize.INTEGER, defaultValue: 0},
-  sleepTime: {type: Sequelize.DATE, defaultValue: Sequelize.NOW},
-  health: {type: Sequelize.INTEGER, defaultValue: 50},
+var Pet = db.define('Pets', {
+  name: {type: Sequelize.STRING, allowNull: false, unique: true},
+  status: {type: Sequelize.STRING, defaultValue: 'normal'},
+  feed: {type: Sequelize.INTEGER, defaultValue: 5},
+  health: {type: Sequelize.INTEGER, defaultValue: 5},
+  experience: {type: Sequelize.INTEGER, defaultValue: 0},
   level: {type: Sequelize.INTEGER, defaultValue: 1},
+  mood: {type: Sequelize.STRING, defaultValue: 'normal'},
+  phys: {type: Sequelize.STRING, defaultValue: 'normal'},
+  img: {type: Sequelize.STRING, defaultValue: 'http://default.gif'},
+  createdAt: {type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
+  updatedAt: {type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')}
 });
 
 //creates any missing tables
+//pass in {force: true} to clear tables
 User.sync();
 Pet.sync();
 
@@ -33,4 +37,3 @@ module.exports = {
   Pet: Pet,
   db: db
 } 
-
