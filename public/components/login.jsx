@@ -57,3 +57,5 @@ class Login extends React.Component {
 }
 
 window.Login = Login;
+
+ReactDOM.render(<Login />, document.getElementById('login'))
