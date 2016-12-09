@@ -1,4 +1,4 @@
-// Reactrouter was imported via cdn - defining often-used react-router variables here
+// // Reactrouter was imported via cdn - defining often-used react-router variables here
 // import {Router, Route, Link, browserHistory} from 'react-router'
 // import React from 'react';
 // var Router = window.ReactRouter.Router;

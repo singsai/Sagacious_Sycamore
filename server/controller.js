@@ -51,36 +51,48 @@ module.exports = {
 
   //User Authentication
   login: function(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
+    // req.json()
+    // .then(function(req) {
+      var username = req.body.username;
+      var password = req.body.password;
+    //   console.log('reqest json', req);
+    // })
+
+    console.log('req', req.body)
 
     User.findOne({ where: {username: username} })
       .then(function(user){
+        console.log('in here?')
         if (user) {
           user = user.dataValues;
           //Update here to hash your password;
           bcrypt.compare(password, user.password, function(err, match) {
             if (err) {
+              console.log('error')
               throw err;
             } else if (match) {
               console.log('Login successful');
               req.session.regenerate(function() {
                 req.session.user = user.username;
-                res.redirect('/');
+                res.redirect('/home');
+                res.end();
               })
             } else {
               console.log('Wrong password');
-              res.redirect('/');
+              res.redirect('/login');
+              res.end();
             }
           })
         } else {
           console.log('Username not found');
-          res.redirect('/');
+          res.redirect('/login');
+          res.end();
         }
       })
       .catch(function(err) {
         console.log(err);
-        res.redirect('/');
+        res.redirect('/home');
+        res.end();
       })
   },
 
