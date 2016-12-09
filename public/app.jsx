@@ -89,5 +89,5 @@ class App extends React.Component {
 
 window.App = App;
 
-ReactDOM.render(<App getData={getData}/>, document.getElementById('app'))
+// ReactDOM.render(<App getData={getData}/>, document.getElementById('app'))
 

@@ -55,7 +55,7 @@ class Login extends React.Component {
           <label><input onChange={this.handlePasswordChange} type='password' id='password' className='form-control' placeholder='Enter password'></input></label>
 
           <label><input type='checkbox' value='remember-me' /> Remember Me </label>
-          <button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button>
+          <Link to={`home`}><button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button></Link>
         </form>
         <a href="/home">Home</a>
       </div>
@@ -65,4 +65,4 @@ class Login extends React.Component {
 
 window.Login = Login;
 
-ReactDOM.render(<Login />, document.getElementById('login'))
+// ReactDOM.render(<Login />, document.getElementById('login'))
