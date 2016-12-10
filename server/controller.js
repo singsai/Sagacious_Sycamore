@@ -3,16 +3,20 @@ var Pet = db.Pet;
 var User = db.User;
 var bcrypt = require('bcryptjs');
 
-var urls = {
-  default: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq',
-  coding: 'https://giphy.com/gifs/3oriO1ACIKLSY565q0',
-  sleeping: 'https://giphy.com/gifs/l2JhIsdeKTn5IPQCQ',
-  playing: 'https://giphy.com/gifs/3oriNVPP3ax7b6Ryg0',
-  dead: 'https://giphy.com/gifs/3oriOiymG0a1KVOjC0',
-  sick: 'https://giphy.com/gifs/l0MYrEAYrIRmqoDVS',
-  happy: 'https://giphy.com/gifs/3oriOcp0gWoE0ZpECA',
-  eating: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq'
+var lvl1 = {
+  coding: 'http://i.giphy.com/3oriO1ACIKLSY565q0.gif',
+  sleeping: 'http://i.giphy.com/l2JhIsdeKTn5IPQCQ.gif',
+  playing: 'http://i.giphy.com/26tklQnsEP6h0UIKc.gif',
+  eating: 'http://i.giphy.com/l0MYBdxsQBG15bLTq.gif'
+}
+
+var lvl2 = {
 };
+
+var urls = {
+  lvl1: lvl1,
+  lvl2: lvl2
+}
 
 module.exports = {
   get: function(req, res, next) {
@@ -29,8 +33,8 @@ module.exports = {
         if (pet) {
           var newStatus = req.body.status;
           pet.status = newStatus; 
-          console.log('img', urls[newStatus]);
-          pet.img = urls[newStatus];
+          console.log('img', urls['lvl'+ pet.level][newStatus]);
+          pet.img = urls['lvl'+ pet.level][newStatus];
           pet.save().then(function(data) {
             console.log('updated status');
             res.statusCode = 201;
