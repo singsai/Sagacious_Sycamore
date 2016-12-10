@@ -16,10 +16,17 @@ class Login extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    console.log(this.state)
+    console.log('state', this.state)
     fetch('http://localhost:3000/login', {
       method: 'POST',
-      data: this.state
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify({
+        username: 'Bob',
+        password: 'Apple'
+      })
     }).then(function(response) {
       console.log('got response!')
     }).catch(function(err) {
@@ -45,10 +52,10 @@ class Login extends React.Component {
         <form className='form-signin' onSubmit={this.handleSubmit}>
           <h2 className='form-signin-header'>HR50 Sign In</h2>
           <label><input onChange={this.handleUserChange} type='text' id='username' className='form-control' placeholder='Enter username'></input></label>
-          <label><input onChange={this.handlePasswordChange} type='text' id='password' className='form-control' placeholder='Enter password'></input></label>
+          <label><input onChange={this.handlePasswordChange} type='password' id='password' className='form-control' placeholder='Enter password'></input></label>
 
           <label><input type='checkbox' value='remember-me' /> Remember Me </label>
-          <button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button>
+          <Link to={`home`}><button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button></Link>
         </form>
         <a href="/home">Home</a>
       </div>
@@ -57,3 +64,5 @@ class Login extends React.Component {
 }
 
 window.Login = Login;
+
+// ReactDOM.render(<Login />, document.getElementById('login'))

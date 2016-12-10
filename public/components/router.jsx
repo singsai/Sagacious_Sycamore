@@ -1,4 +1,4 @@
-// Reactrouter was imported via cdn - defining often-used react-router variables here
+// // Reactrouter was imported via cdn - defining often-used react-router variables here
 // import {Router, Route, Link, browserHistory} from 'react-router'
 // import React from 'react';
 var Router = window.ReactRouter.Router;
@@ -21,11 +21,25 @@ var getData = function(data, cb){
   cb(data);
 }
 
+// var loggedIn = function() {
+//   return !!localStorage.token
+// }
+
+// function requireAuth(nextState, replace) {
+//   if (!loggedIn()) {
+//     replace({
+//       pathname: '/login',
+//       state: { nextPathname: nextState.location.pathname }
+//     })
+//   }
+// }
+
 // React router that switches between signin and pet app
 var MainRouter = () => (
   <Router history={browserHistory}>
-    <Route path='/' component={App}/> 
+    <Route path='home' component={App}/> 
     <Route path='login' component={Login}/> 
+    <Route path='*' component={Login}/> 
   </Router>
 )
 
