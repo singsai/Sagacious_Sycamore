@@ -3,7 +3,8 @@ var Sequelize = require('sequelize');
 // NOTE: create hrgotchi database before running
 var db = new Sequelize('hrgotchi', 'root', '', {
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
+  logging: false
 });
 
 //user schema

@@ -4,23 +4,13 @@ var User = db.User;
 var bcrypt = require('bcryptjs');
 
 var lvl1 = {
-  default: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq',
-  coding: 'https://giphy.com/gifs/3oriO1ACIKLSY565q0',
-  sleeping: 'https://giphy.com/gifs/l2JhIsdeKTn5IPQCQ',
-  playing: 'https://giphy.com/gifs/3oriNVPP3ax7b6Ryg0',
-  dead: 'https://giphy.com/gifs/3oriOiymG0a1KVOjC0',
-  sick: 'https://giphy.com/gifs/l0MYrEAYrIRmqoDVS',
-  happy: 'https://giphy.com/gifs/3oriOcp0gWoE0ZpECA',
-  eating: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq'
+  coding: 'http://i.giphy.com/3oriO1ACIKLSY565q0.gif',
+  sleeping: 'http://i.giphy.com/l2JhIsdeKTn5IPQCQ.gif',
+  playing: 'http://i.giphy.com/26tklQnsEP6h0UIKc.gif',
+  eating: 'http://i.giphy.com/l0MYBdxsQBG15bLTq.gif'
 }
 
 var lvl2 = {
-  normal: 'https://giphy.com/gifs/3oriO8JJtEUpvOYm08',
-  coding: 'https://giphy.com/gifs/3oriO1ACIKLSY565q0',
-  runaway: 'https://giphy.com/gifs/l0HlyXWFwaJ942luo',
-  dead: 'https://giphy.com/gifs/3o6Ztqhekyhz1gsH0k',
-  sick: 'https://giphy.com/gifs/l0MYrEAYrIRmqoDVS',
-  happy: 'https://giphy.com/gifs/3o6ZtoD5DyQhBb9zTq'
 };
 
 var urls = {
