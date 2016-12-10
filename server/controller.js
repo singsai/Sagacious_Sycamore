@@ -4,12 +4,10 @@ var User = db.User;
 var bcrypt = require('bcrypt');
 
 var urls = {
-  default: 'http://default.gif',
   coding: 'http://coding.gif',
-  dead: 'http://dead.gif',
-  sick: 'http://sick.gif',
-  happy: 'http://happy.gif',
-  runaway: 'http://runaway.gif'
+  feeding: 'http//feding.gif',
+  sleeping: 'http//sleeping.gif',
+  playing: 'http//playing.gif',
 };
 
 module.exports = {
@@ -27,6 +25,7 @@ module.exports = {
         if (pet) {
           var newStatus = req.body.status;
           pet.status = newStatus; 
+          console.log('img', urls[newStatus]);
           pet.img = urls[newStatus];
           pet.save().then(function(data) {
             console.log('updated status');
@@ -75,9 +74,7 @@ module.exports = {
               })
             } else {
               console.log('Wrong password');
-
               res.redirect('/');
-
               res.end();
             }
           })
@@ -91,7 +88,6 @@ module.exports = {
       .catch(function(err) {
         console.log(err);
         res.redirect('/');
-
         res.end();
       })
   },
