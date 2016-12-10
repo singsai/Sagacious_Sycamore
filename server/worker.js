@@ -1,7 +1,7 @@
 var Pet = require('../data/database.js').Pet;
 
 var urls = {
-  default: 'http://default.gif',
+  normal: 'http://i.giphy.com/mEsOq022kLlDO.gif',
   coding: 'http://coding.gif',
   dead: 'http://dead.gif',
   sick: 'http://sick.gif',

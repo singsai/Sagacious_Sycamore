@@ -41,13 +41,16 @@ app.use(session({
 //default index route
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
+  res.end();
 });
+
 // app.get('/login', function(req, res) {
 //   res.sendFile(__dirname + '/public/login.html');
 // });
 // app.get('/home', function(req, res) {
 //   res.sendFile(__dirname + '/public/index.html');
 // });
+
 //server routes, controller.js handles requests
 
 //api requests
@@ -60,9 +63,6 @@ app.get('/api/test', function(req, res) {
   res.end();
 });
 
-app.get('/login', function(req, res) {
-  res.sendFile(__dirname + '/public/login.html');
-})
 app.get('/logout', controller.logout);
 app.post('/login', controller.login);
 app.post('/signup', controller.signup);

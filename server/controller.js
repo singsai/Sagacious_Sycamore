@@ -29,7 +29,7 @@ module.exports = {
           pet.status = newStatus; 
           pet.img = urls[newStatus];
           pet.save().then(function(data) {
-            console.log('updated database');
+            console.log('updated status');
             res.statusCode = 201;
             res.end(JSON.stringify(data.dataValues));
           });
@@ -51,14 +51,10 @@ module.exports = {
 
   //User Authentication
   login: function(req, res, next) {
-    // req.json()
-    // .then(function(req) {
-      var username = req.body.username;
-      var password = req.body.password;
-    //   console.log('reqest json', req);
-    // })
+    console.log('reqbody', req.body);
+    var username = req.body.username;
+    var password = req.body.password;
 
-    console.log('req', req.body)
 
     User.findOne({ where: {username: username} })
       .then(function(user){
@@ -74,24 +70,28 @@ module.exports = {
               console.log('Login successful');
               req.session.regenerate(function() {
                 req.session.user = user.username;
-                res.redirect('/home');
+                res.redirect('/');
                 res.end();
               })
             } else {
               console.log('Wrong password');
-              res.redirect('/login');
+
+              res.redirect('/');
+
               res.end();
             }
           })
         } else {
           console.log('Username not found');
-          res.redirect('/login');
+          res.redirect('/');
+
           res.end();
         }
       })
       .catch(function(err) {
         console.log(err);
-        res.redirect('/home');
+        res.redirect('/');
+
         res.end();
       })
   },
