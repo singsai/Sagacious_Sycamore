@@ -29,7 +29,7 @@ module.exports = {
           pet.status = newStatus; 
           pet.img = urls[newStatus];
           pet.save().then(function(data) {
-            console.log('updated database');
+            console.log('updated status');
             res.statusCode = 201;
             res.end(JSON.stringify(data.dataValues));
           });
@@ -51,6 +51,7 @@ module.exports = {
 
   //User Authentication
   login: function(req, res, next) {
+    console.log('reqbody', req.body);
     var username = req.body.username;
     var password = req.body.password;
 
@@ -67,20 +68,24 @@ module.exports = {
               req.session.regenerate(function() {
                 req.session.user = user.username;
                 res.redirect('/');
+                res.end();
               })
             } else {
               console.log('Wrong password');
               res.redirect('/');
+              res.end();
             }
           })
         } else {
           console.log('Username not found');
           res.redirect('/');
+          res.end();
         }
       })
       .catch(function(err) {
         console.log(err);
         res.redirect('/');
+        res.end();
       })
   },
 
