@@ -57,10 +57,13 @@ class App extends React.Component {
             <div>
               <Petbox pet={this.state}/>
             </div>
-              <button onClick={this.setStatus.bind(this, 'feeding')}>Feed</button>
-              <button onClick={this.setStatus.bind(this, 'coding')}>Code</button>
-              <button onClick={this.setStatus.bind(this, 'sleeping')}>Sleep</button>
-              <button onClick={this.setStatus.bind(this, 'playing')}>Play</button>
+            <div>
+              <h3>Actions</h3>
+              <button onClick={this.setStatus.bind(this, 'feed')}>Feed</button>
+              <button onClick={this.setStatus.bind(this, 'code')}>Code</button>
+              <button onClick={this.setStatus.bind(this, 'sleep')}>Sleep</button>
+              <button onClick={this.setStatus.bind(this, 'play')}>Play</button>
+            </div>
           </div>
         </div>
       </div>

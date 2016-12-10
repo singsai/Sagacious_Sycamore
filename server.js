@@ -38,18 +38,17 @@ app.use(session({
 }));
 
 
-//default index route
+//default index route - react must send back static file each time
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
   res.end();
 });
-
-// app.get('/login', function(req, res) {
-//   res.sendFile(__dirname + '/public/login.html');
-// });
-// app.get('/home', function(req, res) {
-//   res.sendFile(__dirname + '/public/index.html');
-// });
+app.get('/login', function(req, res){
+  res.sendFile(__dirname + '/public/index.html')
+})
+app.get('/home', function(req, res){
+  res.sendFile(__dirname + '/public/index.html')
+})
 
 //server routes, controller.js handles requests
 
@@ -62,6 +61,7 @@ app.get('/api/test', function(req, res) {
   poll();
   res.end();
 });
+
 
 app.get('/logout', controller.logout);
 app.post('/login', controller.login);

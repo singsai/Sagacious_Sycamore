@@ -58,6 +58,7 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
 
+    res.redirect('/')
 
     User.findOne({ where: {username: username} })
       .then(function(user){
