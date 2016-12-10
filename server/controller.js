@@ -1,15 +1,17 @@
 var db = require('../data/database.js');
 var Pet = db.Pet;
 var User = db.User;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 var urls = {
-  default: 'http://default.gif',
-  coding: 'http://coding.gif',
-  dead: 'http://dead.gif',
-  sick: 'http://sick.gif',
-  happy: 'http://happy.gif',
-  runaway: 'http://runaway.gif'
+  default: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq',
+  coding: 'https://giphy.com/gifs/3oriO1ACIKLSY565q0',
+  sleeping: 'https://giphy.com/gifs/l2JhIsdeKTn5IPQCQ',
+  playing: 'https://giphy.com/gifs/3oriNVPP3ax7b6Ryg0',
+  dead: 'https://giphy.com/gifs/3oriOiymG0a1KVOjC0',
+  sick: 'https://giphy.com/gifs/l0MYrEAYrIRmqoDVS',
+  happy: 'https://giphy.com/gifs/3oriOcp0gWoE0ZpECA',
+  eating: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq'
 };
 
 module.exports = {
@@ -27,6 +29,7 @@ module.exports = {
         if (pet) {
           var newStatus = req.body.status;
           pet.status = newStatus; 
+          console.log('img', urls[newStatus]);
           pet.img = urls[newStatus];
           pet.save().then(function(data) {
             console.log('updated status');
@@ -76,9 +79,7 @@ module.exports = {
               })
             } else {
               console.log('Wrong password');
-
               res.redirect('/');
-
               res.end();
             }
           })
@@ -92,7 +93,6 @@ module.exports = {
       .catch(function(err) {
         console.log(err);
         res.redirect('/');
-
         res.end();
       })
   },

@@ -33,21 +33,19 @@ class App extends React.Component {
       });
     });
   }
-  
+
   setStatus(status) {
-    this.setState({
-      status: status
-    });
-
-
-    // fetch('http://localhost:3000/api/pet', {
-    //   method: 'POST',
-    //   data: data
-    // }).then(function() {
-    //   console.log('updated status');
-    // }).catch(function(err) {
-    //   console.err(err);
-    // }); 
+    var that = this;
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:3000/api/pet',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: {status: status}
+    })
+    .success(function() {
+      console.log('ajax succeeded');
+      that.getCurrent();
+    })
   }
 
   render() {
