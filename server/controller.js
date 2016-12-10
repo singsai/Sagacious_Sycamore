@@ -1,13 +1,17 @@
 var db = require('../data/database.js');
 var Pet = db.Pet;
 var User = db.User;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 var urls = {
-  coding: 'http://coding.gif',
-  feeding: 'http//feding.gif',
-  sleeping: 'http//sleeping.gif',
-  playing: 'http//playing.gif',
+  default: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq',
+  coding: 'https://giphy.com/gifs/3oriO1ACIKLSY565q0',
+  sleeping: 'https://giphy.com/gifs/l2JhIsdeKTn5IPQCQ',
+  playing: 'https://giphy.com/gifs/3oriNVPP3ax7b6Ryg0',
+  dead: 'https://giphy.com/gifs/3oriOiymG0a1KVOjC0',
+  sick: 'https://giphy.com/gifs/l0MYrEAYrIRmqoDVS',
+  happy: 'https://giphy.com/gifs/3oriOcp0gWoE0ZpECA',
+  eating: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq'
 };
 
 module.exports = {

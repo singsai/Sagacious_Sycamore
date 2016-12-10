@@ -1,12 +1,12 @@
 var Pet = require('../data/database.js').Pet;
 
 var urls = {
-  normal: 'http://i.giphy.com/mEsOq022kLlDO.gif',
+  normal: 'https://giphy.com/gifs/3oriO8JJtEUpvOYm08',
   coding: 'http://coding.gif',
+  runaway: 'http://runaway.gif',
   dead: 'http://dead.gif',
-  sick: 'http://sick.gif',
-  happy: 'http://happy.gif',
-  runaway: 'http://runaway.gif'
+  sick: 'https://giphy.com/gifs/l0MYrEAYrIRmqoDVS',
+  happy: 'http://happy.gif'
 };
 
 module.exports = {
