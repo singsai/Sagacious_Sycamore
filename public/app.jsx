@@ -33,19 +33,19 @@ class App extends React.Component {
       });
     });
   }
-  
+
   setStatus(status) {
-    this.setState({
-      status: status
-    });
-    // fetch('http://localhost:3000/api/pet', {
-    //   method: 'POST',
-    //   data: data
-    // }).then(function() {
-    //   console.log('updated status');
-    // }).catch(function(err) {
-    //   console.err(err);
-    // }); 
+    var that = this;
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:3000/api/pet',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: {status: status}
+    })
+    .success(function() {
+      console.log('ajax succeeded');
+      that.getCurrent();
+    })
   }
 
   render() {
@@ -57,10 +57,10 @@ class App extends React.Component {
             <div>
               <Petbox pet={this.state}/>
             </div>
-              <button onClick={this.setStatus.bind(this, 'feed')}>Feed</button>
-              <button onClick={this.setStatus.bind(this, 'code')}>Code</button>
-              <button onClick={this.setStatus.bind(this, 'sleep')}>Sleep</button>
-              <button onClick={this.setStatus.bind(this, 'play')}>Play</button>
+              <button onClick={this.setStatus.bind(this, 'feeding')}>Feed</button>
+              <button onClick={this.setStatus.bind(this, 'coding')}>Code</button>
+              <button onClick={this.setStatus.bind(this, 'sleeping')}>Sleep</button>
+              <button onClick={this.setStatus.bind(this, 'playing')}>Play</button>
           </div>
         </div>
       </div>
