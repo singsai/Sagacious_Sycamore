@@ -44,10 +44,12 @@ app.get('/', function(req, res) {
   res.end();
 });
 
-app.get('/login', function(req, res) {
-  res.sendFile(__dirname + '/public/login.html');
-  res.end();
-})
+// app.get('/login', function(req, res) {
+//   res.sendFile(__dirname + '/public/login.html');
+// });
+// app.get('/home', function(req, res) {
+//   res.sendFile(__dirname + '/public/index.html');
+// });
 
 //server routes, controller.js handles requests
 

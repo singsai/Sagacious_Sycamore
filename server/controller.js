@@ -55,13 +55,16 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
 
+
     User.findOne({ where: {username: username} })
       .then(function(user){
+        console.log('in here?')
         if (user) {
           user = user.dataValues;
           //Update here to hash your password;
           bcrypt.compare(password, user.password, function(err, match) {
             if (err) {
+              console.log('error')
               throw err;
             } else if (match) {
               console.log('Login successful');
@@ -72,19 +75,23 @@ module.exports = {
               })
             } else {
               console.log('Wrong password');
+
               res.redirect('/');
+
               res.end();
             }
           })
         } else {
           console.log('Username not found');
           res.redirect('/');
+
           res.end();
         }
       })
       .catch(function(err) {
         console.log(err);
         res.redirect('/');
+
         res.end();
       })
   },
