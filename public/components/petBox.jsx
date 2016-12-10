@@ -15,13 +15,13 @@ var Petbox = (props) => {
         <div className='stats container'>
           <h1>Stats</h1>
             <div className='row'>
-              Name: {props.pet.name} <Image icon='happy'/>
+              <b>Name:</b> {props.pet.name}
             </div>
             <div className='row'>
-              Mood: {props.pet.mood} <Image icon={props.pet.mood}/>
+              <b>Mood:</b> {props.pet.mood}
             </div>
             <div className='row'>
-              Level: {props.pet.level} / 3
+              <b>Level:</b> {props.pet.level} / 3
               <div className='progress'>
                   <div className="progress-bar" role="progressbar" style={progressStyle}>
                   </div>
@@ -29,7 +29,7 @@ var Petbox = (props) => {
              <span className="sr-only">10% Complete</span>
             </div>
             <div className='row'>
-              Phys: {props.pet.phys} <Image icon='hsdfy'/>
+              <b>Phys:</b> {props.pet.phys}
             </div>
         </div>
       </div>
