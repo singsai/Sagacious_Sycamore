@@ -37,10 +37,14 @@ label {
 .petView {
 	padding: 20px;
 	text-align: left;
-	width: 600px;
+	width: 800px;
 	height: 300px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.pet-image-container{
+	text-align: center;
 }
 
 .stats {
