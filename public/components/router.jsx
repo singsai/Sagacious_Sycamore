@@ -39,7 +39,7 @@ var MainRouter = () => (
   <Router history={browserHistory}>
     <Route path='home' component={App}/> 
     <Route path='login' component={Login}/> 
-    <Route path='*' component={Login}/> 
+    <Route path='*' component={App}/> 
   </Router>
 )
 
