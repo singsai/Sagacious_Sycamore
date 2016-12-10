@@ -1,14 +1,19 @@
 var Pet = require('../data/database.js').Pet;
 
 var lvl1 = {
+  normal: "http://i.imgur.com/RzBy3Vw.gif",
+  runaway: "http://i.imgur.com/JfH45R0.jpg",
+  dead: "http://i.imgur.com/3tWT7qP.jpg",
+  sick: "http://i.imgur.com/CdIG2m2.gif",
+  happy: "http://i.imgur.com/jjUbQ6P.gif",
+}
+
+var lvl2 = {
   normal: 'http://i.giphy.com/3oriO8JJtEUpvOYm08.gif',
   runaway: 'http://i.giphy.com/l0HlyXWFwaJ942luo.gif',
   dead: 'http://i.giphy.com/3o6Ztqhekyhz1gsH0k.gif',
   sick: 'http://i.giphy.com/l0MYrEAYrIRmqoDVS.gif',
   happy: 'http://i.giphy.com/3o6ZtoD5DyQhBb9zTq.gif'
-}
-
-var lvl2 = {
 };
 
 var urls = {
