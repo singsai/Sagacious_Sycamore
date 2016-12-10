@@ -2,11 +2,11 @@ var Pet = require('../data/database.js').Pet;
 
 var urls = {
   normal: 'https://giphy.com/gifs/3oriO8JJtEUpvOYm08',
-  coding: 'http://coding.gif',
-  runaway: 'http://runaway.gif',
-  dead: 'http://dead.gif',
+  coding: 'https://giphy.com/gifs/3oriO1ACIKLSY565q0',
+  runaway: 'https://giphy.com/gifs/l0HlyXWFwaJ942luo',
+  dead: 'https://giphy.com/gifs/3o6Ztqhekyhz1gsH0k',
   sick: 'https://giphy.com/gifs/l0MYrEAYrIRmqoDVS',
-  happy: 'http://happy.gif'
+  happy: 'https://giphy.com/gifs/3o6ZtoD5DyQhBb9zTq'
 };
 
 module.exports = {
