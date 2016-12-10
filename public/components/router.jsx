@@ -21,19 +21,6 @@ var getData = function(data, cb){
   cb(data);
 }
 
-// var loggedIn = function() {
-//   return !!localStorage.token
-// }
-
-// function requireAuth(nextState, replace) {
-//   if (!loggedIn()) {
-//     replace({
-//       pathname: '/login',
-//       state: { nextPathname: nextState.location.pathname }
-//     })
-//   }
-// }
-
 // React router that switches between signin and pet app
 var MainRouter = () => (
   <Router history={browserHistory}>

@@ -1,4 +1,17 @@
 // image generator with different icons based on pet mood
+var imgSrc = {
+  normal: "http://i.imgur.com/RzBy3Vw.gif",
+  sleep: "http://i.imgur.com/PujjsmB.gif",
+  code: "http://i.imgur.com/KTNujjY.gif",
+  happy: "http://i.imgur.com/jjUbQ6P.gif",
+  feed: "http://i.imgur.com/W8UQN1M.gif",
+  runaway: "http://i.imgur.com/JfH45R0.jpg",
+  dead: "http://i.imgur.com/3tWT7qP.jpg",
+  sick: "http://i.imgur.com/CdIG2m2.gif",
+  play: "http://i.imgur.com/T99KqDs.gif"
+}
+
+
 var Image = function(props) {
   var icon = props.icon;
   var levelProgress = props.level * 10 + '%';
@@ -19,14 +32,16 @@ var Image = function(props) {
 var Petbox = (props) => {
   // progress bar that represents level
   var progressStyle = {
-    width: props.pet.level * 10 + '%'
+    width: props.pet.level/3 * 100 + '%'
   }
+
+  var currentImage = imgSrc[props.pet.status]
 
   return (
   <div className='petView container'>
     <div className='row'>
-      <div className='col-md-6 col-xs-6'>
-        <img className="pet-image" src={props.pet.img}></img>
+      <div className='pet-image-container col-md-6 col-xs-6'>
+        <img className="pet-image" src={currentImage}></img>
       </div>
       <div className='stats col-md-6 col-xs-6'>
         <div className='stats container'>
@@ -38,7 +53,7 @@ var Petbox = (props) => {
               Mood: {props.pet.mood} <Image icon={props.pet.mood}/>
             </div>
             <div className='row'>
-              Level: {props.pet.level} / 10
+              Level: {props.pet.level} / 3
               <div className='progress'>
                   <div className="progress-bar" role="progressbar" style={progressStyle}>
                   </div>
