@@ -38,6 +38,8 @@ class App extends React.Component {
     this.setState({
       status: status
     });
+
+
     // fetch('http://localhost:3000/api/pet', {
     //   method: 'POST',
     //   data: data
@@ -57,10 +59,13 @@ class App extends React.Component {
             <div>
               <Petbox pet={this.state}/>
             </div>
+            <div>
+              <h3>Actions</h3>
               <button onClick={this.setStatus.bind(this, 'feed')}>Feed</button>
               <button onClick={this.setStatus.bind(this, 'code')}>Code</button>
               <button onClick={this.setStatus.bind(this, 'sleep')}>Sleep</button>
               <button onClick={this.setStatus.bind(this, 'play')}>Play</button>
+            </div>
           </div>
         </div>
       </div>
