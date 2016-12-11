@@ -8,7 +8,8 @@ class App extends React.Component {
       level: 0,
       phys: null,
       img: null,
-      status: null
+      status: null,
+      showNewName: false
     }
   }
 
@@ -28,7 +29,9 @@ class App extends React.Component {
           level: data.level, 
           phys: data.phys, 
           img: data.img, 
-          status: data.status 
+          status: data.status,
+          showNewName: false,
+          newPetName: ''
         });
       });
     });
@@ -48,6 +51,35 @@ class App extends React.Component {
     })
   }
 
+  getInput(event) {
+    var key = event.target.getAttribute('class');
+    var value = event.target.value;
+    var obj = {};
+    obj[key] = value;
+    this.setState(obj);
+    console.log(this.state.newPetName)
+  }
+
+  showNameInput(){
+    this.setState({
+      showNewName: !this.showNewName
+    });
+  }
+
+  newPet() {
+    var that = this;
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:3000/api/newPet',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: {name: this.state.newPetName}
+    })
+    .success(function() {
+      console.log('ajax succeeded');
+      that.getCurrent();
+    })
+  }
+
   render() {
     return (
       <div className='app container'>
@@ -57,13 +89,16 @@ class App extends React.Component {
             <div>
               <Petbox pet={this.state}/>
             </div>
-            <div>
-              <h3>Actions</h3>
-              <button onClick={this.setStatus.bind(this, 'feed')}>Feed</button>
-              <button onClick={this.setStatus.bind(this, 'code')}>Code</button>
-              <button onClick={this.setStatus.bind(this, 'sleep')}>Sleep</button>
-              <button onClick={this.setStatus.bind(this, 'play')}>Play</button>
-            </div>
+
+            <h3>Actions</h3>
+            <div>{
+              this.state.status === 'normal' ? (<div>
+              <button onClick={this.setStatus.bind(this, 'feeding')}>Feed</button>
+              <button onClick={this.setStatus.bind(this, 'coding')}>Code</button>
+              <button onClick={this.setStatus.bind(this, 'sleeping')}>Sleep</button>
+              <button onClick={this.setStatus.bind(this, 'playing')}>Play</button>)
+              </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
+            }</div>
           </div>
         </div>
       </div>

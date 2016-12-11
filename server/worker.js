@@ -52,7 +52,7 @@ module.exports = {
           break;
       }
       //if dead, run only this
-      if (pet.health === 0 || pet.feed === 0) {
+      if (pet.health < 0 || pet.feed < 0) {
         pet.status = 'dead';
         pet.phys = 'dead';
         pet.mood = 'dead';

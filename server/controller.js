@@ -4,17 +4,19 @@ var User = db.User;
 var bcrypt = require('bcryptjs');
 
 var lvl1 = {
+  coding: 'https://giphy.com/gifs/3oriO1ACIKLSY565q0',
+  sleeping: 'https://giphy.com/gifs/l2JhIsdeKTn5IPQCQ',
+  playing: 'https://giphy.com/gifs/3oriNVPP3ax7b6Ryg0',
+  eating: 'https://giphy.com/gifs/l0MYBdxsQBG15bLTq'
+}
+
+var lvl2 = {
+
   coding: "http://i.imgur.com/KTNujjY.gif",
   sleeping: "http://i.imgur.com/PujjsmB.gif",
   playing: "http://i.imgur.com/T99KqDs.gif",
   eating: "http://i.imgur.com/W8UQN1M.gif"
 }
-
-var lvl2 = {
-  coding: 'http://i.giphy.com/3oriO1ACIKLSY565q0.gif',
-  sleeping: 'http://i.giphy.com/l2JhIsdeKTn5IPQCQ.gif',
-  playing: 'http://i.giphy.com/26tklQnsEP6h0UIKc.gif',
-  eating: 'http://i.giphy.com/l0MYBdxsQBG15bLTq.gif'
 };
 
 var urls = {

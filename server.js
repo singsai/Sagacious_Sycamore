@@ -68,7 +68,7 @@ app.post('/login', controller.login);
 app.post('/signup', controller.signup);
 
 // Uncomment to poll database reguarly
-// setInterval(poll, 20000);
+setInterval(poll, 2000);
 
 app.listen(3000);
 console.log('Server listening on 3000...');
