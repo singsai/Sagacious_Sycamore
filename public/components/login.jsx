@@ -16,22 +16,36 @@ class Login extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    console.log('state', this.state)
-    fetch('http://localhost:3000/login', {
+    var that = this;
+    // fetch('http://localhost:3000/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   data: JSON.stringify({
+    //     username: 'this',
+    //     password: 'this'
+    //   })
+    // }).then(function(response) {
+    //   console.log('got response!')
+    // }).catch(function(err) {
+    //   console.error(err);
+    // })
+    $.ajax({
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify({
-        username: 'Bob',
-        password: 'Apple'
+      url: 'http://localhost:3000/login',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: {username: that.state.username, password: that.state.password}
+    }).success(function() {
+      console.log('ajax success');
+      $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/home'
+      }).success(function(){
+        console.log('crazy ajax fired');
       })
-    }).then(function(response) {
-      console.log('got response!')
-    }).catch(function(err) {
-      console.error(err);
-    })
+    });
   }
 
   handleUserChange(e){
@@ -55,7 +69,7 @@ class Login extends React.Component {
           <label><input onChange={this.handlePasswordChange} type='password' id='password' className='form-control' placeholder='Enter password'></input></label>
 
           <label><input type='checkbox' value='remember-me' /> Remember Me </label>
-          <Link to={`home`}><button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button></Link>
+          <button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button>
         </form>
         <a href="/home">Home</a>
       </div>
