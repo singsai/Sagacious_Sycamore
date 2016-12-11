@@ -13,8 +13,9 @@ var getData = function(data, cb){
 var MainRouter = () => (
   <Router history={browserHistory}>
     <Route path='home' component={App}/> 
-    <Route path='login' component={Login}/> 
-    <Route path='*' component={App}/> 
+    <Route path='login' component={Login}/>
+    <Route path='signup' component={SignUp}/>
+
   </Router>
 )
 

@@ -55,7 +55,7 @@ class Login extends React.Component {
           <label><input type='checkbox' value='remember-me' /> Remember Me </label>
           <button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button>
         </form>
-        <a href="/home">Home</a>
+        <Link to='signup'>New User? Click here</Link>
       </div>
     )
   }

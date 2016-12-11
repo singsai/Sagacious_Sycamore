@@ -56,7 +56,7 @@ module.exports = {
     Pet.create({ name: name })
       .then(function(pet) {
         console.log('Created new pet.');
-        res.end();
+        res.send("success");
       });
   },
 

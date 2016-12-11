@@ -20,11 +20,11 @@ class App extends React.Component {
 
     var that = this;
 
-    setInterval(function(){
-      if (that.state.status !== 'dead') {      
-        that.getCurrent();
-      }
-    }, 1000)
+    // setInterval(function(){
+    //   if (that.state.status !== 'dead') {      
+    //     that.getCurrent();
+    //   }
+    // }, 1000)
   }
 
   componentWillMount() {
@@ -81,7 +81,9 @@ class App extends React.Component {
     });
   }
 
-  newPet() {
+  newPet(e) {
+    e.preventDefault();
+    
     var that = this;
     $.ajax({
       method: 'POST',
