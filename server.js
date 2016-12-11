@@ -42,6 +42,7 @@ app.get('/login', function(req, res){
   res.sendFile(__dirname + '/public/index.html')
 })
 app.get('/home', controller.checkUser, function(req, res){
+  console.log('go home');
   res.sendFile(__dirname + '/public/index.html')
 })
 
@@ -61,7 +62,7 @@ app.get('/api/test', function(req, res) {
 });
 
 // Uncomment to poll database reguarly
-//setInterval(poll, 2000);
+setInterval(poll, 2000);
 
 app.listen(3000);
 console.log('Server listening on 3000...');

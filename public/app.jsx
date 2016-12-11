@@ -17,6 +17,14 @@ class App extends React.Component {
         code:'../assets/code1.png'
       }
     }
+
+    var that = this;
+
+    setInterval(function(){
+      if (that.state.status !== 'dead') {      
+        that.getCurrent();
+      }
+    }, 1000)
   }
 
   componentWillMount() {
@@ -24,6 +32,7 @@ class App extends React.Component {
   }
 
   getCurrent() {
+    console.log('updating')
     var that = this;
     fetch('http://localhost:3000/api/pet', {method: 'GET'})
       .then(function(parse) {
@@ -123,6 +132,8 @@ class App extends React.Component {
   executeCommand(command){
     this.changeCommandIcon(command);
     this.setStatus(command)
+    this.getCurrent();
+    console.log(this.state.level);
   }
 
   render() {
@@ -136,7 +147,7 @@ class App extends React.Component {
             </div>
 
             <h3>Actions</h3>
-            <div>{
+            <div className='PetCommand'>{
               this.state.status !== 'dead' ? (<div>
                 <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
               </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>

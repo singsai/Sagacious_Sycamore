@@ -17,34 +17,18 @@ class Login extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     var that = this;
-    // fetch('http://localhost:3000/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   data: JSON.stringify({
-    //     username: 'this',
-    //     password: 'this'
-    //   })
-    // }).then(function(response) {
-    //   console.log('got response!')
-    // }).catch(function(err) {
-    //   console.error(err);
-    // })
     $.ajax({
       method: 'POST',
       url: 'http://localhost:3000/login',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: {username: that.state.username, password: that.state.password}
-    }).success(function() {
-      console.log('ajax success');
-      $.ajax({
-        method: 'GET',
-        url: 'http://localhost:3000/home'
-      }).success(function(){
-        console.log('crazy ajax fired');
-      })
+    }).success(function(data) {
+      // if data = true, user is found and route to home. if false, stay on login page
+      if (data) {
+        that.props.router.push('/home')
+      } else {
+        console.log('not a valid user')
+      }
     });
   }
 

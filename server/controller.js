@@ -76,20 +76,21 @@ module.exports = {
             } else if (match) {
               console.log('Login successful');
               req.session.regenerate(function() {
+                // if user is found, send "true" back to client
+                console.log('user logged in')
                 req.session.user = user.username;
-                res.redirect('/home');
-                res.end();
+                res.send(true);
               });
             } else {
               console.log('Wrong password');
-              res.redirect('/login');
-              res.end();
+              // res.redirect('/login');
+              res.send(false);
             }
           })
         } else {
           console.log('Username not found');
-          res.redirect('/login');
-          res.end();
+          // res.redirect('/login');
+          res.send(false);
         }
       })
   },
