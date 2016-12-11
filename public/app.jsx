@@ -9,6 +9,9 @@ class App extends React.Component {
       phys: null,
       img: null,
       status: null,
+      health: 0,
+      experience: 0,
+      feed: 0,
       showNewName: false,
       cmdImg: {
         food:'../assets/food1.png',
@@ -20,11 +23,11 @@ class App extends React.Component {
 
     var that = this;
 
-    // setInterval(function(){
-    //   if (that.state.status !== 'dead') {      
-    //     that.getCurrent();
-    //   }
-    // }, 1000)
+    setInterval(function(){
+      if (that.state.status !== 'dead') {      
+        that.getCurrent();
+      }
+    }, 1000)
   }
 
   componentWillMount() {
@@ -44,6 +47,9 @@ class App extends React.Component {
           level: data.level, 
           phys: data.phys, 
           img: data.img, 
+          health: data.health,
+          experience: data.experience,
+          feed: data.feed,
           status: data.status,
           showNewName: false,
           newPetName: ''

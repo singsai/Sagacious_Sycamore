@@ -79,18 +79,18 @@ module.exports = {
                 // if user is found, send "true" back to client
                 console.log('user logged in')
                 req.session.user = user.username;
-                res.send(true);
+                res.send(req.session.user);
               });
             } else {
               console.log('Wrong password');
               // res.redirect('/login');
-              res.send(false);
+              res.send(req.session.user);
             }
           })
         } else {
           console.log('Username not found');
           // res.redirect('/login');
-          res.send(false);
+          res.send(req.session.user);
         }
       })
   },

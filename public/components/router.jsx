@@ -6,9 +6,7 @@ var browserHistory = window.ReactRouter.browserHistory;
 
 // function that handles response from server
 var getData = function(data, cb){
-  cb(data);
-}
-
+  
 // React router that switches between signin and pet app
 var MainRouter = () => (
   <Router history={browserHistory}>

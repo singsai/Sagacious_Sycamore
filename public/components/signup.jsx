@@ -27,7 +27,7 @@ class SignUp extends React.Component {
     })
   }
 
-  handlInput(e){
+  handleInput(e){
     var key = event.target.getAttribute("id");
     var temp = {};
     temp[key] = e.target.value;

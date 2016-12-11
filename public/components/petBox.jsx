@@ -1,8 +1,11 @@
 // image generator with different icons based on pet mood
 var Petbox = (props) => {
-  // progress bar that represents level
-  var progressStyle = {
-    width: props.pet.level/3 * 100 + '%'
+  // css styling for the progress bar'';;;
+  var bars = {
+    energyBar: { width: props.pet.feed/8 * 100 + '%' },
+    healthBar: { width: props.pet.health/8 * 100 + '%' },
+    levelBar:  { width: props.pet.level/3 * 100 + '%' },
+    experienceBar: { width: props.pet.experience/10 * 100 + '%' }
   }
 
   return (
@@ -24,12 +27,32 @@ var Petbox = (props) => {
               <b>Phys:</b> {props.pet.phys}
             </div>
             <div className='row'>
-              <b>Level:</b> {props.pet.level} / 3
+              <b>Health:</b>
               <div className='progress'>
-                  <div className="progress-bar" role="progressbar" style={progressStyle}>
+                  <div className="progress-bar" role="progressbar" style={bars['healthBar']}>
                   </div>
               </div>
-             <span className="sr-only">10% Complete</span>
+            </div>
+            <div className='row'>
+              <b>Energy:</b>
+              <div className='progress'>
+                  <div className="progress-bar" role="progressbar" style={bars['energyBar']}>
+                  </div>
+              </div>
+            </div>
+            <div className='row'>
+              <b>Level:</b> {props.pet.level} / 3
+              <div className='progress'>
+                  <div className="progress-bar" role="progressbar" style={bars['levelBar']}>
+                  </div>
+              </div>
+            </div>
+            <div className='row'>
+              <b>Experience:</b>
+              <div className='progress'>
+                  <div className="progress-bar" role="progressbar" style={bars['experienceBar']}>
+                  </div>
+              </div>
             </div>
         </div>
       </div>
