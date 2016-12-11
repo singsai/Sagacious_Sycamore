@@ -21,15 +21,15 @@ var Petbox = (props) => {
               <b>Mood:</b> {props.pet.mood}
             </div>
             <div className='row'>
+              <b>Phys:</b> {props.pet.phys}
+            </div>
+            <div className='row'>
               <b>Level:</b> {props.pet.level} / 3
               <div className='progress'>
                   <div className="progress-bar" role="progressbar" style={progressStyle}>
                   </div>
               </div>
              <span className="sr-only">10% Complete</span>
-            </div>
-            <div className='row'>
-              <b>Phys:</b> {props.pet.phys}
             </div>
         </div>
       </div>

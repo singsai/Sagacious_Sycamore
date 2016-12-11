@@ -58,3 +58,12 @@ label {
 .progress {
 	width:150px;
 }
+
+.command{
+    display: inline-block;
+    height: 60px;
+    padding: 0;
+    margin: 0;
+    vertical-align: right;
+    width: 60px;
+}
