@@ -89,6 +89,8 @@ class App extends React.Component {
             <div>
               <Petbox pet={this.state}/>
             </div>
+
+            <h3>Actions</h3>
             <div>{
               this.state.status === 'normal' ? (<div>
               <button onClick={this.setStatus.bind(this, 'feeding')}>Feed</button>
@@ -96,7 +98,6 @@ class App extends React.Component {
               <button onClick={this.setStatus.bind(this, 'sleeping')}>Sleep</button>
               <button onClick={this.setStatus.bind(this, 'playing')}>Play</button>)
               </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
-    //<button onClick={this.newPet}>Restart</button>
             }</div>
           </div>
         </div>

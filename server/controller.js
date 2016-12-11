@@ -11,6 +11,12 @@ var lvl1 = {
 }
 
 var lvl2 = {
+
+  coding: "http://i.imgur.com/KTNujjY.gif",
+  sleeping: "http://i.imgur.com/PujjsmB.gif",
+  playing: "http://i.imgur.com/T99KqDs.gif",
+  eating: "http://i.imgur.com/W8UQN1M.gif"
+}
 };
 
 var urls = {
@@ -33,7 +39,7 @@ module.exports = {
         if (pet) {
           var newStatus = req.body.status;
           pet.status = newStatus; 
-          console.log('img', urls['lvl'+ pet.level][newStatus]);
+          console.log('url', urls['lvl'+ pet.level][newStatus]);
           pet.img = urls['lvl'+ pet.level][newStatus];
           pet.save().then(function(data) {
             console.log('updated status');
@@ -62,6 +68,7 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
 
+    res.redirect('/')
 
     User.findOne({ where: {username: username} })
       .then(function(user){
