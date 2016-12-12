@@ -23,7 +23,7 @@ class App extends React.Component {
 
     var that = this;
 
-    setInterval(function(){
+    setInterval(function() {
       if (that.state.status !== 'dead') {      
         that.getCurrent();
       }

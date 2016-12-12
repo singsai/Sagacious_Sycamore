@@ -38,22 +38,6 @@ app.use(session({
 }));
 
 //server routes, controller.js handles requests
-app.get('/login', function(req, res){
-  res.sendFile(__dirname + '/public/index.html')
-})
-app.get('/home', function(req, res){
-  console.log('go home');
-  res.sendFile(__dirname + '/public/index.html')
-})
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/public/index.html')
-})
-
-app.get('/logout', controller.logout);
-app.post('/login', controller.login);
-app.post('/signup', controller.signup);
-
-
 //api requests
 app.get('/api/pet', controller.get);
 app.post('/api/pet', controller.post);
@@ -63,6 +47,16 @@ app.get('/api/test', function(req, res) {
   poll();
   res.end();
 });
+
+//login and logout routes
+app.get('/logout', controller.logout);
+app.post('/login', controller.login);
+app.post('/signup', controller.signup);
+
+//index route
+app.get('/*', function(req, res){
+  res.sendFile(__dirname + '/public/index.html')
+})
 
 // Uncomment to poll database reguarly
 setInterval(poll, 5000);
