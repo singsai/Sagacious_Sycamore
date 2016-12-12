@@ -1,10 +1,22 @@
 var StatusMessage = function(props) {
-  var message = 'Code to level up!';
+  var message = 'Don\'t forget about me!';
 
-  if (props.petState.status === 'dead') {
-    message = 'YOU KILLED ME'
-  } else {
-    message = 'I can level up by coding!'
+  switch (props.petState.status) {
+    case 'dead':
+      message = 'YOU KILLED ME';
+      break
+    case 'coding':
+      message = 'I can level up by coding!';
+      break;
+    case 'eating':
+      message = 'NOM NOM NOM NOM';
+      break;
+    case 'sleeping':
+      message = '1 sheep. 2 sheep. 3 sheep.';
+      break;
+    case 'playing':
+      message = 'PLAY ALL DAY! EVERYDAY!';
+      break;
   }
 
   return (
