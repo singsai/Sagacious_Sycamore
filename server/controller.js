@@ -56,7 +56,7 @@ module.exports = {
     Pet.create({ name: name })
       .then(function(pet) {
         console.log('Created new pet.');
-        res.end();
+        res.send("success");
       });
   },
 
@@ -76,20 +76,21 @@ module.exports = {
             } else if (match) {
               console.log('Login successful');
               req.session.regenerate(function() {
+                // if user is found, send "true" back to client
+                console.log('user logged in')
                 req.session.user = user.username;
-                res.redirect('/home');
-                res.end();
+                res.send(req.session.user);
               });
             } else {
               console.log('Wrong password');
-              res.redirect('/login');
-              res.end();
+              // res.redirect('/login');
+              res.send(req.session.user);
             }
           })
         } else {
           console.log('Username not found');
-          res.redirect('/login');
-          res.end();
+          // res.redirect('/login');
+          res.send(req.session.user);
         }
       })
   },

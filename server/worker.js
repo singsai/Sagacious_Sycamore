@@ -60,7 +60,7 @@ module.exports = {
         return pet.save();
       } 
       //check level before anything else
-      if (pet.experience > 100) {
+      if (pet.experience > 10) {
         pet.level = pet.level + 1;
         pet.experience = 0;
       }
