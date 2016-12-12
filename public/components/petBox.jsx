@@ -2,6 +2,7 @@
 var Petbox = (props) => {
   // css styling for the progress bar'';;;
   var statusProps = {
+    love: props.pet.love,
     status: props.pet.status,
     energy: props.pet.feed,
     health: props.pet.health,
@@ -10,6 +11,7 @@ var Petbox = (props) => {
     name: props.pet.name
   }
   var bars = {
+    loveBar: { width: props.pet.love/8 * 100 + '%' },
     energyBar: { width: props.pet.feed/8 * 100 + '%' },
     healthBar: { width: props.pet.health/8 * 100 + '%' },
     levelBar:  { width: props.pet.level/3 * 100 + '%' },
@@ -41,6 +43,13 @@ var Petbox = (props) => {
               <b>Health:</b>
               <div className='progress'>
                   <div className="progress-bar" role="progressbar" style={bars['healthBar']}>
+                  </div>
+              </div>
+            </div>
+            <div className='row'>
+              <b>Love:</b>
+              <div className='progress'>
+                  <div className="progress-bar" role="progressbar" style={bars['loveBar']}>
                   </div>
               </div>
             </div>

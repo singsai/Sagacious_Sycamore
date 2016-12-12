@@ -13,6 +13,7 @@ class App extends React.Component {
       health: 0,
       experience: 0,
       feed: 0,
+      love: 0,
       showNewName: false,
       cmdImg: {
         food:'../assets/food1.png',
@@ -56,6 +57,7 @@ class App extends React.Component {
             experience: data.experience,
             feed: data.feed,
             status: data.status,
+            love: data.love,
             showNewName: false,
             newPetName: ''
           });
@@ -168,10 +170,7 @@ class App extends React.Component {
           <NavigationBar />
         </div>
         <div className='row'>
-          <div className='col-md-3 col-xs-3'>
-            <div>log filler</div>
-          </div>
-          <div className='col-md-9 col-xs-9'>
+          <div className='col-md-12 col-xs-12'>
             <h3>{this.state.name} is currently <span className='status'>{this.state.status}</span>!</h3>
             <div>
               <Petbox pet={this.state}/>
