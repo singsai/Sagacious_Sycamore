@@ -95,7 +95,6 @@ class App extends React.Component {
     var obj = {};
     obj[key] = value;
     this.setState(obj);
-    console.log(this.state.newPetName)
   }
 
   showNameInput(){
@@ -170,14 +169,12 @@ class App extends React.Component {
             <div>
               <Petbox pet={this.state}/>
             </div>
-
             <h3>Actions</h3>
             <div className='PetCommand'>{
               this.state.status !== 'dead' ? (<div>
                 <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
               </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
             }</div>
-            <Log logs={this.state.logs}/>
           </div>
         </div>
       </div>
