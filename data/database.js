@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-// NOTE: create hrgotchi database before running
+// NOTE: create 'hrgotchi' database before running
 var db = new Sequelize('hrgotchi', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
@@ -37,7 +37,6 @@ var Log = db.define('Logs', {
 
 //creates any missing tables
 //pass in {force: true} to clear tables
-//insert into Users (username, password) values ("test","test");
 User.sync();
 Pet.sync();
 Log.sync();

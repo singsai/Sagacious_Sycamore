@@ -107,13 +107,11 @@ module.exports = {
               });
             } else {
               console.log('Wrong password');
-              // res.redirect('/login');
               res.send(req.session.user);
             }
           })
         } else {
           console.log('Username not found');
-          // res.redirect('/login');
           res.send(req.session.user);
         }
       })
@@ -139,12 +137,12 @@ module.exports = {
                 if (err) {
                   throw err;
                 } else {
-                  User.create({username: username, password: hash}).then(function() {
+                  User.create({username: username, password: hash}).then(function(user) {
                     console.log('Saved user.');
+                    user = user.dataValues;
                     req.session.regenerate(function() {
-                      req.session.user = username;
-                      res.redirect('/home');
-                      res.end();
+                      req.session.user = user.username;
+                      res.send(req.session.user);
                     });
                   });
                 }
@@ -153,7 +151,7 @@ module.exports = {
           })          
         } else {
           console.log('Account already exists');
-          res.redirect('/login');
+          res.send(false);
         }
       });
   },

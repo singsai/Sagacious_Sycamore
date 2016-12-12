@@ -25,6 +25,16 @@ label {
 	margin:10px;
 }
 
+
+.signup-box {
+  width: 300px;
+}
+
+.singup-box > input {
+  margin:10px;
+}
+
+
 .pet-image {
 	border: 2px solid;
 	border-radius: 25px;
