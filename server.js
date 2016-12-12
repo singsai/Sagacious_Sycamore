@@ -49,6 +49,9 @@ app.get('/logout', controller.logout);
 app.post('/login', controller.login);
 app.post('/signup', controller.signup);
 
+//Log requests
+app.get('/log', controller.getLog);
+app.post('/log', controller.postLog);
 
 //api requests
 app.get('/api/pet', controller.get);
@@ -61,7 +64,7 @@ app.get('/api/test', function(req, res) {
 });
 
 // Uncomment to poll database reguarly
-//setInterval(poll, 2000);
+setInterval(poll, 2000);
 
 app.listen(3000);
 console.log('Server listening on 3000...');

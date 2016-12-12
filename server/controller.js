@@ -1,6 +1,7 @@
 var db = require('../data/database.js');
 var Pet = db.Pet;
 var User = db.User;
+var Log = db.Log;
 var bcrypt = require('bcryptjs');
 
 var lvl1 = {
@@ -59,6 +60,29 @@ module.exports = {
         res.end();
       });
   },
+
+  //Log
+  getLog: function(req, res, next) {
+    var petName = req.body.name;
+    Log.findAll({})
+      .then(function(queries) {
+        var logs = queries.map(function(query) {
+          return query.dataValues;
+        })
+        res.statusCode = 200;
+        res.json(logs);
+      })
+  },
+
+  //postLog is called in polling function on the server side
+  postLog: function(name, action) {
+    Log.create({name: name, action: action})
+      .then(function(log) {
+        console.log('Created new log.');
+      });       
+  },
+
+
 
   //User Authentication
   login: function(req, res, next) {
