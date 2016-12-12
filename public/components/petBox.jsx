@@ -1,6 +1,14 @@
 // image generator with different icons based on pet mood
 var Petbox = (props) => {
   // css styling for the progress bar'';;;
+  var statusProps = {
+    status: props.pet.status,
+    energy: props.pet.feed,
+    health: props.pet.health,
+    level: props.pet.level,
+    experience: props.pet.experience,
+    name: props.pet.name
+  }
   var bars = {
     energyBar: { width: props.pet.feed/8 * 100 + '%' },
     healthBar: { width: props.pet.health/8 * 100 + '%' },
@@ -13,6 +21,9 @@ var Petbox = (props) => {
     <div className='row'>
       <div className='pet-image-container col-md-6 col-xs-6'>
         <img className="pet-image" src={props.pet.img}></img>
+        <div>
+          <StatusMessage petState={statusProps} />
+        </div>
       </div>
       <div className='stats col-md-6 col-xs-6'>
         <div className='stats container'>
