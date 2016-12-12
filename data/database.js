@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-// NOTE: create hrgotchi database before running
+// NOTE: create 'hrgotchi' database before running
 var db = new Sequelize('hrgotchi', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
@@ -24,12 +24,11 @@ var Pet = db.define('Pets', {
   level: {type: Sequelize.INTEGER, defaultValue: 1},
   mood: {type: Sequelize.STRING, defaultValue: 'normal'},
   phys: {type: Sequelize.STRING, defaultValue: 'normal'},
-  img: {type: Sequelize.STRING, defaultValue: 'http://default.gif'},
+  img: {type: Sequelize.STRING, defaultValue: 'http://i.imgur.com/RzBy3Vw.gif'},
 }, {timestamps: false});
 
 //creates any missing tables
 //pass in {force: true} to clear tables
-//insert into Users (username, password) values ("test","test");
 User.sync();
 Pet.sync();
 
