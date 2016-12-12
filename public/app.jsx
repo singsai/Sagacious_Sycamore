@@ -1,6 +1,7 @@
 class App extends React.Component {
 
   constructor(props){
+    console.log('params', props)
     super(props);
     this.state = {
       name: null,
@@ -164,7 +165,13 @@ class App extends React.Component {
     return (
       <div className='app container'>
         <div className='row'>
-          <div className='col-md-12 col-xs-12'>
+          Nav Bar
+        </div>
+        <div className='row'>
+          <div className='col-md-3 col-xs-3'>
+            <div>log filler</div>
+          </div>
+          <div className='col-md-9 col-xs-9'>
             <h3>{this.state.name} is currently <span className='status'>{this.state.status}</span>!</h3>
             <div>
               <Petbox pet={this.state}/>
