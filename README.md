@@ -35,21 +35,22 @@ Send `GET` request to `/api/test`
 Initialize database:
 
 
-```mysql -u root -p
+```
+mysql -u root -p
 
 create database hrgotchi;
 
 use hrgotchi;
 
 INSERT into Pets (name) VALUES ('[CHOOSE_NAME]');
-
 ```
 
 
 From within the root directory:
 
 
-```npm install
+```
+npm install
 
 cd public
 
