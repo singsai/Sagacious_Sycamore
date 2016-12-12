@@ -1,6 +1,5 @@
 # HRGotchi
-
-> Pithy project description
+Live class pet for Hack Reactor.
 
 ## Team
 
@@ -11,39 +10,68 @@
 ## Table of Contents
 
 1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
+1. [Requirements](#Requirements)
+1. [Installing Dependencies](#Setup)
 
 ## Usage
 
-> Some usage instructions
+Adjust live polling:
+
+In `server.js` set ```setInterval(poll, 5000);``` to desired interval.
+
+Test polling:
+
+Send `GET` request to `/api/test`
 
 ## Requirements
 
-- Node 0.10.x
-- Sequelize
+- Node
+- Bower
+- MySQL
 
-## Development
 
-### Installing Dependencies
+## Setup
+
+Initialize database:
+
+```mysql -u root -p```
+
+```create database hrgotchi;```
+
+```use hrgotchi;```
+
+```INSERT into Pets (name) VALUES ('[CHOOSE_NAME]');```
+
 
 From within the root directory:
 
-```sh
-sudo npm install -g bower
-npm install
-bower install
+`npm install`
+
+`cd public`
+
+`npm install && bower install `
+
+
+Start SQL:
+
+```
+mysql.server start
 ```
 
-### Roadmap
+
+Compile React:
+
+` npm run startReact `
+
+
+Start Server:
+
+`npm start `
+
+Visit:
+
+`localhost:3000`
+
+## Roadmap
 
 View the project roadmap [here](https://github.com/Sagacious-Sycamore/Sagacious_Sycamore/issues)
-
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
