@@ -22,7 +22,7 @@ var Petbox = (props) => {
       <div className='pet-image-container col-md-6 col-xs-6'>
         <img className="pet-image" src={props.pet.img}></img>
         <div>
-          <StatusMessage petState={statusProps} />
+          <StatusMessage logs={props.pet.logs} />
         </div>
       </div>
       <div className='stats col-md-6 col-xs-6'>

@@ -83,6 +83,7 @@ label {
 	background-color: #22313F;
 	padding: 15px;
 	height: 150px;
+  overflow: auto;
 }
 
 .underscore {
