@@ -38,6 +38,10 @@ app.use(session({
 }));
 
 //server routes, controller.js handles requests
+
+//Log requests
+app.get('/log', controller.getLog);
+
 //api requests
 app.get('/api/pet', controller.get);
 app.post('/api/pet', controller.post);
@@ -59,7 +63,9 @@ app.get('/*', function(req, res){
 })
 
 // Uncomment to poll database reguarly
-setInterval(poll, 5000);
+
+setInterval(poll, 2000);
+
 
 app.listen(3000);
 console.log('Server listening on 3000...');

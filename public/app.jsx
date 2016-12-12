@@ -18,7 +18,8 @@ class App extends React.Component {
         sleep:'../assets/sleep1.png',
         love:'../assets/love1.png',
         code:'../assets/code1.png'
-      }
+      },
+      logs: []
     }
 
     var that = this;
@@ -32,6 +33,7 @@ class App extends React.Component {
 
   componentWillMount() {
     this.getCurrent();
+    this.getLog();
   }
 
   getCurrent() {
@@ -41,20 +43,34 @@ class App extends React.Component {
       .then(function(parse) {
       parse.json()
         .then(function (data) {
-        that.setState({
-          name: data.name, 
-          mood: data.mood, 
-          level: data.level, 
-          phys: data.phys, 
-          img: data.img, 
-          health: data.health,
-          experience: data.experience,
-          feed: data.feed,
-          status: data.status,
-          showNewName: false,
-          newPetName: ''
+
+          that.setState({
+            name: data.name, 
+            mood: data.mood, 
+            level: data.level, 
+            phys: data.phys, 
+            img: data.img,
+            health: data.health,
+            experience: data.experience,
+            feed: data.feed,
+            status: data.status,
+            showNewName: false,
+            newPetName: ''
+          });
         });
-      });
+    });
+  }
+
+  getLog() {
+    var that = this;
+    fetch('http://localhost:3000/log', {method: 'GET'})
+      .then(function(parse) {
+        parse.json()
+        .then(function (data) {
+          that.setState({
+            logs: data
+          });
+        });
     });
   }
 
@@ -160,6 +176,7 @@ class App extends React.Component {
                 <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
               </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
             }</div>
+            <Log logs={this.state.logs}/>
           </div>
         </div>
       </div>
