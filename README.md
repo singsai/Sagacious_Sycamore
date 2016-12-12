@@ -17,7 +17,7 @@ Live class pet for Hack Reactor.
 
 Adjust live polling:
 
-In `server.js` set ```setInterval(poll, 5000);``` to desired interval.
+In `server.js` set `setInterval(poll, 5000);` to desired interval.
 
 Test polling:
 
@@ -34,29 +34,30 @@ Send `GET` request to `/api/test`
 
 Initialize database:
 
-```mysql -u root -p```
+```mysql -u root -p
 
-```create database hrgotchi;```
+create database hrgotchi;
 
-```use hrgotchi;```
+use hrgotchi;
 
-```INSERT into Pets (name) VALUES ('[CHOOSE_NAME]');```
+INSERT into Pets (name) VALUES ('[CHOOSE_NAME]');
+```
 
 
 From within the root directory:
 
-`npm install`
+```npm install
 
-`cd public`
+cd public
 
-`npm install && bower install `
+npm install && bower install
+```
 
 
 Start SQL:
 
-```
-mysql.server start
-```
+
+`mysql.server start`
 
 
 Compile React:
