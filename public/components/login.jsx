@@ -25,7 +25,10 @@ class Login extends React.Component {
     }).success(function(data) {
       // if data = true, user is found and route to home. if false, stay on login page
       if (data) {
-        that.props.router.push('/home')
+        browserHistory.currentUser = that.state.username;
+        that.props.router.push({
+          pathname: '/home'
+        })
       } else {
         console.log('not a valid user')
       }

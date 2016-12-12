@@ -17,6 +17,11 @@ label {
 	width:800px;
 }
 
+.navbar-brand {
+	font-size: 20px;
+}
+
+
 .signin-box {
 	width: 300px;
 }

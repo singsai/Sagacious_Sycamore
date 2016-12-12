@@ -1,6 +1,7 @@
 class App extends React.Component {
 
   constructor(props){
+    console.log('app current user', browserHistory.currentUser)
     super(props);
     this.state = {
       name: null,
@@ -12,6 +13,7 @@ class App extends React.Component {
       health: 0,
       experience: 0,
       feed: 0,
+      love: 0,
       showNewName: false,
       cmdImg: {
         food:'../assets/food1.png',
@@ -55,6 +57,7 @@ class App extends React.Component {
             experience: data.experience,
             feed: data.feed,
             status: data.status,
+            love: data.love,
             showNewName: false,
             newPetName: ''
           });
@@ -163,6 +166,9 @@ class App extends React.Component {
   render() {
     return (
       <div className='app container'>
+        <div className='row'>
+          <NavigationBar />
+        </div>
         <div className='row'>
           <div className='col-md-12 col-xs-12'>
             <h3>{this.state.name} is currently <span className='status'>{this.state.status}</span>!</h3>
