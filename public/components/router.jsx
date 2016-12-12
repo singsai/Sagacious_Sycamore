@@ -5,7 +5,7 @@ var Link = window.ReactRouter.Link;
 var browserHistory = window.ReactRouter.browserHistory;
 
 
-// React router that switches between signin and pet app
+// React router that switches between signin, signup, and pet app
 var MainRouter = () => (
   <Router history={browserHistory}>
     <Route path='home' component={App}/> 
@@ -13,7 +13,7 @@ var MainRouter = () => (
     <Route path='signup' component={SignUp}/>
     <Route path='*' component={Login}/>
   </Router>
-)
+);
 
-ReactDOM.render(<MainRouter />, document.getElementById('app'))
+ReactDOM.render(<MainRouter />, document.getElementById('app'));
 

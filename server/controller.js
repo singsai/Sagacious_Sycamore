@@ -5,6 +5,7 @@ var Log = db.Log;
 var bcrypt = require('bcryptjs');
 var moment = require('moment');
 
+/********** Image Assets **********/
 var lvl1 = {
   coding: "http://i.imgur.com/KTNujjY.gif",
   sleeping: "http://i.imgur.com/PujjsmB.gif",
@@ -33,6 +34,7 @@ var urls = {
 };
 
 module.exports = {
+  /********** Pet Functions **********/
   get: function(req, res, next) {
     Pet.findOne({})
       .then(function(query) {
@@ -59,7 +61,6 @@ module.exports = {
         }
       });
   },
-
   new: function(req, res, next) {
     var name = req.body.name;
     Pet.destroy({ where: {} });
@@ -70,8 +71,7 @@ module.exports = {
         res.send("success");
       });
   },
-
-  //Log
+  /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
     Log.findAll({})
@@ -85,8 +85,6 @@ module.exports = {
         res.json(logs.reverse());
       })
   },
-
-  //postLog is called in polling function on the server side
   postLog: function(name, action) {
     Log.findAll({
       limit: 1,
@@ -106,10 +104,7 @@ module.exports = {
       }
     })       
   },
-
-
-
-  //User Authentication
+  /********** User Functions **********/
   login: function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
@@ -125,29 +120,25 @@ module.exports = {
             } else if (match) {
               console.log('Login successful');
               req.session.regenerate(function() {
-                // if user is found, send "true" back to client
-                console.log('user logged in')
                 req.session.user = user.username;
                 res.send(req.session.user);
               });
             } else {
-              console.log('Wrong password');
+              console.log('Wrong password.');
               res.send(req.session.user);
             }
           })
         } else {
-          console.log('Username not found');
+          console.log('Username not found.');
           res.send(req.session.user);
         }
       })
   },
-
   logout: function(req, res, next) {
     req.session.destroy(function() {
       res.redirect('/login');
     });
   },
-
   signup: function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
@@ -175,19 +166,18 @@ module.exports = {
             }
           })          
         } else {
-          console.log('Account already exists');
+          console.log('Account already exists.');
           res.send(false);
         }
       });
   },
-
+  /********** Authentication Middleware **********/
   checkUser: function(req, res, next) {
     if (!req.session.user) {
-      console.log('must login');
+      console.log('Must login.');
       res.redirect('/login');
     } else {
-      console.log('logged in as', req.session.user);
       next();
     }
   }
-}
+};

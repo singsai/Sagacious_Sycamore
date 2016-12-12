@@ -1,7 +1,5 @@
 class App extends React.Component {
-
   constructor(props){
-    console.log('app current user', browserHistory.currentUser)
     super(props);
     this.state = {
       name: null,
@@ -25,13 +23,12 @@ class App extends React.Component {
     }
 
     var that = this;
-
     setInterval(function() {
       if (that.state.status !== 'dead') {      
         that.getCurrent();
         that.getLog();
       }
-    }, 1000);
+    }, 2000);
   }
 
   componentWillMount() {
@@ -40,13 +37,12 @@ class App extends React.Component {
   }
 
   getCurrent() {
-    console.log('updating')
+    console.log('Fetching pet status...');
     var that = this;
     fetch('http://localhost:3000/api/pet', {method: 'GET'})
       .then(function(parse) {
       parse.json()
         .then(function (data) {
-
           that.setState({
             name: data.name, 
             mood: data.mood, 
@@ -66,6 +62,7 @@ class App extends React.Component {
   }
 
   getLog() {
+    console.log('Fetching log messages...');
     var that = this;
     fetch('http://localhost:3000/log', {method: 'GET'})
       .then(function(parse) {
@@ -87,7 +84,7 @@ class App extends React.Component {
       data: {status: status}
     })
     .success(function() {
-      console.log('ajax succeeded');
+      console.log('Pet status updated!');
       that.getCurrent();
     })
   }
@@ -117,7 +114,7 @@ class App extends React.Component {
       data: {name: this.state.newPetName}
     })
     .success(function() {
-      console.log('ajax succeeded');
+      console.log('New pet created!');
       that.getCurrent();
     })
   }
@@ -160,7 +157,6 @@ class App extends React.Component {
     this.changeCommandIcon(command);
     this.setStatus(command)
     this.getCurrent();
-    console.log(this.state.level);
   }
 
   render() {
