@@ -27,8 +27,9 @@ class App extends React.Component {
     setInterval(function() {
       if (that.state.status !== 'dead') {      
         that.getCurrent();
+        that.getLog();
       }
-    }, 1000)
+    }, 1000);
   }
 
   componentWillMount() {

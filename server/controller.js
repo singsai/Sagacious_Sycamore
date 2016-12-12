@@ -3,6 +3,7 @@ var Pet = db.Pet;
 var User = db.User;
 var Log = db.Log;
 var bcrypt = require('bcryptjs');
+var moment = require('moment');
 
 var lvl1 = {
   coding: "http://i.imgur.com/KTNujjY.gif",
@@ -54,6 +55,7 @@ module.exports = {
   new: function(req, res, next) {
     var name = req.body.name;
     Pet.destroy({ where: {} });
+    Log.destroy({ where: {} });
     Pet.create({ name: name })
       .then(function(pet) {
         console.log('Created new pet.');
@@ -67,6 +69,7 @@ module.exports = {
     Log.findAll({})
       .then(function(queries) {
         var logs = queries.map(function(query) {
+          query.dataValues.createdAt = moment(query.dataValues.createdAt).fromNow();
           return query.dataValues;
         })
         res.statusCode = 200;
