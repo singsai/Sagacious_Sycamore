@@ -26,11 +26,9 @@ class Login extends React.Component {
       // if data = true, user is found and route to home. if false, stay on login page
       if (data) {
         browserHistory.currentUser = that.state.username;
-        that.props.router.push({
-          pathname: '/home'
-        })
+        that.props.router.push({pathname: '/home'});
       } else {
-        console.log('not a valid user')
+        console.log('not a valid user');
       }
     });
   }
@@ -38,13 +36,13 @@ class Login extends React.Component {
   handleUserChange(e){
     this.setState({
       username: e.target.value
-    })
+    });
   }
 
   handlePasswordChange(e){
     this.setState({
       password: e.target.value
-    })
+    });
   }
 
   render() {
@@ -65,5 +63,3 @@ class Login extends React.Component {
 }
 
 window.Login = Login;
-
-// ReactDOM.render(<Login />, document.getElementById('login'))

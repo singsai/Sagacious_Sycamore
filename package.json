@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/harismh/Sagacious_Sycamore.git"
+    "url": "git+https://github.com/Sagacious-Sycamore/Sagacious_Sycamore.git"
   },
   "author": "Don, Emm, Lisa, Haris",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/harismh/Sagacious_Sycamore/issues"
+    "url": "https://github.com/Sagacious-Sycamore/Sagacious_Sycamore/issues"
   },
-  "homepage": "https://github.com/harismh/Sagacious_Sycamore#readme",
+  "homepage": "https://github.com/Sagacious-Sycamore/Sagacious_Sycamore#readme",
   "dependencies": {
     "bcrypt": "^1.0.1",
     "bcryptjs": "^2.4.0",

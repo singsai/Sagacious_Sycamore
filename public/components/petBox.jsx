@@ -15,7 +15,7 @@ var Petbox = (props) => {
     energyBar: { width: props.pet.feed/8 * 100 + '%' },
     healthBar: { width: props.pet.health/8 * 100 + '%' },
     levelBar:  { width: props.pet.level/3 * 100 + '%' },
-    experienceBar: { width: props.pet.experience/10 * 100 + '%' }
+    experienceBar: { width: props.pet.experience/5 * 100 + '%' }
   }
 
   return (

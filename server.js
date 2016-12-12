@@ -37,9 +37,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
-//server routes, controller.js handles requests
-
-//Log requests
+//log requests
 app.get('/log', controller.getLog);
 
 //api requests
@@ -47,7 +45,7 @@ app.get('/api/pet', controller.get);
 app.post('/api/pet', controller.post);
 app.post('/api/newPet', controller.new);
 app.get('/api/test', function(req, res) {
-  console.log('testing polling function...');
+  console.log('Testing polling function...');
   poll();
   res.end();
 });
@@ -58,14 +56,12 @@ app.post('/login', controller.login);
 app.post('/signup', controller.signup);
 
 //index route
-app.get('/*', function(req, res){
-  res.sendFile(__dirname + '/public/index.html')
-})
+app.get('/*', function(req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 // Uncomment to poll database reguarly
-
 setInterval(poll, 5000);
-
 
 app.listen(3000);
 console.log('Server listening on 3000...');

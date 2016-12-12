@@ -20,18 +20,17 @@ class SignUp extends React.Component {
     })
     .success(function(res) {
       if (!res) {
-        console.log('user already exists');
+        console.log('User already exists.');
         that.props.router.push('/login');
       } else {
-        console.log('post to signup successful');
+        console.log('Post to signup successful.');
         that.props.router.push('/home');
       };
-
     });
   }
 
   handleInput(e){
-    var key = e.target.getAttribute("id");
+    var key = e.target.getAttribute('id');
     var temp = {};
     temp[key] = e.target.value;
     this.setState(temp);

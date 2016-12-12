@@ -1,6 +1,7 @@
 var Pet = require('../data/database.js').Pet;
 var postLog = require('./controller').postLog;
 
+/********** Image Assets **********/
 var lvl1 = {
   normal: "http://i.imgur.com/RzBy3Vw.gif",
   runaway: "http://i.imgur.com/JfH45R0.jpg",
@@ -35,7 +36,7 @@ module.exports = {
   poll: function() {
     Pet.findOne({}).then(function(pet) {  
     var name = pet.name;
-    var level = pet.level    
+    var level = pet.level;    
       switch (pet.status) {
         case 'coding':
           pet.experience++;
@@ -64,7 +65,6 @@ module.exports = {
           pet.feed--;
           pet.health--;
           pet.love--;
-          // postLog(name, 'need love');
           break;
       }
       //if dead, run only this
@@ -77,7 +77,7 @@ module.exports = {
         return pet.save();
       } 
       //check level before anything else
-      if (pet.experience > 10) {
+      if (pet.experience > 5) {
         pet.level = pet.level + 1;
         pet.experience = 0;
         postLog(name, 'leveled up');
