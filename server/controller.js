@@ -76,22 +76,35 @@ module.exports = {
     var petName = req.body.name;
     Log.findAll({})
       .then(function(queries) {
-        var recentQueries = queries.slice(queries.length - 15).reverse();
-        var logs = recentQueries.map(function(query) {
+        queries.length > 15 ? queries=queries.slice(queries.length - 15): null;
+        var logs = queries.map(function(query) {
           query.dataValues.createdAt = moment(query.dataValues.createdAt).fromNow();
           return query.dataValues
         })
         res.statusCode = 200;
-        res.json(logs);
+        res.json(logs.reverse());
       })
   },
 
   //postLog is called in polling function on the server side
   postLog: function(name, action) {
-    Log.create({name: name, action: action})
-      .then(function(log) {
-        console.log('Created new log.');
-      });       
+    Log.findAll({
+      limit: 1,
+      order: [['createdAt', 'DESC']],
+      where: {}
+    }).then(function(entry){
+      if(entry.length === 0){
+        Log.create({name: name, action: action})
+        .then(function(log) {
+          console.log('Created new log.');
+        });
+      } else if(entry[0].dataValues.action !== 'dead'){
+        Log.create({name: name, action: action})
+        .then(function(log) {
+          console.log('Created new log.');
+        });
+      }
+    })       
   },
 
 

@@ -64,7 +64,7 @@ module.exports = {
           pet.feed--;
           pet.health--;
           pet.love--;
-          postLog(name, 'need love');
+          // postLog(name, 'need love');
           break;
       }
       //if dead, run only this
