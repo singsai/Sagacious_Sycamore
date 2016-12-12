@@ -42,7 +42,7 @@ create database hrgotchi;
 
 use hrgotchi;
 
-INSERT into Pets (name) VALUES ('[CHOOSE_NAME]');
+INSERT into Pets (name) VALUES ('CHOOSE_NAME');
 ```
 
 
@@ -62,24 +62,32 @@ npm install && bower install
 Start SQL:
 
 
-`mysql.server start`
+```
+mysql.server start
+```
 
 
 Compile React:
 
 
-` npm run startReact `
+``` 
+npm run startReact 
+```
 
 
 Start Server:
 
 
-`npm start `
+```
+npm start 
+```
 
 Visit:
 
 
-`localhost:3000`
+```
+localhost:3000
+```
 
 ## Roadmap
 
