@@ -17,12 +17,20 @@ var lvl2 = {
   sleeping: 'http://i.giphy.com/l2JhIsdeKTn5IPQCQ.gif',
   playing: 'http://i.giphy.com/3oriNVPP3ax7b6Ryg0.gif',
   eating: 'http://i.giphy.com/l0MYBdxsQBG15bLTq.gif'
-}
+};
+
+var lvl3 = {
+  coding: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
+  sleeping: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
+  playing: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
+  eating: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif'
+};
 
 var urls = {
   lvl1: lvl1,
-  lvl2: lvl2
-}
+  lvl2: lvl2,
+  lvl3: lvl3
+};
 
 module.exports = {
   get: function(req, res, next) {

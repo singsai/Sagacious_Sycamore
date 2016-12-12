@@ -7,7 +7,7 @@ var lvl1 = {
   dead: "http://i.imgur.com/3tWT7qP.jpg",
   sick: "http://i.imgur.com/CdIG2m2.gif",
   happy: "http://i.imgur.com/jjUbQ6P.gif",
-}
+};
 
 var lvl2 = {
   normal: 'http://i.giphy.com/3oriO8JJtEUpvOYm08.gif',
@@ -17,10 +17,19 @@ var lvl2 = {
   happy: 'http://i.giphy.com/3o6ZtoD5DyQhBb9zTq.gif'
 };
 
+var lvl3 = {
+  normal: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
+  runaway: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
+  dead: 'http://i.giphy.com/3o7TKTlTIDVc9ANOla.gif',
+  sick: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
+  happy: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif'
+};
+
 var urls = {
   lvl1: lvl1,
-  lvl2: lvl2
-}
+  lvl2: lvl2,
+  lvl3: lvl3
+};
 
 module.exports = {
   poll: function() {
