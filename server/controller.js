@@ -68,9 +68,10 @@ module.exports = {
     var petName = req.body.name;
     Log.findAll({})
       .then(function(queries) {
-        var logs = queries.map(function(query) {
+        var recentQueries = queries.slice(queries.length - 15).reverse();
+        var logs = recentQueries.map(function(query) {
           query.dataValues.createdAt = moment(query.dataValues.createdAt).fromNow();
-          return query.dataValues;
+          return query.dataValues
         })
         res.statusCode = 200;
         res.json(logs);
