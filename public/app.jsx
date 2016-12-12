@@ -1,7 +1,7 @@
 class App extends React.Component {
 
   constructor(props){
-    console.log('params', props)
+    console.log('app current user', browserHistory.currentUser)
     super(props);
     this.state = {
       name: null,
@@ -165,7 +165,7 @@ class App extends React.Component {
     return (
       <div className='app container'>
         <div className='row'>
-          Nav Bar
+          <NavigationBar />
         </div>
         <div className='row'>
           <div className='col-md-3 col-xs-3'>
