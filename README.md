@@ -36,50 +36,19 @@ Initialize database:
 
 
 ```
-mysql -u root -p
+Setup:
 
-create database hrgotchi;
+In the root folder:
 
-use hrgotchi;
-
-INSERT into Pets (name) VALUES ('CHOOSE_NAME');
-```
-
-
-From within the root directory:
-
-
-```
 npm install
-
-cd public
-
-npm install && bower install
-
-```
-
-
-Start SQL:
-
-
-```
-mysql.server start
-```
-
-
-Compile React:
-
-
-``` 
-npm run startReact 
-```
 
 
 Start Server:
 
+In a new terminal tab in the root folder:
 
 ```
-npm start 
+npm start
 ```
 
 Visit:
