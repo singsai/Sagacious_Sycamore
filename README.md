@@ -32,30 +32,27 @@ Send `GET` request to `/api/test`
 
 ## Setup
 
-Initialize database:
 
+Setup in the root folder:
 
 ```
-Setup:
-
-In the root folder:
-
 npm install
 
+```
 
-Start Server:
-
-In a new terminal tab in the root folder:
+Start Server in a new terminal tab in the root folder:
 
 ```
 npm start
+
 ```
 
 Visit:
 
-
 ```
+
 localhost:3000
+
 ```
 
 ## Roadmap
