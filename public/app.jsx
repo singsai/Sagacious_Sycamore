@@ -12,6 +12,7 @@ class App extends React.Component {
       experience: 0,
       feed: 0,
       love: 0,
+      showModal: false,
       showNewName: false,
       cmdImg: {
         food:'../assets/food1.png',
@@ -159,6 +160,16 @@ class App extends React.Component {
     this.getCurrent();
   }
 
+  close() {
+    console.log('closed called');
+    this.setState({showModal: false});
+  }
+
+  open() {
+    console.log('open called');
+    this.setState({showModal: true});
+  }
+
   render() {
     return (
       <div className='app container'>
@@ -178,6 +189,20 @@ class App extends React.Component {
               </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
             }</div>
           </div>
+
+
+          <div>
+            <Button
+              bsStyle="primary"
+              bsSize="large"
+              onClick={this.open.bind(this)}
+            >
+              Launch demo modal
+            </Button>
+            <ModalInstance showModal={this.state.showModal} hideModalClick={this.close.bind(this)}></ModalInstance>
+          </div>
+
+
         </div>
       </div>
     )
