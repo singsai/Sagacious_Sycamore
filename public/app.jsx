@@ -21,6 +21,7 @@ class App extends React.Component {
         love:'../assets/love1.png',
         code:'../assets/code1.png'
       },
+      nextQuestion: null,
       logs: []
     }
 
@@ -36,6 +37,7 @@ class App extends React.Component {
   componentWillMount() {
     this.getCurrent();
     this.getLog();
+    this.getQuestion();
   }
 
   getCurrent() {
@@ -189,7 +191,15 @@ class App extends React.Component {
   }
 
   getQuestion() {
-    // get request to /api/question to update /fill array of 3 questions
+    var that = this;
+    $.ajax({
+      method: 'GET',
+      url: '/api/question'
+    })
+    .success(function(data) {
+      that.setState({nextQuestion: data});
+      console.log('fetched new question');
+    })
   }
 
   toggleModal() {
