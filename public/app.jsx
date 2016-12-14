@@ -221,7 +221,7 @@ class App extends React.Component {
       // console.log('Question Gotten:', data);
       that.setState({question: data});
       console.log('QUESTIOn:', that.state.question);
-    })    
+    })
   }
 
   render() {
