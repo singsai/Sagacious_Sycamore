@@ -12,12 +12,12 @@ class ModalInstance extends React.Component {
     return (
       <div>
         <div>
-          <Button bsStyle="primary" bsSize="small" onClick={this.props.showModalClick} >
+          <Button bsStyle="primary" bsSize="small" onClick={this.props.toggleModalClick} >
             Coding practice
           </Button>
         </div>
         <div>
-          <Modal show={this.props.showModal} onHide={this.props.hideModalClick}>
+          <Modal show={this.props.showModal} onHide={this.props.toggleModalClick}>
             <Modal.Header closeButton>
               <Modal.Title>Coding practice</Modal.Title>
             </Modal.Header>
@@ -36,7 +36,8 @@ class ModalInstance extends React.Component {
               <p>Some more text</p>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={this.props.hideModalClick}>Close</Button>
+              <Button onClick={this.props.submitAnswer}>Submit</Button>
+
             </Modal.Footer>
           </Modal>
         </div>

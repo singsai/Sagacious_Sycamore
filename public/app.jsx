@@ -160,14 +160,18 @@ class App extends React.Component {
     this.getCurrent();
   }
 
-  closeModal() {
-    console.log('closed called');
-    this.setState({showModal: false});
+  submitAnswer() {
+    console.log('Answer submitted');
+    this.toggleModal(); 
   }
 
-  openModal() {
-    console.log('open called');
-    this.setState({showModal: true});
+  getQuestion() {
+    // get request to /api/question to update /fill array of 3 questions
+  }
+
+  toggleModal() {
+    console.log('toggle called');
+    this.setState({showModal: !this.state.showModal});
   }
 
   render() {
@@ -190,7 +194,7 @@ class App extends React.Component {
             }</div>
           </div>
           <div>
-            <ModalInstance showModal={this.state.showModal} showModalClick={this.openModal.bind(this)} hideModalClick={this.closeModal.bind(this)}></ModalInstance>
+            <ModalInstance showModal={this.state.showModal} toggleModalClick={this.toggleModal.bind(this)} submitAnswer={this.submitAnswer.bind(this)}></ModalInstance>
           </div>
         </div>
       </div>
