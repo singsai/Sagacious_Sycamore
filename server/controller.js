@@ -37,7 +37,7 @@ var urls = {
 module.exports = {
   /********** Pet Functions **********/
   get: function(req, res, next) {
-    Pet.findOne({})
+    Pet.findOne({name: req.body.name})
       .then(function(query) {
         var pet = query.dataValues;
         res.statusCode = 200;
@@ -45,7 +45,7 @@ module.exports = {
       })
   },
   post: function(req, res, next) {
-    Pet.findOne({})
+    Pet.findOne({name: req.body.name})
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
@@ -64,7 +64,7 @@ module.exports = {
   },
   new: function(req, res, next) {
     var name = req.body.name;
-    Pet.destroy({ where: {} });
+    Pet.destroy({ where: {name: name} });
     Log.destroy({ where: {} });
     Pet.create({ name: name })
       .then(function(pet) {
@@ -101,7 +101,7 @@ module.exports = {
   /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
-    Log.findAll({})
+    Log.findAll({name: petName})
       .then(function(queries) {
         queries.length > 15 ? queries=queries.slice(queries.length - 15): null;
         var logs = queries.map(function(query) {
@@ -116,7 +116,7 @@ module.exports = {
     Log.findAll({
       limit: 1,
       order: [['createdAt', 'DESC']],
-      where: {}
+      where: {name: name}
     }).then(function(entry){
       if(entry.length === 0){
         Log.create({name: name, action: action})
@@ -206,5 +206,23 @@ module.exports = {
     } else {
       next();
     }
+  },
+
+
+  /********** Test Functions **********/
+
+  // returns all monsters in an array
+  getPets: function(req, res, next) {
+    console.log('get pets is running');
+    Pet.findAll({})
+      .then(function(pets) {
+        console.log('This is what was found:', pets);
+        res.statusCode = 200;
+        res.send(pets);
+      });
   }
+
+
+
+
 };

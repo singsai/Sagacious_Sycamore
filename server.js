@@ -52,6 +52,11 @@ app.get('/api/test', function(req, res) {
   res.end();
 });
 
+// -------------------------- TEST ROUTES -------------------------- //
+
+app.get('/test/pets', controller.getPets);
+
+
 //login and logout routes
 app.get('/logout', controller.logout);
 app.post('/login', controller.login);
@@ -61,6 +66,12 @@ app.post('/signup', controller.signup);
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
+
+
+
+
+
+
 
 // Uncomment to poll database reguarly
 setInterval(poll, 5000);
