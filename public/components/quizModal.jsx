@@ -26,13 +26,13 @@ class ModalInstance extends React.Component {
               <p>some question about React</p>
 
               <h4>Answer Choices:</h4>
-              <Button bsStyle="primary">Answer 1</Button>
+              <Button bsStyle="primary" value="1" onClick={this.props.pickAnswer}>Answer 1</Button>
               <p>Some more text</p>
-              <Button bsStyle="primary">Answer 2</Button>
+              <Button bsStyle="primary" value="2" onClick={this.props.pickAnswer}>Answer 2</Button>
               <p>Some more text</p>
-              <Button bsStyle="primary">Answer 3</Button>
+              <Button bsStyle="primary" value="3" onClick={this.props.pickAnswer}>Answer 3</Button>
               <p>Some more text</p>
-              <Button bsStyle="primary">Answer 4</Button>
+              <Button bsStyle="primary" value="4" onClick={this.props.pickAnswer}>Answer 4</Button>
               <p>Some more text</p>
             </Modal.Body>
             <Modal.Footer>
