@@ -45,6 +45,7 @@ app.get('/api/pet', controller.get);
 app.post('/api/pet', controller.post);
 app.post('/api/newPet', controller.new);
 app.get('/api/question', controller.getQuestion);
+// app.post('/api/question', controller.addQuestion);
 app.get('/api/test', function(req, res) {
   console.log('Testing polling function...');
   poll();
