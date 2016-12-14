@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
     "preinstall": "mysql -u root -e 'CREATE DATABASE IF NOT EXISTS hrgotchi; use hrgotchi;' & (cd public && npm install && bower install)",
-    "postinstall": "node data/database.js"
+    "postinstall": "node data/database.js",
+    "build": "babel public --watch --out-dir public/compiled --presets=es2015,react --ignore=node_modules,compiled,bower_components --source-maps inline"
   },
   "repository": {
     "type": "git",
