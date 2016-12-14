@@ -14,6 +14,7 @@ class App extends React.Component {
       love: 0,
       showModal: false,
       showNewName: false,
+      answer: '',
       cmdImg: {
         food:'../assets/food1.png',
         sleep:'../assets/sleep1.png',
@@ -25,7 +26,7 @@ class App extends React.Component {
 
     var that = this;
     setInterval(function() {
-      if (that.state.status !== 'dead') {      
+      if (that.state.status !== 'dead') {
         that.getCurrent();
         that.getLog();
       }
@@ -45,10 +46,10 @@ class App extends React.Component {
       parse.json()
         .then(function (data) {
           that.setState({
-            name: data.name, 
-            mood: data.mood, 
-            level: data.level, 
-            phys: data.phys, 
+            name: data.name,
+            mood: data.mood,
+            level: data.level,
+            phys: data.phys,
             img: data.img,
             health: data.health,
             experience: data.experience,
@@ -106,7 +107,7 @@ class App extends React.Component {
 
   newPet(e) {
     e.preventDefault();
-    
+
     var that = this;
     $.ajax({
       method: 'POST',
@@ -153,7 +154,7 @@ class App extends React.Component {
         }});
     }
   }
-  
+
   executeCommand(command){
     this.changeCommandIcon(command);
     this.setStatus(command)
@@ -161,8 +162,30 @@ class App extends React.Component {
   }
 
   submitAnswer() {
-    console.log('Answer submitted');
-    this.toggleModal(); 
+    // console.log('Answer submitted', data.target.value);
+    // var answer = this.pickAnswer();
+    var option = {
+      answer: this.state.answer
+    }
+    // console.log('option', option);
+    $.ajax({
+      method: 'POST',
+      url: '/api/questions', // Waiting for correct endpoint
+      data: option,
+      success: function() {
+        console.log('Successfully posted');
+      }
+    });
+    this.toggleModal();
+    this.getQuestion(); // Will fetch the next question
+  }
+
+  pickAnswer(e) {
+    e.preventDefault();
+    this.setState({
+      answer: e.target.value
+    });
+    // console.log(e.target.value);
   }
 
   getQuestion() {
@@ -194,7 +217,7 @@ class App extends React.Component {
             }</div>
           </div>
           <div>
-            <ModalInstance showModal={this.state.showModal} toggleModalClick={this.toggleModal.bind(this)} submitAnswer={this.submitAnswer.bind(this)}></ModalInstance>
+            <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} submitAnswer={this.submitAnswer.bind(this)}></ModalInstance>
           </div>
         </div>
       </div>
