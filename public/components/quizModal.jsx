@@ -11,29 +11,35 @@ class ModalInstance extends React.Component {
 
     return (
       <div>
-        <Modal show={this.props.showModal} onHide={this.props.hideModalClick}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+        <div>
+          <Button bsStyle="primary" bsSize="small" onClick={this.props.showModalClick} >
+            Coding practice
+          </Button>
+        </div>
+        <div>
+          <Modal show={this.props.showModal} onHide={this.props.hideModalClick}>
+            <Modal.Header closeButton>
+              <Modal.Title>Coding practice</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h4>React Coding Challenge</h4>
+              <p>some question about React</p>
 
-            <h4>Overflowing text to show scroll behavior</h4>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.props.hideModalClick}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+              <h4>Answer Choices:</h4>
+              <Button bsStyle="primary">Answer 1</Button>
+              <p>Some more text</p>
+              <Button bsStyle="primary">Answer 2</Button>
+              <p>Some more text</p>
+              <Button bsStyle="primary">Answer 3</Button>
+              <p>Some more text</p>
+              <Button bsStyle="primary">Answer 4</Button>
+              <p>Some more text</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.props.hideModalClick}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
       </div>
     );
   }

@@ -160,12 +160,12 @@ class App extends React.Component {
     this.getCurrent();
   }
 
-  close() {
+  closeModal() {
     console.log('closed called');
     this.setState({showModal: false});
   }
 
-  open() {
+  openModal() {
     console.log('open called');
     this.setState({showModal: true});
   }
@@ -189,20 +189,9 @@ class App extends React.Component {
               </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
             }</div>
           </div>
-
-
           <div>
-            <Button
-              bsStyle="primary"
-              bsSize="large"
-              onClick={this.open.bind(this)}
-            >
-              Launch demo modal
-            </Button>
-            <ModalInstance showModal={this.state.showModal} hideModalClick={this.close.bind(this)}></ModalInstance>
+            <ModalInstance showModal={this.state.showModal} showModalClick={this.openModal.bind(this)} hideModalClick={this.closeModal.bind(this)}></ModalInstance>
           </div>
-
-
         </div>
       </div>
     )
