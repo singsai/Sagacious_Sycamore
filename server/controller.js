@@ -71,6 +71,18 @@ module.exports = {
         res.send("success");
       });
   },
+  /********** Quiz Functions **********/
+  getQuestion: function(req, res, next) {
+    var question = {
+      question: "What is love?",
+      choices: ['the End', 'Death', 'Marriage', 'the best thing ever'],
+      answer: 4, //choices from 1 till 4 
+      tags: '',
+      level: 1
+    };
+
+    res.send(question);
+  },
   /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
