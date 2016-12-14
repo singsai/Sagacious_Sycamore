@@ -35,6 +35,17 @@ var Log = db.define('Logs', {
   updatedAt: {type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
 });
 
+// Question Schema
+
+var Question = db.define('Questions', {
+  question: {type: Sequelize.STRING, allowNull: false, unique: true},
+  choice1: {type: Sequelize.STRING, allowNull: false},
+  choice2: {type: Sequelize.STRING, allowNull: false},
+  choice3: {type: Sequelize.STRING, allowNull: false},
+  choice4: {type: Sequelize.STRING, allowNull: false},
+  answer: {type: Sequelize.INTEGER, allowNull: false}
+});
+
 //creates any missing tables
 //pass in {force: true} to clear tables
 User.sync();
@@ -50,10 +61,12 @@ Pet.sync().then(function () {
     });
 });
 Log.sync();
+Question.sync();
 
 module.exports = {
   User: User,
   Pet: Pet,
   Log: Log,
+  Question: Question,
   db: db
 } 
