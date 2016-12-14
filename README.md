@@ -33,24 +33,24 @@ Send `GET` request to `/api/test`
 ## Setup
 
 
-Setup in the root folder:
+Install dependencies and setup database:
 
 ```
 npm install
 
 ```
 
-Start Server in a new terminal tab in the root folder:
+For development and constant recompiling of jsx files:
+
+```
+npm run build
+
+```
+
+Start Server:
 
 ```
 npm start
-
-```
-For development and constant recompiling jsx after file changes
-
-```
-cd public
-npm run build
 
 ```
 

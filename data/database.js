@@ -39,10 +39,15 @@ var Log = db.define('Logs', {
 //pass in {force: true} to clear tables
 User.sync();
 Pet.sync().then(function () {
-  // Table created
-  return Pet.create({
-    name: 'John'
-  });
+  // Create table and set default Pet if it doesn't exist
+  Pet.findOrCreate({
+      where: {
+        name: 'John'
+      },
+      defaults: {
+        name: 'John'
+      }
+    });
 });
 Log.sync();
 

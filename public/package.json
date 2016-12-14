@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "bower install",
-    "postinstall": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,bower_components --source-maps inline",
-    "build": "babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,bower_components --source-maps inline"
+    "postinstall": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,bower_components --source-maps inline"
   },
   "author": "",
   "license": "ISC",
