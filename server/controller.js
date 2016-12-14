@@ -79,7 +79,7 @@ module.exports = {
         // Pull a random question
         var randomChoice = ~~(Math.random() * questions.length);
         var question = questions[randomChoice];
-
+        question.answer = 0;
         res.statusCode = 200;
         res.send(question);
       });
