@@ -13,6 +13,7 @@ class App extends React.Component {
       feed: 0,
       love: 0,
       showModal: false,
+      question: '',
       showNewName: false,
       answer: '',
       cmdImg: {
@@ -207,6 +208,22 @@ class App extends React.Component {
     this.setState({showModal: !this.state.showModal});
   }
 
+  getQuestion() {
+    // var that = this;
+    // get request to /api/question to update /fill array of 3 questions
+    var that = this;
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:3000/api/question',
+      data: {status: status}
+    })
+    .done(function(data) {
+      // console.log('Question Gotten:', data);
+      that.setState({question: data});
+      console.log('QUESTIOn:', that.state.question);
+    })    
+  }
+
   render() {
     return (
       <div className='app container'>
@@ -227,7 +244,7 @@ class App extends React.Component {
             }</div>
           </div>
           <div>
-            <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} submitAnswer={this.submitAnswer.bind(this)}></ModalInstance>
+            <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} getQuestion={this.getQuestion.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></ModalInstance>
           </div>
         </div>
       </div>
