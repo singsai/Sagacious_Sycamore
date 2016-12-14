@@ -12,6 +12,7 @@ class App extends React.Component {
       experience: 0,
       feed: 0,
       love: 0,
+      showModal: false,
       showNewName: false,
       cmdImg: {
         food:'../assets/food1.png',
@@ -159,6 +160,16 @@ class App extends React.Component {
     this.getCurrent();
   }
 
+  closeModal() {
+    console.log('closed called');
+    this.setState({showModal: false});
+  }
+
+  openModal() {
+    console.log('open called');
+    this.setState({showModal: true});
+  }
+
   render() {
     return (
       <div className='app container'>
@@ -177,6 +188,9 @@ class App extends React.Component {
                 <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
               </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
             }</div>
+          </div>
+          <div>
+            <ModalInstance showModal={this.state.showModal} showModalClick={this.openModal.bind(this)} hideModalClick={this.closeModal.bind(this)}></ModalInstance>
           </div>
         </div>
       </div>
