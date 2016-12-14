@@ -38,7 +38,12 @@ var Log = db.define('Logs', {
 //creates any missing tables
 //pass in {force: true} to clear tables
 User.sync();
-Pet.sync();
+Pet.sync().then(function () {
+  // Table created
+  return Pet.create({
+    name: 'John'
+  });
+});
 Log.sync();
 
 module.exports = {

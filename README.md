@@ -46,6 +46,13 @@ Start Server in a new terminal tab in the root folder:
 npm start
 
 ```
+For development and constant recompiling jsx after file changes
+
+```
+cd public
+npm run build
+
+```
 
 Visit:
 
