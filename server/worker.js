@@ -135,6 +135,10 @@ module.exports = {
           pet.img = urls['lvl' + level]['normal'];
           pet.save();
         }
+        if (pet.health < 0) pet.health = 0;
+        if (pet.feed < 0) pet.feed = 0;
+        if (pet.love < 0) pet.love = 0;
+
       }
     }); 
   }
