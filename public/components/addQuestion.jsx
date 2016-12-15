@@ -9,11 +9,26 @@ var FieldGroup = ReactBootstrap.FieldGroup;
 class AddQuestionModal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
+    this.state.question = '';
+    this.state.choice1 = '';
+    this.state.choice2 = '';
+    this.state.choice3 = '';
+    this.state.choice4 = '';
+    this.state.answer = 0;
+
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('Question submitted', event);
+    console.log('Question submitted', this.state);
+    this.props.toggleModalClick();
+  }
+
+  handleChange(name, e) {
+    var change = {};
+    change[name] = e.target.value;
+    this.setState(change);
   }
 
   render() {
@@ -28,26 +43,30 @@ class AddQuestionModal extends React.Component {
         <div>
           <Modal show={this.props.showModal} onHide={this.props.toggleModalClick}>
 
-              <form onSubmit={this.handleSubmit.bind(this)}>
-                <FormGroup controlId="formControlsQuestion">
+              <form onSubmit={this.handleSubmit.bind(this)} >
+                <FormGroup>
                   <ControlLabel>Question</ControlLabel>
-                  <FormControl componentClass="textarea" placeholder="Question" />
+                  <FormControl componentClass="textarea" onChange={this.handleChange.bind(this, 'question')} value={this.state.question} placeholder="Question" />
                 </FormGroup>
-                <FormGroup controlId="formControlsAnswer1">
+                <FormGroup >
                   <ControlLabel>Answer 1</ControlLabel>
-                  <FormControl componentClass="textarea" placeholder="Answer 1" />
+                  <FormControl componentClass="textarea" onChange={this.handleChange.bind(this, 'choice1')} value={this.state.choice1} placeholder="Answer 1" />
                 </FormGroup>
-                <FormGroup controlId="formControlsAnswer2">
+                <FormGroup >
                   <ControlLabel>Answer 2</ControlLabel>
-                  <FormControl componentClass="textarea" placeholder="Answer 2" />
+                  <FormControl componentClass="textarea" onChange={this.handleChange.bind(this, 'choice2')} value={this.state.choice2} placeholder="Answer 2" />
                 </FormGroup>
-                <FormGroup controlId="formControlsAnswer3">
+                <FormGroup >
                   <ControlLabel>Answer 3</ControlLabel>
-                  <FormControl componentClass="textarea" placeholder="Answer 3" />
+                  <FormControl componentClass="textarea" onChange={this.handleChange.bind(this, 'choice3')} value={this.state.choice3} placeholder="Answer 3" />
                 </FormGroup>
-                <FormGroup controlId="formControlsAnswer4">
+                <FormGroup >
                   <ControlLabel>Answer 4</ControlLabel>
-                  <FormControl componentClass="textarea" placeholder="Answer 4" />
+                  <FormControl componentClass="textarea" onChange={this.handleChange.bind(this, 'choice4')} value={this.state.choice4} placeholder="Answer 4" />
+                </FormGroup>
+                <FormGroup >
+                  <ControlLabel>Answer 4</ControlLabel>
+                  <FormControl componentClass="textarea" onChange={this.handleChange.bind(this, 'choice4')} value={this.state.choice4} placeholder="Answer 4" />
                 </FormGroup>
 
                 <Button type="submit">
