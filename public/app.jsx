@@ -13,6 +13,7 @@ class App extends React.Component {
       feed: 0,
       love: 0,
       showModal: false,
+      showAddQuestionModal: false,
       question: '',
       showNewName: false,
       answer: '',
@@ -209,6 +210,11 @@ class App extends React.Component {
     this.setState({showModal: !this.state.showModal});
   }
 
+  toggleAddQuestionModal() {
+    this.setState({showAddQuestionModal: !this.state.showAddQuestionModal});
+    console.log('toggleQuestion called', this.state.showAddQuestionModal);
+  }
+
   getQuestion() {
     // var that = this;
     // get request to /api/question to update /fill array of 3 questions
@@ -223,6 +229,12 @@ class App extends React.Component {
       that.setState({question: data});
       console.log('QUESTIOn:', that.state.question);
     })
+  }
+
+  handleQuestionSubmit(event) {
+    event.preventDefault();
+    console.log('Question submitted', event.target);
+
   }
 
   render() {
@@ -246,6 +258,7 @@ class App extends React.Component {
           </div>
           <div>
             <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} getQuestion={this.getQuestion.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></ModalInstance>
+            <AddQuestionModal showModal={this.state.showAddQuestionModal} toggleModalClick={this.toggleAddQuestionModal.bind(this)} handleSubmit={this.handleQuestionSubmit.bind(this)}></AddQuestionModal>
           </div>
         </div>
       </div>
