@@ -68,11 +68,11 @@ class AddQuestionModal extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Select</ControlLabel>
-                  <FormControl componentClass="select" value={this.state.answer} >
-                    <option onChange={this.handleChange.bind(this, 'answer')} value=1>Answer 1</option>
-                    <option value=2>Answer 2</option>
-                    <option value=3>Answer 4</option>
-                    <option value=4>Answer 5</option>
+                  <FormControl componentClass="select" value={this.state.answer} onChange={this.handleChange.bind(this, 'answer')} >
+                    <option value={1}>Answer 1</option>
+                    <option value={2}>Answer 2</option>
+                    <option value={3}>Answer 3</option>
+                    <option value={4}>Answer 4</option>
                   </FormControl>
                 </FormGroup>
 
