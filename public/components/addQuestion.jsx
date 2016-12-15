@@ -22,6 +22,15 @@ class AddQuestionModal extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log('Question submitted', this.state);
+    $.ajax({
+      method: 'POST',
+      url: '/api/question',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: this.state
+    })
+    .success(function() {
+      console.log('Question submitted');
+    })
     this.props.toggleModalClick();
   }
 
