@@ -26,7 +26,7 @@ var app = express();
 //use bodyparser middleware
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({'extended':false}));
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 app.use(cors());
 
 //use cookieparser & session
@@ -46,6 +46,7 @@ app.post('/api/pet', controller.post);
 app.post('/api/newPet', controller.new);
 app.get('/api/question', controller.getQuestion);
 // app.post('/api/question', controller.addQuestion);
+app.post('/api/answer', controller.checkAnswer);
 app.get('/api/test', function(req, res) {
   console.log('Testing polling function...');
   poll();
