@@ -168,12 +168,13 @@ class App extends React.Component {
     // console.log('Answer submitted', data.target.value);
     // var answer = this.pickAnswer();
     var option = {
+      id: this.state.question.id,
       answer: this.state.answer
     }
     // console.log('option', option);
     $.ajax({
       method: 'POST',
-      url: '/api/questions', // Waiting for correct endpoint
+      url: '/api/answer',
       data: option,
       success: function() {
         console.log('Successfully posted');

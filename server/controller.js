@@ -49,7 +49,7 @@ module.exports = {
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
-          pet.status = newStatus; 
+          pet.status = newStatus;
           console.log('url', urls['lvl'+ pet.level][newStatus]);
           pet.img = urls['lvl'+ pet.level][newStatus];
           pet.save().then(function(data) {
@@ -98,6 +98,25 @@ module.exports = {
         res.send('success');
     });
   },
+
+  checkAnswer: function(req, res, next) {
+    var id = req.body.id;
+    var answer = req.body.answer;
+    // console.log('answer', answer);
+    Question.findOne({id: id})
+      .then(function(question) {
+        // console.log('here is the question', question.answer);
+        var obj = {};
+        if (question.answer == answer) {
+          obj.correct = true;
+        } else {
+          obj.correct = false;
+        }
+        // console.log(obj);
+        res.send(obj);
+      });
+
+  },
   /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
@@ -129,7 +148,7 @@ module.exports = {
           console.log('Created new log.');
         });
       }
-    })       
+    })
   },
   /********** User Functions **********/
   login: function(req, res, next) {
@@ -191,7 +210,7 @@ module.exports = {
                 }
               })
             }
-          })          
+          })
         } else {
           console.log('Account already exists.');
           res.send(false);
@@ -221,8 +240,4 @@ module.exports = {
         res.send(pets);
       });
   }
-
-
-
-
 };
