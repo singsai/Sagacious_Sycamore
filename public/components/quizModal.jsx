@@ -6,11 +6,6 @@ class ModalInstance extends React.Component {
     super(props);
   }
 
-//localhost:3000/api/question
-  componentDidMount() {
-    this.props.getQuestion();
-  }
-
   render() {
 
     return (

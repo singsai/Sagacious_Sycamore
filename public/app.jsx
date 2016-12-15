@@ -23,7 +23,6 @@ class App extends React.Component {
         love:'../assets/love1.png',
         code:'../assets/code1.png'
       },
-      nextQuestion: null,
       logs: []
     }
 
@@ -200,7 +199,7 @@ class App extends React.Component {
       url: '/api/question'
     })
     .success(function(data) {
-      that.setState({nextQuestion: data});
+      that.setState({question: data});
       console.log('fetched new question');
     })
   }
@@ -213,21 +212,6 @@ class App extends React.Component {
   toggleAddQuestionModal() {
     this.setState({showAddQuestionModal: !this.state.showAddQuestionModal});
     console.log('toggleQuestion called', this.state.showAddQuestionModal);
-  }
-
-  getQuestion() {
-    // var that = this;
-    // get request to /api/question to update /fill array of 3 questions
-    var that = this;
-    $.ajax({
-      method: 'GET',
-      url: 'http://localhost:3000/api/question',
-      data: {status: status}
-    })
-    .done(function(data) {
-      // console.log('Question Gotten:', data);
-      that.setState({question: data});
-    })
   }
 
   handleQuestionSubmit(event) {
@@ -256,7 +240,7 @@ class App extends React.Component {
             }</div>
           </div>
           <div>
-            <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} getQuestion={this.getQuestion.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></ModalInstance>
+            <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></ModalInstance>
             <AddQuestionModal showModal={this.state.showAddQuestionModal} toggleModalClick={this.toggleAddQuestionModal.bind(this)} handleSubmit={this.handleQuestionSubmit.bind(this)}></AddQuestionModal>
           </div>
         </div>
