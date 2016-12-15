@@ -246,6 +246,7 @@ class App extends React.Component {
           </div>
           <div>
             <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} getQuestion={this.getQuestion.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></ModalInstance>
+            <AddQuestionModal showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} getQuestion={this.getQuestion.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></AddQuestionModal>
           </div>
         </div>
       </div>
