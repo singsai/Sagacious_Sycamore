@@ -5,6 +5,7 @@ var ControlLabel = ReactBootstrap.ControlLabel;
 var FormControl = ReactBootstrap.FormControl;
 var HelpBlock = ReactBootstrap.HelpBlock;
 var FieldGroup = ReactBootstrap.FieldGroup;
+var Radio = ReactBootstrap.Radio;
 
 class AddQuestionModal extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class AddQuestionModal extends React.Component {
   }
 
   handleChange(name, e) {
+    console.log(name, e.target.value)
     var change = {};
     change[name] = e.target.value;
     this.setState(change);
@@ -64,9 +66,14 @@ class AddQuestionModal extends React.Component {
                   <ControlLabel>Answer 4</ControlLabel>
                   <FormControl componentClass="textarea" onChange={this.handleChange.bind(this, 'choice4')} value={this.state.choice4} placeholder="Answer 4" />
                 </FormGroup>
-                <FormGroup >
-                  <ControlLabel>Answer 4</ControlLabel>
-                  <FormControl componentClass="textarea" onChange={this.handleChange.bind(this, 'choice4')} value={this.state.choice4} placeholder="Answer 4" />
+                <FormGroup>
+                  <ControlLabel>Select</ControlLabel>
+                  <FormControl componentClass="select" value={this.state.answer} >
+                    <option onChange={this.handleChange.bind(this, 'answer')} value=1>Answer 1</option>
+                    <option value=2>Answer 2</option>
+                    <option value=3>Answer 4</option>
+                    <option value=4>Answer 5</option>
+                  </FormControl>
                 </FormGroup>
 
                 <Button type="submit">
