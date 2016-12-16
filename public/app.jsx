@@ -4,7 +4,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       name: null,
-      user: 'TestUSer8',
+      newPetName: 'newPet',
+      user: browserHistory.currentUser,
       mood: null,
       level: 0,
       phys: null,
@@ -41,13 +42,22 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    if (browserHistory.currentUser) {
+      this.setState({user: browserHistory.currentUser});
+    }
+    console.log('Fetching pet status...', browserHistory.currentUser, this.state.user, 'componentWillMount');
+    if (!this.state.name) {
+      this.newPet
+    }
+  }
+
+  componentDidMount() {
     this.getCurrent();
     this.getLog();
-    this.getQuestion();
+    this.getQuestion();    
   }
 
   getCurrent() {
-    console.log('Fetching pet status...');
     var that = this;
     $.ajax({
       method: 'POST',
@@ -104,6 +114,7 @@ class App extends React.Component {
   }
 
   newPet(e) {
+    console.log('new', this.state.user);
     e.preventDefault();
 
     var that = this;
@@ -111,6 +122,7 @@ class App extends React.Component {
       method: 'POST',
       url: 'http://localhost:3000/api/newPet',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      // so far saving it to window was the only thing working, need to find a better alternative
       data: {name: this.state.newPetName, user: this.state.user}
     })
     .success(function() {
@@ -264,7 +276,7 @@ class App extends React.Component {
             <div className='PetCommand'>{
               this.state.status !== 'dead' ? (<div>
                 <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
-              </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
+              </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} user={this.state.user} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
             }</div>
           </div>
           <div>

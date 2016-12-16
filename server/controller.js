@@ -39,9 +39,17 @@ module.exports = {
   get: function(req, res, next) {
     Pet.findOne({user: req.body.user})
       .then(function(query) {
-        var pet = query.dataValues;
-        res.statusCode = 200;
-        res.json(pet);
+        if (query) {
+          var pet = query.dataValues;
+          res.statusCode = 200;
+          res.json(pet);          
+        } else {
+          Pet.create({ user: req.body.user, name: 'newPetOf' + req.body.user})
+          .then(function(pet) {
+            console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
+            res.send(pet.dataValues);
+          });
+        }
       })
   },
   post: function(req, res, next) {
@@ -63,14 +71,14 @@ module.exports = {
       });
   },
   new: function(req, res, next) {
-    console.log('get request', req.body.user);
     var name = req.body.name;
-    var user = req.body.name;
+    var user = req.body.user;
+    console.log('new', user);
     Pet.destroy({ where: {user: user}});
     Log.destroy({ where: {user: user} });
     Pet.create({ user: user, name: name})
       .then(function(pet) {
-        console.log('Created new pet.');
+        console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
         res.send("success");
       });
   },
@@ -135,7 +143,6 @@ module.exports = {
       })
   },
   postLog: function(user, name, action) {
-    console.log('postLog', user);
     Log.findAll({
       limit: 1,
       order: [['createdAt', 'DESC']],
