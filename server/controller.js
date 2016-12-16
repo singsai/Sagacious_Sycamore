@@ -37,7 +37,7 @@ var urls = {
 module.exports = {
   /********** Pet Functions **********/
   get: function(req, res, next) {
-    Pet.findOne({name: req.body.name})
+    Pet.findOne({user: 'TestUser8'})
       .then(function(query) {
         var pet = query.dataValues;
         res.statusCode = 200;
@@ -45,7 +45,7 @@ module.exports = {
       })
   },
   post: function(req, res, next) {
-    Pet.findOne({name: req.body.name})
+    Pet.findOne({user: 'TestUser8'})
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
@@ -64,9 +64,9 @@ module.exports = {
   },
   new: function(req, res, next) {
     var name = req.body.name;
-    Pet.destroy({ where: {name: name} });
+    Pet.destroy({ where: {user: 'TestUser8'} });
     Log.destroy({ where: {} });
-    Pet.create({ name: name })
+    Pet.create({ user: 'TestUser8' })
       .then(function(pet) {
         console.log('Created new pet.');
         res.send("success");
@@ -120,7 +120,7 @@ module.exports = {
   /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
-    Log.findAll({name: petName})
+    Log.findAll({user: 'TestUser8'})
       .then(function(queries) {
         queries.length > 15 ? queries=queries.slice(queries.length - 15): null;
         var logs = queries.map(function(query) {
@@ -135,15 +135,15 @@ module.exports = {
     Log.findAll({
       limit: 1,
       order: [['createdAt', 'DESC']],
-      where: {name: name}
+      where: {user: 'TestUser8'}
     }).then(function(entry){
       if(entry.length === 0){
-        Log.create({name: name, action: action})
+        Log.create({name: name, action: action, user: 'TestUser8'})
         .then(function(log) {
           console.log('Created new log.');
         });
       } else if(entry[0].dataValues.action !== 'dead'){
-        Log.create({name: name, action: action})
+        Log.create({name: name, action: action, user: 'TestUser8'})
         .then(function(log) {
           console.log('Created new log.');
         });
