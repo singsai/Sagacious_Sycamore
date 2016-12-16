@@ -37,6 +37,7 @@ var urls = {
 module.exports = {
   /********** Pet Functions **********/
   get: function(req, res, next) {
+    console.log('req', req.session);
     Pet.findOne({user: 'TestUser8'})
       .then(function(query) {
         var pet = query.dataValues;
