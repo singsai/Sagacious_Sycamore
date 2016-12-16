@@ -18,6 +18,7 @@ class App extends React.Component {
       question: '',
       showNewName: false,
       answer: '',
+      alertVisible: false,
       answerCorrect: null,
       cmdImg: {
         food:'../assets/food1.png',
@@ -28,6 +29,7 @@ class App extends React.Component {
       logs: []
     }
 
+    // this.handleAlertDismiss.bind(this);
     var that = this;
     setInterval(function() {
       if (that.state.status !== 'dead') {
@@ -174,7 +176,7 @@ class App extends React.Component {
       id: this.state.question.id,
       answer: this.state.answer
     }
-    // console.log('option', option);    
+    // console.log('option', option);
     $.ajax({
       method: 'POST',
       url: '/api/answer',
@@ -223,8 +225,16 @@ class App extends React.Component {
     console.log('Question submitted', event.target);
   }
 
+  handleAlertDismiss() {
+    this.setState({alertVisible: false});
+  }
+
+  // handleAlertShow() {
+  //   this.setState({alertVisible: true});
+  // }
+
   render() {
-    let answerMessage;    
+    let answerMessage;
 
     var bsStyle = 'info';
     var style = {
@@ -239,6 +249,7 @@ class App extends React.Component {
       bsStyle = 'danger';
       style.display = 'block';
       answerMessage = 'Nice try, but wrong';
+
     } else {
       answerMessage = '';
     }
@@ -251,7 +262,9 @@ class App extends React.Component {
         <div className='row'>
           <div className='col-md-12 col-xs-12'>
             <h3>{this.state.name} is currently <span className='status'>{this.state.status}</span>!</h3>
-            <Alert bsStyle={bsStyle} style={style}>{answerMessage}</Alert>                
+            <Alert bsStyle={bsStyle} style={style} onDismiss={this.handleAlertDismiss.bind(this)}>
+              {answerMessage}
+            </Alert>
             <div>
               <Petbox pet={this.state}/>
             </div>
@@ -263,11 +276,11 @@ class App extends React.Component {
             }</div>
           </div>
           <div>
-            <ModalInstance 
-              showModal={this.state.showModal} 
-              pickAnswer={this.pickAnswer.bind(this)} 
-              toggleModalClick={this.toggleModal.bind(this)} 
-              submitAnswer={this.submitAnswer.bind(this)} 
+            <ModalInstance
+              showModal={this.state.showModal}
+              pickAnswer={this.pickAnswer.bind(this)}
+              toggleModalClick={this.toggleModal.bind(this)}
+              submitAnswer={this.submitAnswer.bind(this)}
               question={this.state.question}
             ></ModalInstance>
             <AddQuestionModal showModal={this.state.showAddQuestionModal} toggleModalClick={this.toggleAddQuestionModal.bind(this)} handleSubmit={this.handleQuestionSubmit.bind(this)}></AddQuestionModal>
