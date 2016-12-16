@@ -217,7 +217,6 @@ class App extends React.Component {
   handleQuestionSubmit(event) {
     event.preventDefault();
     console.log('Question submitted', event.target);
-
   }
 
   render() {

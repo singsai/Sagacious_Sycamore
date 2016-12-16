@@ -102,17 +102,18 @@ module.exports = {
   checkAnswer: function(req, res, next) {
     var id = req.body.id;
     var answer = req.body.answer;
-    // console.log('answer', answer);
-    Question.findOne({id: id})
+    // console.log('user answer', answer);
+    Question.findOne({where: {id: id}})
       .then(function(question) {
-        // console.log('here is the question', question.answer);
+        // console.log('obj', question);
+        // console.log('db',question.question, question.answer);
         var obj = {};
         if (question.answer == answer) {
           obj.correct = true;
         } else {
           obj.correct = false;
         }
-        // console.log(obj);
+        // console.log('sending obj', obj);
         res.send(obj);
       });
 
