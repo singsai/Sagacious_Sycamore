@@ -47,7 +47,7 @@ class App extends React.Component {
   }
 
   getCurrent() {
-    console.log('Fetching pet status...', this.state.user);
+    console.log('Fetching pet status...');
     var that = this;
     $.ajax({
       method: 'POST',

@@ -123,7 +123,7 @@ module.exports = {
   /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
-    Log.findAll({user: 'TestUser8'})
+    Log.findAll({user: req.body.user})
       .then(function(queries) {
         queries.length > 15 ? queries=queries.slice(queries.length - 15): null;
         var logs = queries.map(function(query) {
@@ -134,19 +134,20 @@ module.exports = {
         res.json(logs.reverse());
       })
   },
-  postLog: function(name, action) {
+  postLog: function(user, name, action) {
+    console.log('postLog', user);
     Log.findAll({
       limit: 1,
       order: [['createdAt', 'DESC']],
-      where: {user: 'TestUser8'}
+      where: {user: user}
     }).then(function(entry){
       if(entry.length === 0){
-        Log.create({name: name, action: action, user: 'TestUser8'})
+        Log.create({name: name, action: action, user: user})
         .then(function(log) {
           console.log('Created new log.');
         });
       } else if(entry[0].dataValues.action !== 'dead'){
-        Log.create({name: name, action: action, user: 'TestUser8'})
+        Log.create({name: name, action: action, user: user})
         .then(function(log) {
           console.log('Created new log.');
         });
