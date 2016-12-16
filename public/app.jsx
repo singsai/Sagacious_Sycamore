@@ -1,3 +1,4 @@
+var Alert = ReactBootstrap.Alert;
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -17,6 +18,7 @@ class App extends React.Component {
       question: '',
       showNewName: false,
       answer: '',
+      answerCorrect: null,
       cmdImg: {
         food:'../assets/food1.png',
         sleep:'../assets/sleep1.png',
@@ -167,16 +169,18 @@ class App extends React.Component {
   submitAnswer() {
     // console.log('Answer submitted', data.target.value);
     // var answer = this.pickAnswer();
+    var that = this;
     var option = {
       id: this.state.question.id,
       answer: this.state.answer
     }
-    // console.log('option', option);
+    // console.log('option', option);    
     $.ajax({
       method: 'POST',
       url: '/api/answer',
       data: option,
-      success: function() {
+      success: function(data) {
+        that.setState({answerCorrect: data.correct});
         console.log('Successfully posted');
       }
     });
@@ -220,6 +224,25 @@ class App extends React.Component {
   }
 
   render() {
+    let answerMessage;    
+
+    var bsStyle = 'info';
+    var style = {
+      display: 'none'
+    }
+
+    if (this.state.answerCorrect) {
+      bsStyle = 'success';
+      style.display = 'block';
+      answerMessage = 'Good job';
+    } else if (this.state.answerCorrect === false) {
+      bsStyle = 'danger';
+      style.display = 'block';
+      answerMessage = 'Nice try, but wrong';
+    } else {
+      answerMessage = '';
+    }
+
     return (
       <div className='app container'>
         <div className='row'>
@@ -228,6 +251,7 @@ class App extends React.Component {
         <div className='row'>
           <div className='col-md-12 col-xs-12'>
             <h3>{this.state.name} is currently <span className='status'>{this.state.status}</span>!</h3>
+            <Alert bsStyle={bsStyle} style={style}>{answerMessage}</Alert>                
             <div>
               <Petbox pet={this.state}/>
             </div>
@@ -239,7 +263,13 @@ class App extends React.Component {
             }</div>
           </div>
           <div>
-            <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></ModalInstance>
+            <ModalInstance 
+              showModal={this.state.showModal} 
+              pickAnswer={this.pickAnswer.bind(this)} 
+              toggleModalClick={this.toggleModal.bind(this)} 
+              submitAnswer={this.submitAnswer.bind(this)} 
+              question={this.state.question}
+            ></ModalInstance>
             <AddQuestionModal showModal={this.state.showAddQuestionModal} toggleModalClick={this.toggleAddQuestionModal.bind(this)} handleSubmit={this.handleQuestionSubmit.bind(this)}></AddQuestionModal>
           </div>
         </div>
