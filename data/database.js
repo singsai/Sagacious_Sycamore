@@ -15,7 +15,7 @@ var User = db.define('Users', {
 
 //pet schema
 var Pet = db.define('Pets', {
-  name: {type: Sequelize.STRING, allowNull: false, unique: true},
+  name: {type: Sequelize.STRING, allowNull: false, defaultValue: 'TestPet8'},
   status: {type: Sequelize.STRING, defaultValue: 'normal'},
   feed: {type: Sequelize.INTEGER, defaultValue: 5},
   health: {type: Sequelize.INTEGER, defaultValue: 5},
@@ -25,7 +25,7 @@ var Pet = db.define('Pets', {
   mood: {type: Sequelize.STRING, defaultValue: 'normal'},
   phys: {type: Sequelize.STRING, defaultValue: 'normal'},
   img: {type: Sequelize.STRING, defaultValue: 'http://i.imgur.com/RzBy3Vw.gif'},
-  user: {type: Sequelize.STRING, defaultValue: 'Max'},
+  user: {type: Sequelize.STRING, defaultValue: 'TestUser8'},
 }, {timestamps: false});
 
 //log schema
@@ -34,6 +34,7 @@ var Log = db.define('Logs', {
   action: {type: Sequelize.STRING, allowNull: false, defaultValue: 'Hey'},
   createdAt: {type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
   updatedAt: {type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
+  user: {type: Sequelize.STRING, defaultValue: 'TestUser8'},
 });
 
 // Question Schema
@@ -54,14 +55,14 @@ Pet.sync({force: true}).then(function () {
   // Create table and set default Pet if it doesn't exist
   Pet.findOrCreate({
       where: {
-        name: 'John'
+        name: 'TestPet8'
       },
       defaults: {
-        name: 'John'
+        name: 'TestPet8'
       }
     });
 });
-Log.sync();
+Log.sync({force: true});
 Question.sync();
 
 module.exports = {

@@ -16,7 +16,7 @@ class AddQuestionModal extends React.Component {
     this.state.choice2 = '';
     this.state.choice3 = '';
     this.state.choice4 = '';
-    this.state.answer = 0;
+    this.state.answer = '1';
   }
 
   handleSubmit(event) {
