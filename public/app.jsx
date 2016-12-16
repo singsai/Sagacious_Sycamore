@@ -187,6 +187,9 @@ class App extends React.Component {
       data: option,
       success: function(data) {
         that.setState({answerCorrect: data.correct});
+        if (data.correct) {
+          that.setStatus('coding');
+        }
         console.log('Successfully posted');
       }
     });

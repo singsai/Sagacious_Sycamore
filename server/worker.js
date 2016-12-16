@@ -44,8 +44,8 @@ module.exports = {
         switch (pet.status) {
           case 'coding':
             pet.experience++;
-            pet.feed--;
-            pet.health--;
+            // pet.feed--;
+            // pet.health--;
             postLog(user, name, 'coding');
             break;
           case 'eating':
