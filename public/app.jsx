@@ -26,7 +26,8 @@ class App extends React.Component {
         food:'../assets/food1.png',
         sleep:'../assets/sleep1.png',
         love:'../assets/love1.png',
-        code:'../assets/code1.png'
+        code:'../assets/code1.png',
+        question:'../assets/question.png'
       },
       logs: []
     }
@@ -138,7 +139,8 @@ class App extends React.Component {
           food:'../assets/food2.png',
           sleep:'../assets/sleep1.png',
           love:'../assets/love1.png',
-          code:'../assets/code1.png'
+          code:'../assets/code1.png',
+          question:'../assets/question.png'
         }})
         ;
     } else if (command === 'sleeping') {
@@ -146,21 +148,24 @@ class App extends React.Component {
           food:'../assets/food1.png',
           sleep:'../assets/sleep2.png',
           love:'../assets/love1.png',
-          code:'../assets/code1.png'
+          code:'../assets/code1.png',
+           question:'../assets/question.png'
         }});
     } else if (command === 'coding') {
       this.setState({cmdImg: {
           food:'../assets/food1.png',
           sleep:'../assets/sleep1.png',
           love:'../assets/love1.png',
-          code:'../assets/code2.png'
+          code:'../assets/code2.png',
+          question:'../assets/question.png'
         }});
     } else if (command === 'playing') {
       this.setState({cmdImg: {
           food:'../assets/food1.png',
           sleep:'../assets/sleep1.png',
           love:'../assets/love2.png',
-          code:'../assets/code1.png'
+          code:'../assets/code1.png',
+          question:'../assets/question.png'
         }});
     }
   }
@@ -169,7 +174,12 @@ class App extends React.Component {
     this.changeCommandIcon(command);
     this.setStatus(command);
     this.getCurrent();
-    this.toggleModal();
+    if (command === 'coding') {
+      this.toggleModal();
+    }
+    if (command === 'question') {
+      this.toggleAddQuestionModal();
+    }
   }
   // method to call when submitting answers
   submitAnswer() {

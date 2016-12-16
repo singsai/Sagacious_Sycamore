@@ -46,11 +46,6 @@ class AddQuestionModal extends React.Component {
     return (
       <div>
         <div>
-          <Button bsStyle="primary" bsSize="small" onClick={this.props.toggleModalClick} >
-            Add Question
-          </Button>
-        </div>
-        <div>
           <Modal show={this.props.showModal} onHide={this.props.toggleModalClick}>
 
               <form onSubmit={this.handleSubmit.bind(this)} >
