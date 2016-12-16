@@ -30,6 +30,6 @@ class NavigationBar extends React.Component {
       </div>
     )
   }
-} 
+}
 
 window.NavigationBar = NavigationBar;
