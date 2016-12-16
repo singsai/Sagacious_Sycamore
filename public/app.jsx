@@ -54,7 +54,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getCurrent();
     this.getLog();
-    this.getQuestion();    
+    this.getQuestion();
   }
 
   getCurrent() {
@@ -167,8 +167,9 @@ class App extends React.Component {
 
   executeCommand(command){
     this.changeCommandIcon(command);
-    this.setStatus(command)
+    this.setStatus(command);
     this.getCurrent();
+    this.toggleModal();
   }
   // method to call when submitting answers
   submitAnswer() {

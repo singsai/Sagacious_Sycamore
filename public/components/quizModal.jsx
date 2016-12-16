@@ -11,11 +11,6 @@ class ModalInstance extends React.Component {
     return (
       <div>
         <div>
-          <Button bsStyle="primary" bsSize="small" onClick={this.props.toggleModalClick} >
-            Coding practice
-          </Button>
-        </div>
-        <div>
           <Modal show={this.props.showModal} onHide={this.props.toggleModalClick}>
             <Modal.Header closeButton>
               <Modal.Title>Coding practice</Modal.Title>
