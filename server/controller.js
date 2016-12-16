@@ -37,8 +37,7 @@ var urls = {
 module.exports = {
   /********** Pet Functions **********/
   get: function(req, res, next) {
-    console.log('req', req.session);
-    Pet.findOne({user: 'TestUser8'})
+    Pet.findOne({user: req.body.user})
       .then(function(query) {
         var pet = query.dataValues;
         res.statusCode = 200;
@@ -46,7 +45,7 @@ module.exports = {
       })
   },
   post: function(req, res, next) {
-    Pet.findOne({user: 'TestUser8'})
+    Pet.findOne({user: req.body.user})
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
@@ -64,10 +63,12 @@ module.exports = {
       });
   },
   new: function(req, res, next) {
+    console.log('get request', req.body.user);
     var name = req.body.name;
-    Pet.destroy({ where: {user: 'TestUser8'} });
-    Log.destroy({ where: {} });
-    Pet.create({ user: 'TestUser8' })
+    var user = req.body.name;
+    Pet.destroy({ where: {user: user}});
+    Log.destroy({ where: {user: user} });
+    Pet.create({ user: user, name: name})
       .then(function(pet) {
         console.log('Created new pet.');
         res.send("success");
@@ -101,9 +102,9 @@ module.exports = {
   },
 
   checkAnswer: function(req, res, next) {
+    var user = req.body.user;
     var id = req.body.id;
     var answer = req.body.answer;
-    // console.log('user answer', answer);
     Question.findOne({where: {id: id}})
       .then(function(question) {
         // console.log('obj', question);

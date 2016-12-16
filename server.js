@@ -38,10 +38,10 @@ app.use(session({
 }));
 
 //log requests
-app.get('/log', controller.getLog);
+app.post('/log', controller.getLog);
 
 //api requests
-app.get('/api/pet', controller.get);
+app.post('/api/petstatus', controller.get);
 app.post('/api/pet', controller.post);
 app.post('/api/newPet', controller.new);
 app.get('/api/question', controller.getQuestion);
