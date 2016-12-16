@@ -25,14 +25,14 @@ class ModalInstance extends React.Component {
               <p>{this.props.question.question}</p>
 
               <h4>Answer Choices:</h4>
-              <Button bsStyle="primary" value="1" onClick={this.props.pickAnswer}>{this.props.question.choice1}</Button>
-              <p>Some more text</p>
-              <Button bsStyle="primary" value="2" onClick={this.props.pickAnswer}>{this.props.question.choice2}</Button>
-              <p>Some more text</p>
-              <Button bsStyle="primary" value="3" onClick={this.props.pickAnswer}>{this.props.question.choice3}</Button>
-              <p>Some more text</p>
-              <Button bsStyle="primary" value="4" onClick={this.props.pickAnswer}>{this.props.question.choice4}</Button>
-              <p>Some more text</p>
+              <Button bsStyle="primary" value="1" onClick={this.props.pickAnswer}>A</Button>
+              <p>{this.props.question.choice1}</p>
+              <Button bsStyle="primary" value="2" onClick={this.props.pickAnswer}>B</Button>
+              <p>{this.props.question.choice2}</p>
+              <Button bsStyle="primary" value="3" onClick={this.props.pickAnswer}>C</Button>
+              <p>{this.props.question.choice3}</p>
+              <Button bsStyle="primary" value="4" onClick={this.props.pickAnswer}>D</Button>
+              <p>{this.props.question.choice4}</p>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.props.submitAnswer}>Submit</Button>
