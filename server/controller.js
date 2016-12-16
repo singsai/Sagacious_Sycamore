@@ -37,16 +37,23 @@ var urls = {
 module.exports = {
   /********** Pet Functions **********/
   get: function(req, res, next) {
-    console.log('req', req.session);
-    Pet.findOne({user: 'TestUser8'})
+    Pet.findOne({user: req.body.user})
       .then(function(query) {
-        var pet = query.dataValues;
-        res.statusCode = 200;
-        res.json(pet);
+        if (query) {
+          var pet = query.dataValues;
+          res.statusCode = 200;
+          res.json(pet);          
+        } else {
+          Pet.create({ user: req.body.user, name: 'newPetOf' + req.body.user})
+          .then(function(pet) {
+            console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
+            res.send(pet.dataValues);
+          });
+        }
       })
   },
   post: function(req, res, next) {
-    Pet.findOne({user: 'TestUser8'})
+    Pet.findOne({user: req.body.user})
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
@@ -65,11 +72,13 @@ module.exports = {
   },
   new: function(req, res, next) {
     var name = req.body.name;
-    Pet.destroy({ where: {user: 'TestUser8'} });
-    Log.destroy({ where: {} });
-    Pet.create({ user: 'TestUser8' })
+    var user = req.body.user;
+    console.log('new', user);
+    Pet.destroy({ where: {user: user}});
+    Log.destroy({ where: {user: user} });
+    Pet.create({ user: user, name: name})
       .then(function(pet) {
-        console.log('Created new pet.');
+        console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
         res.send("success");
       });
   },
@@ -101,9 +110,9 @@ module.exports = {
   },
 
   checkAnswer: function(req, res, next) {
+    var user = req.body.user;
     var id = req.body.id;
     var answer = req.body.answer;
-    // console.log('user answer', answer);
     Question.findOne({where: {id: id}})
       .then(function(question) {
         // console.log('obj', question);
@@ -122,7 +131,7 @@ module.exports = {
   /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
-    Log.findAll({user: 'TestUser8'})
+    Log.findAll({user: req.body.user})
       .then(function(queries) {
         queries.length > 15 ? queries=queries.slice(queries.length - 15): null;
         var logs = queries.map(function(query) {
@@ -133,19 +142,19 @@ module.exports = {
         res.json(logs.reverse());
       })
   },
-  postLog: function(name, action) {
+  postLog: function(user, name, action) {
     Log.findAll({
       limit: 1,
       order: [['createdAt', 'DESC']],
-      where: {user: 'TestUser8'}
+      where: {user: user}
     }).then(function(entry){
       if(entry.length === 0){
-        Log.create({name: name, action: action, user: 'TestUser8'})
+        Log.create({name: name, action: action, user: user})
         .then(function(log) {
           console.log('Created new log.');
         });
       } else if(entry[0].dataValues.action !== 'dead'){
-        Log.create({name: name, action: action, user: 'TestUser8'})
+        Log.create({name: name, action: action, user: user})
         .then(function(log) {
           console.log('Created new log.');
         });

@@ -4,6 +4,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       name: null,
+      newPetName: 'newPet',
+      user: browserHistory.currentUser,
       mood: null,
       level: 0,
       phys: null,
@@ -40,47 +42,46 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    if (browserHistory.currentUser) {
+      this.setState({user: browserHistory.currentUser});
+    }
+    console.log('Fetching pet status...', browserHistory.currentUser, this.state.user, 'componentWillMount');
+    if (!this.state.name) {
+      this.newPet
+    }
+  }
+
+  componentDidMount() {
     this.getCurrent();
     this.getLog();
-    this.getQuestion();
+    this.getQuestion();    
   }
 
   getCurrent() {
-    console.log('Fetching pet status...');
     var that = this;
-    fetch('http://localhost:3000/api/pet', {method: 'GET'})
-      .then(function(parse) {
-      parse.json()
-        .then(function (data) {
-          that.setState({
-            name: data.name,
-            mood: data.mood,
-            level: data.level,
-            phys: data.phys,
-            img: data.img,
-            health: data.health,
-            experience: data.experience,
-            feed: data.feed,
-            status: data.status,
-            love: data.love,
-            showNewName: false,
-            newPetName: ''
-          });
-        });
+    $.ajax({
+      method: 'POST',
+      url: '/api/petstatus',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: {user: this.state.user}
+    })
+    .success(function(data) {
+       that.setState(data);
     });
   }
 
   getLog() {
     console.log('Fetching log messages...');
     var that = this;
-    fetch('http://localhost:3000/log', {method: 'GET'})
-      .then(function(parse) {
-        parse.json()
-        .then(function (data) {
-          that.setState({
-            logs: data
-          });
-        });
+    $.ajax({
+      method: 'POST',
+      url: '/log',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: {user: this.state.user}
+    })
+    .success(function(data) {
+      console
+       that.setState({logs: data});
     });
   }
 
@@ -90,7 +91,7 @@ class App extends React.Component {
       method: 'POST',
       url: 'http://localhost:3000/api/pet',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      data: {status: status}
+      data: {status: status, user: this.state.user}
     })
     .success(function() {
       console.log('Pet status updated!');
@@ -113,6 +114,7 @@ class App extends React.Component {
   }
 
   newPet(e) {
+    console.log('new', this.state.user);
     e.preventDefault();
 
     var that = this;
@@ -120,7 +122,8 @@ class App extends React.Component {
       method: 'POST',
       url: 'http://localhost:3000/api/newPet',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      data: {name: this.state.newPetName}
+      // so far saving it to window was the only thing working, need to find a better alternative
+      data: {name: this.state.newPetName, user: this.state.user}
     })
     .success(function() {
       console.log('New pet created!');
@@ -174,7 +177,8 @@ class App extends React.Component {
     var that = this;
     var option = {
       id: this.state.question.id,
-      answer: this.state.answer
+      answer: this.state.answer,
+      user: this.state.user
     }
     // console.log('option', option);
     $.ajax({
@@ -272,7 +276,7 @@ class App extends React.Component {
             <div className='PetCommand'>{
               this.state.status !== 'dead' ? (<div>
                 <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
-              </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
+              </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} user={this.state.user} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
             }</div>
           </div>
           <div>

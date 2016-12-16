@@ -25,7 +25,7 @@ var Pet = db.define('Pets', {
   mood: {type: Sequelize.STRING, defaultValue: 'normal'},
   phys: {type: Sequelize.STRING, defaultValue: 'normal'},
   img: {type: Sequelize.STRING, defaultValue: 'http://i.imgur.com/RzBy3Vw.gif'},
-  user: {type: Sequelize.STRING, defaultValue: 'TestUser8'},
+  user: {type: Sequelize.STRING},
 }, {timestamps: false});
 
 //log schema
@@ -51,18 +51,8 @@ var Question = db.define('Questions', {
 //creates any missing tables
 //pass in {force: true} to clear tables
 User.sync();
-Pet.sync({force: true}).then(function () {
-  // Create table and set default Pet if it doesn't exist
-  Pet.findOrCreate({
-      where: {
-        name: 'TestPet8'
-      },
-      defaults: {
-        name: 'TestPet8'
-      }
-    });
-});
-Log.sync({force: true});
+Pet.sync();
+Log.sync();
 Question.sync();
 
 module.exports = {

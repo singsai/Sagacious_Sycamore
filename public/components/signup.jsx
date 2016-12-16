@@ -24,6 +24,7 @@ class SignUp extends React.Component {
         that.props.router.push('/login');
       } else {
         console.log('Post to signup successful.');
+        browserHistory.currentUser = that.state.username;
         that.props.router.push('/home');
       };
     });
