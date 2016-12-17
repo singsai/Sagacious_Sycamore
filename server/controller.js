@@ -43,7 +43,7 @@ module.exports = {
           console.log('GET:', req.session);
           var pet = query.dataValues;
           res.statusCode = 200;
-          res.json(pet);          
+          res.json(pet);
         } else {
           Pet.create({ user: req.body.user, name: 'newPetOf' + req.body.user})
           .then(function(pet) {
@@ -90,7 +90,8 @@ module.exports = {
         // Pull a random question
         var randomChoice = ~~(Math.random() * questions.length);
         var question = questions[randomChoice];
-        question.answer = 0;
+        console.log('question', question.question);
+        question.answer = 0; // Hide the answer until user submites answer
         res.statusCode = 200;
         res.send(question);
       });

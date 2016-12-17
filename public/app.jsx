@@ -26,10 +26,12 @@ class App extends React.Component {
         food:'../assets/food1.png',
         sleep:'../assets/sleep1.png',
         love:'../assets/love1.png',
-        code:'../assets/code1.png'
+        code:'../assets/code1.png',
+        question:'../assets/question.png'
       },
       logs: []
     }
+
 
     // this.handleAlertDismiss.bind(this);
     var that = this;
@@ -38,7 +40,7 @@ class App extends React.Component {
         that.getCurrent();
         that.getLog();
       }
-    }, 2000);
+    }, 10000);
   }
 
   componentWillMount() {
@@ -49,12 +51,13 @@ class App extends React.Component {
     if (!this.state.name) {
       this.newPet
     }
+    this.getQuestion();
   }
 
   componentDidMount() {
     this.getCurrent();
     this.getLog();
-    this.getQuestion();
+    // this.getQuestion();
   }
 
   getCurrent() {
@@ -138,7 +141,8 @@ class App extends React.Component {
           food:'../assets/food2.png',
           sleep:'../assets/sleep1.png',
           love:'../assets/love1.png',
-          code:'../assets/code1.png'
+          code:'../assets/code1.png',
+          question:'../assets/question.png'
         }})
         ;
     } else if (command === 'sleeping') {
@@ -146,21 +150,24 @@ class App extends React.Component {
           food:'../assets/food1.png',
           sleep:'../assets/sleep2.png',
           love:'../assets/love1.png',
-          code:'../assets/code1.png'
+          code:'../assets/code1.png',
+           question:'../assets/question.png'
         }});
     } else if (command === 'coding') {
       this.setState({cmdImg: {
           food:'../assets/food1.png',
           sleep:'../assets/sleep1.png',
           love:'../assets/love1.png',
-          code:'../assets/code2.png'
+          code:'../assets/code2.png',
+          question:'../assets/question.png'
         }});
     } else if (command === 'playing') {
       this.setState({cmdImg: {
           food:'../assets/food1.png',
           sleep:'../assets/sleep1.png',
           love:'../assets/love2.png',
-          code:'../assets/code1.png'
+          code:'../assets/code1.png',
+          question:'../assets/question.png'
         }});
     }
   }
@@ -169,7 +176,12 @@ class App extends React.Component {
     this.changeCommandIcon(command);
     this.setStatus(command);
     this.getCurrent();
-    this.toggleModal();
+    if (command === 'coding') {
+      this.toggleModal();
+    }
+    if (command === 'question') {
+      this.toggleAddQuestionModal();
+    }
   }
   // method to call when submitting answers
   submitAnswer() {
@@ -213,13 +225,25 @@ class App extends React.Component {
       url: '/api/question'
     })
     .success(function(data) {
+      data.arr = [];
+      var arr = data.question.split('\n');
+      arr.forEach(function(str) {
+        if (str) {
+          data.arr.push(str);
+        }
+      });
+      console.log('question', data.arr);
+      // console.log('question', data.question);
+
+
       that.setState({question: data});
-      console.log('fetched new question');
+      console.log('fetched new question', data);
     })
   }
   // react-bootstrap toggle modal for challenge question
   toggleModal() {
     console.log('toggle called');
+    this.getQuestion();
     this.setState({showModal: !this.state.showModal});
   }
   // react-bootstrap toggle for adding a challenge question
@@ -290,7 +314,8 @@ class App extends React.Component {
               toggleModalClick={this.toggleModal.bind(this)}
               submitAnswer={this.submitAnswer.bind(this)}
               question={this.state.question}
-            ></ModalInstance>
+            >
+            </ModalInstance>
             <AddQuestionModal showModal={this.state.showAddQuestionModal} toggleModalClick={this.toggleAddQuestionModal.bind(this)} handleSubmit={this.handleQuestionSubmit.bind(this)}></AddQuestionModal>
           </div>
         </div>
