@@ -40,6 +40,7 @@ module.exports = {
     Pet.findOne({user: req.body.user})
       .then(function(query) {
         if (query) {
+          console.log('GET:', req.session);
           var pet = query.dataValues;
           res.statusCode = 200;
           res.json(pet);          
@@ -176,10 +177,13 @@ module.exports = {
               throw err;
             } else if (match) {
               console.log('Login successful');
-              req.session.regenerate(function() {
-                req.session.user = user.username;
-                res.send(req.session.user);
-              });
+              req.session.user_id = 'happy';
+              res.redirect('/');
+              // console.log(req.session);
+              // req.session.regenerate(function() {
+              //   req.session.user = user.username;
+              //   res.send(req.session.user);
+              // });
             } else {
               console.log('Wrong password.');
               res.send(req.session.user);
