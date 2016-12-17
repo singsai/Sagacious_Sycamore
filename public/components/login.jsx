@@ -1,4 +1,3 @@
-// /login, /logout, /signup
 class Login extends React.Component {
   constructor(props) {
     super(props);
