@@ -1,7 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+// var session = require('express-session');
+var cookieSession = require('cookie-session')
 var cors = require('cors');
 var db = require('./data/database.js').db;
 var controller = require('./server/controller.js');
@@ -31,11 +32,18 @@ app.use(cors());
 
 //use cookieparser & session
 app.use(cookieParser('cookies!!!'));
-app.use(session({
-  secret: 'What\'s your secret?',
-  resave: false,
-  saveUninitialized: true
-}));
+
+// app.use(session({
+//   secret: 'What\'s your secret?',
+//   resave: false,
+//   saveUninitialized: true
+// }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 
 //log requests
 app.post('/log', controller.getLog);

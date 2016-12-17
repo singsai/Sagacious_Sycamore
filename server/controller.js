@@ -5,6 +5,7 @@ var Log = db.Log;
 var Question = db.Question;
 var bcrypt = require('bcryptjs');
 var moment = require('moment');
+// var session = require('express-session');
 
 /********** Image Assets **********/
 var lvl1 = {
@@ -177,11 +178,11 @@ module.exports = {
               console.log('error')
               throw err;
             } else if (match) {
-              console.log('Login successful', req.session);
-              req.session.regenerate(function() {
+              console.log('Login successful');                            
+              // req.session.regenerate(function() {
                 req.session.user = user.username;
-                res.send(req.session);
-              });
+                res.send(req.session.user);
+              // });
             } else {
               console.log('Wrong password.');
               res.send(req.session.user);
