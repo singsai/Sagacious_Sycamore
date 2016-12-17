@@ -177,10 +177,10 @@ module.exports = {
               console.log('error')
               throw err;
             } else if (match) {
-              console.log('Login successful'. req.session);
+              console.log('Login successful', req.session);
               req.session.regenerate(function() {
                 req.session.user = user.username;
-                res.send(req.session.user);
+                res.send(req.session);
               });
             } else {
               console.log('Wrong password.');
