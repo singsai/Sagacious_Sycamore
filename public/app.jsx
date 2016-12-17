@@ -32,6 +32,7 @@ class App extends React.Component {
       logs: []
     }
 
+
     // this.handleAlertDismiss.bind(this);
     var that = this;
     setInterval(function() {
@@ -39,7 +40,7 @@ class App extends React.Component {
         that.getCurrent();
         that.getLog();
       }
-    }, 2000);
+    }, 10000);
   }
 
   componentWillMount() {
@@ -50,12 +51,13 @@ class App extends React.Component {
     if (!this.state.name) {
       this.newPet
     }
+    this.getQuestion();
   }
 
   componentDidMount() {
     this.getCurrent();
     this.getLog();
-    this.getQuestion();
+    // this.getQuestion();
   }
 
   getCurrent() {
@@ -223,13 +225,25 @@ class App extends React.Component {
       url: '/api/question'
     })
     .success(function(data) {
+      data.arr = [];
+      var arr = data.question.split('\n');
+      arr.forEach(function(str) {
+        if (str) {
+          data.arr.push(str);
+        }
+      });
+      console.log('question', data.arr);
+      // console.log('question', data.question);
+
+
       that.setState({question: data});
-      console.log('fetched new question');
+      console.log('fetched new question', data);
     })
   }
   // react-bootstrap toggle modal for challenge question
   toggleModal() {
     console.log('toggle called');
+    this.getQuestion();
     this.setState({showModal: !this.state.showModal});
   }
   // react-bootstrap toggle for adding a challenge question
@@ -300,7 +314,8 @@ class App extends React.Component {
               toggleModalClick={this.toggleModal.bind(this)}
               submitAnswer={this.submitAnswer.bind(this)}
               question={this.state.question}
-            ></ModalInstance>
+            >
+            </ModalInstance>
             <AddQuestionModal showModal={this.state.showAddQuestionModal} toggleModalClick={this.toggleAddQuestionModal.bind(this)} handleSubmit={this.handleQuestionSubmit.bind(this)}></AddQuestionModal>
           </div>
         </div>
