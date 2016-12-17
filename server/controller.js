@@ -182,6 +182,7 @@ module.exports = {
                 req.session.user = user.username;
                 res.send(req.session);
               });
+
             } else {
               console.log('Wrong password.');
               res.send(req.session.user);
