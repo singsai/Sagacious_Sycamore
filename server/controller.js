@@ -1,4 +1,4 @@
-var db = require('../data/database.js');
+  var db = require('../data/database.js');
 var Pet = db.Pet;
 var User = db.User;
 var Log = db.Log;
@@ -9,7 +9,7 @@ var moment = require('moment');
 /********** Image Assets **********/
 var lvl1 = {
   coding: "http://i.imgur.com/KTNujjY.gif",
-  sleeping: "http://i.imgur.com/PujjsmB.gif",
+  sleeping: 'https://media.giphy.com/media/7ZWft74Fqo7aU/giphy.gif', // "http://i.imgur.com/PujjsmB.gif",
   playing: "http://i.imgur.com/T99KqDs.gif",
   eating: "http://i.imgur.com/W8UQN1M.gif"
 };
@@ -46,16 +46,12 @@ module.exports = {
           console.log('found Pet, current User', req.session.user);
           res.json(pet);
         } else {
-          if (req.session.user) {
-            Pet.create({ user: req.session.user, name: 'newPetOf' + req.session.user})
-            .then(function(pet) {
-              console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
-              console.log('current User', req.session.user);
-              res.send(pet.dataValues);
-            });            
-          } else {
-            console.log('req.session.user is', req.session.user);
-          }
+          Pet.create({ user: req.session.user, name: 'newPetOf' + req.session.user})
+          .then(function(pet) {
+            console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
+            console.log('current User', req.session.user);
+            res.send(pet.dataValues);
+          });            
         }
       })
   },

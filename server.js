@@ -64,10 +64,16 @@ app.get('/logout', controller.logout);
 app.post('/login', controller.login);
 app.post('/signup', controller.signup);
 
+
+app.get('/game', function(req, res) {
+  res.sendFile(__dirname + '/public/indexGame.html');
+})
+
 //index route
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
+
 
 
 
