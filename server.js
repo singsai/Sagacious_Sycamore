@@ -35,7 +35,7 @@ app.use(session({
   secret: 'What\'s your secret?',
   resave: false,
   saveUninitialized: true,
-  cookie: {maxAge: 60000000, domain: "localhost", testkey: "testvalue"}
+  cookie: {maxAge: 60000000, testkey: "testvalue"}
 }));
 
 //log requests
