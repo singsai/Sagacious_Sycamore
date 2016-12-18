@@ -1,4 +1,4 @@
-var db = require('../data/database.js');
+  var db = require('../data/database.js');
 var Pet = db.Pet;
 var User = db.User;
 var Log = db.Log;
@@ -9,7 +9,7 @@ var moment = require('moment');
 /********** Image Assets **********/
 var lvl1 = {
   coding: "http://i.imgur.com/KTNujjY.gif",
-  sleeping: "http://i.imgur.com/PujjsmB.gif",
+  sleeping: 'https://media.giphy.com/media/7ZWft74Fqo7aU/giphy.gif', // "http://i.imgur.com/PujjsmB.gif",
   playing: "http://i.imgur.com/T99KqDs.gif",
   eating: "http://i.imgur.com/W8UQN1M.gif"
 };
@@ -37,15 +37,24 @@ var urls = {
 module.exports = {
   /********** Pet Functions **********/
   get: function(req, res, next) {
-    Pet.findOne({name: req.body.name})
+    Pet.findOne({user: req.body.user})
       .then(function(query) {
-        var pet = query.dataValues;
-        res.statusCode = 200;
-        res.json(pet);
+        if (query) {
+          console.log('GET:', req.session);
+          var pet = query.dataValues;
+          res.statusCode = 200;
+          res.json(pet);
+        } else {
+          Pet.create({ user: req.body.user, name: 'newPetOf' + req.body.user})
+          .then(function(pet) {
+            console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
+            res.send(pet.dataValues);
+          });
+        }
       })
   },
   post: function(req, res, next) {
-    Pet.findOne({name: req.body.name})
+    Pet.findOne({user: req.body.user})
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
@@ -64,11 +73,13 @@ module.exports = {
   },
   new: function(req, res, next) {
     var name = req.body.name;
-    Pet.destroy({ where: {name: name} });
-    Log.destroy({ where: {} });
-    Pet.create({ name: name })
+    var user = req.body.user;
+    console.log('new', user);
+    Pet.destroy({ where: {user: user}});
+    Log.destroy({ where: {user: user} });
+    Pet.create({ user: user, name: name})
       .then(function(pet) {
-        console.log('Created new pet.');
+        console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
         res.send("success");
       });
   },
@@ -79,7 +90,8 @@ module.exports = {
         // Pull a random question
         var randomChoice = ~~(Math.random() * questions.length);
         var question = questions[randomChoice];
-        question.answer = 0;
+        console.log('question', question.question);
+        question.answer = 0; // Hide the answer until user submites answer
         res.statusCode = 200;
         res.send(question);
       });
@@ -100,19 +112,20 @@ module.exports = {
   },
 
   checkAnswer: function(req, res, next) {
+    var user = req.body.user;
     var id = req.body.id;
     var answer = req.body.answer;
-    // console.log('answer', answer);
-    Question.findOne({id: id})
+    Question.findOne({where: {id: id}})
       .then(function(question) {
-        // console.log('here is the question', question.answer);
+        // console.log('obj', question);
+        // console.log('db',question.question, question.answer);
         var obj = {};
         if (question.answer == answer) {
           obj.correct = true;
         } else {
           obj.correct = false;
         }
-        // console.log(obj);
+        // console.log('sending obj', obj);
         res.send(obj);
       });
 
@@ -120,7 +133,7 @@ module.exports = {
   /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
-    Log.findAll({name: petName})
+    Log.findAll({user: req.body.user})
       .then(function(queries) {
         queries.length > 15 ? queries=queries.slice(queries.length - 15): null;
         var logs = queries.map(function(query) {
@@ -131,19 +144,19 @@ module.exports = {
         res.json(logs.reverse());
       })
   },
-  postLog: function(name, action) {
+  postLog: function(user, name, action) {
     Log.findAll({
       limit: 1,
       order: [['createdAt', 'DESC']],
-      where: {name: name}
+      where: {user: user}
     }).then(function(entry){
       if(entry.length === 0){
-        Log.create({name: name, action: action})
+        Log.create({name: name, action: action, user: user})
         .then(function(log) {
           console.log('Created new log.');
         });
       } else if(entry[0].dataValues.action !== 'dead'){
-        Log.create({name: name, action: action})
+        Log.create({name: name, action: action, user: user})
         .then(function(log) {
           console.log('Created new log.');
         });
@@ -164,10 +177,10 @@ module.exports = {
               console.log('error')
               throw err;
             } else if (match) {
-              console.log('Login successful');
+              console.log('Login successful', req.session);
               req.session.regenerate(function() {
                 req.session.user = user.username;
-                res.send(req.session.user);
+                res.send(req.session);
               });
             } else {
               console.log('Wrong password.');

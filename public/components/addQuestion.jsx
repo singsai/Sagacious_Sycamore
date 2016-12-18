@@ -16,12 +16,21 @@ class AddQuestionModal extends React.Component {
     this.state.choice2 = '';
     this.state.choice3 = '';
     this.state.choice4 = '';
-    this.state.answer = 0;
+    this.state.answer = '1';
   }
 
   handleSubmit(event) {
     event.preventDefault();
     console.log('Question submitted', this.state);
+    $.ajax({
+      method: 'POST',
+      url: '/api/question',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: this.state
+    })
+    .success(function() {
+      console.log('Question submitted');
+    })
     this.props.toggleModalClick();
   }
 
@@ -36,11 +45,6 @@ class AddQuestionModal extends React.Component {
 
     return (
       <div>
-        <div>
-          <Button bsStyle="primary" bsSize="small" onClick={this.props.toggleModalClick} >
-            Add Question
-          </Button>
-        </div>
         <div>
           <Modal show={this.props.showModal} onHide={this.props.toggleModalClick}>
 

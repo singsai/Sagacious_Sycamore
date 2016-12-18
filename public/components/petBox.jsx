@@ -8,7 +8,8 @@ var Petbox = (props) => {
     health: props.pet.health,
     level: props.pet.level,
     experience: props.pet.experience,
-    name: props.pet.name
+    name: props.pet.name,
+    user: props.pet.user
   }
   var bars = {
     loveBar: { width: props.pet.love/8 * 100 + '%' },
@@ -32,6 +33,9 @@ var Petbox = (props) => {
           <h1>Stats</h1>
             <div className='row'>
               <b>Name:</b> {props.pet.name}
+            </div>
+            <div className='row'>
+              <b>User:</b> {props.pet.user}
             </div>
             <div className='row'>
               <b>Mood:</b> {props.pet.mood}

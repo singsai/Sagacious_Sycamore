@@ -4,12 +4,8 @@ var PetCommand = (props) => (
     <img className='command' src={props.cmdImg.love} onClick={() => {props.executeCommand('playing')}}/>
     <img className='command' src={props.cmdImg.code} onClick={() => {props.executeCommand('coding')}}/>
     <img className='command' src={props.cmdImg.sleep} onClick={() => {props.executeCommand('sleeping')}}/>
-  </div> 
+    <img className='command' src={props.cmdImg.question} onClick={() => {props.executeCommand('question')}}/>
+  </div>
 );
 
 window.PetCommand = PetCommand;
-
-
-
-
-
