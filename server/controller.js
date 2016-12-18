@@ -40,6 +40,7 @@ module.exports = {
     Pet.findOne({where: {user: req.session.user}})
       .then(function(query) {
         if (query) {
+          console.log('GET:', req.session.user);
           var pet = query.dataValues;
           res.statusCode = 200;
           console.log('found Pet, current User', req.session.user);
