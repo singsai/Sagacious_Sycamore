@@ -40,7 +40,7 @@ module.exports = {
     Pet.findOne({user: req.body.user})
       .then(function(query) {
         if (query) {
-          console.log('GET:', req.session);
+          // console.log('GET:', req.session);
           var pet = query.dataValues;
           res.statusCode = 200;
           res.json(pet);
@@ -182,6 +182,7 @@ module.exports = {
                 req.session.user = user.username;
                 res.send(req.session);
               });
+
             } else {
               console.log('Wrong password.');
               res.send(req.session.user);
