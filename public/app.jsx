@@ -247,7 +247,9 @@ class App extends React.Component {
   toggleModal() {
     console.log('toggle called');
     this.getQuestion();
-    this.setState({showModal: !this.state.showModal});
+    if (this.state.question) {
+      this.setState({showModal: !this.state.showModal});
+    }
   }
   // react-bootstrap toggle for adding a challenge question
   toggleAddQuestionModal() {
