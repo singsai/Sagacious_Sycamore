@@ -34,7 +34,8 @@ app.use(cookieParser('cookies!!!'));
 app.use(session({
   secret: 'What\'s your secret?',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {maxAge: 60000000, testkey: "testvalue"}
 }));
 
 //log requests

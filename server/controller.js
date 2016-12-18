@@ -37,24 +37,25 @@ var urls = {
 module.exports = {
   /********** Pet Functions **********/
   get: function(req, res, next) {
-    Pet.findOne({user: req.body.user})
+    Pet.findOne({where: {user: req.session.user}})
       .then(function(query) {
         if (query) {
-          // console.log('GET:', req.session);
           var pet = query.dataValues;
           res.statusCode = 200;
+          console.log('found Pet, current User', req.session.user);
           res.json(pet);
         } else {
-          Pet.create({ user: req.body.user, name: 'newPetOf' + req.body.user})
+          Pet.create({ user: req.session.user, name: 'newPetOf' + req.session.user})
           .then(function(pet) {
             console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
+            console.log('current User', req.session.user);
             res.send(pet.dataValues);
           });
         }
       })
   },
   post: function(req, res, next) {
-    Pet.findOne({user: req.body.user})
+    Pet.findOne({where: {user: req.session.user}})
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
@@ -73,7 +74,7 @@ module.exports = {
   },
   new: function(req, res, next) {
     var name = req.body.name;
-    var user = req.body.user;
+    var user = req.session.user;
     console.log('new', user);
     Pet.destroy({ where: {user: user}});
     Log.destroy({ where: {user: user} });
@@ -133,7 +134,7 @@ module.exports = {
   /********** Log Functions **********/
   getLog: function(req, res, next) {
     var petName = req.body.name;
-    Log.findAll({user: req.body.user})
+    Log.findAll({where: {user: req.session.user}})
       .then(function(queries) {
         queries.length > 15 ? queries=queries.slice(queries.length - 15): null;
         var logs = queries.map(function(query) {
@@ -182,7 +183,6 @@ module.exports = {
                 req.session.user = user.username;
                 res.send(req.session);
               });
-
             } else {
               console.log('Wrong password.');
               res.send(req.session.user);
