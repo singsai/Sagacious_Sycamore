@@ -5,6 +5,8 @@ var PetCommand = (props) => (
     <img className='command' src={props.cmdImg.code} onClick={() => {props.executeCommand('coding')}}/>
     <img className='command' src={props.cmdImg.sleep} onClick={() => {props.executeCommand('sleeping')}}/>
     <img className='command' src={props.cmdImg.question} onClick={() => {props.executeCommand('question')}}/>
+    <a href='/game'><img className='command' src='../other/img/cat.png' /></a>
+
   </div>
 );
 

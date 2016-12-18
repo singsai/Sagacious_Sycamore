@@ -34,7 +34,8 @@ app.use(cookieParser('cookies!!!'));
 app.use(session({
   secret: 'What\'s your secret?',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {maxAge: 60000000, testkey: "testvalue"}
 }));
 
 //log requests
@@ -81,7 +82,7 @@ app.get('/*', function(req, res) {
 
 
 // Uncomment to poll database reguarly
-setInterval(poll, 500000);
+setInterval(poll, 2000);
 
 app.listen(3000);
 console.log('Server listening on 3000...');
