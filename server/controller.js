@@ -1,4 +1,4 @@
-var db = require('../data/database.js');
+  var db = require('../data/database.js');
 var Pet = db.Pet;
 var User = db.User;
 var Log = db.Log;
@@ -9,7 +9,7 @@ var moment = require('moment');
 /********** Image Assets **********/
 var lvl1 = {
   coding: "http://i.imgur.com/KTNujjY.gif",
-  sleeping: "http://i.imgur.com/PujjsmB.gif",
+  sleeping: 'https://media.giphy.com/media/7ZWft74Fqo7aU/giphy.gif', // "http://i.imgur.com/PujjsmB.gif",
   playing: "http://i.imgur.com/T99KqDs.gif",
   eating: "http://i.imgur.com/W8UQN1M.gif"
 };
