@@ -34,10 +34,11 @@ var urls = {
 
 module.exports = {
   poll: function() {
-    Pet.findAll({}).then(function(pets) { 
-    // Iterate through ALL pets. 
+    Pet.findAll({}).then(function(pets) {
+    // Iterate through ALL pets.
     for (var i = 0; i < pets.length; i++) {
       var pet = pets[i];
+      // console.log('updating', pet.name);
       var name = pet.name;
       var level = pet.level;
       var user = pet.user
@@ -78,8 +79,9 @@ module.exports = {
           pet.mood = 'dead';
           pet.img = urls['lvl' + level]['dead'];
           postLog(user, name, 'dead');
+          // console.log(pet, 'died');
           pet.save();
-        } 
+        }
         //check level before anything else
         if (pet.experience > 5) {
           pet.level = pet.level + 1;
@@ -141,6 +143,6 @@ module.exports = {
         if (pet.love < 0) pet.love = 0;
 
       }
-    }); 
+    });
   }
 }

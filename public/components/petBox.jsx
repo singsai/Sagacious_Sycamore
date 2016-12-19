@@ -22,13 +22,13 @@ var Petbox = (props) => {
   return (
   <div className='petView container'>
     <div className='row'>
-      <div className='pet-image-container col-md-6 col-xs-6'>
-        <img className="pet-image" src={props.pet.img}></img>
+      <div className='pet-image-container col-md-6'>
+        <img className="pet-image img-responsive" src={props.pet.img}></img>
         <div>
           <StatusMessage logs={props.pet.logs} />
         </div>
       </div>
-      <div className='stats col-md-6 col-xs-6'>
+      <div className='stats col-md-6'>
         <div className='stats container'>
           <h1>Stats</h1>
             <div className='row'>
