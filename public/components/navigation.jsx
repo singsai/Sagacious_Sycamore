@@ -24,7 +24,7 @@ class NavigationBar extends React.Component {
     return (
       <div>
         <nav className="navigation navbar navbar-dark bg-primary">
-          <span className="navbar-brand">Welcome to HRGotchi, {browserHistory.currentUser}!</span>
+          <span className="navbar-brand">Welcome to HRGotchi, {this.props.user}!</span>
           <span className="float-xs-right navbar-text"><button className="btn btn-sm btn-outline-success" onClick={this.logoutHandler}>Logout</button></span>
         </nav>
       </div>

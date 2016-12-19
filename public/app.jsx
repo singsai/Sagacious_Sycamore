@@ -69,7 +69,10 @@ class App extends React.Component {
       data: {user: this.state.user}
     })
     .success(function(data) {
-       that.setState(data);
+      if (!data.user) {
+        data.user = that.state.user;
+      }
+      that.setState(data);
     });
   }
 
@@ -289,7 +292,7 @@ class App extends React.Component {
     return (
       <div className='app container'>
         <div className='row'>
-          <NavigationBar />
+          <NavigationBar user={this.state.user} />
         </div>
         <div className='row'>
           <div className='col-md-12 col-xs-12'>
