@@ -49,6 +49,8 @@ module.exports = {
             // pet.health--;
             postLog(user, name, 'coding');
             break;
+          case 'codingButton':
+            break;            
           case 'eating':
             pet.feed+=2;
             pet.health+=2;

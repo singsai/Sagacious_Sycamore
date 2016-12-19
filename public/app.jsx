@@ -160,6 +160,14 @@ class App extends React.Component {
           code:'../assets/code2.png',
           question:'../assets/question.png'
         }});
+    } else if (command === 'codingButton') {
+      this.setState({cmdImg: {
+          food:'../assets/food1.png',
+          sleep:'../assets/sleep1.png',
+          love:'../assets/love1.png',
+          code:'../assets/code2.png',
+          question:'../assets/question.png'
+        }});      
     } else if (command === 'playing') {
       this.setState({cmdImg: {
           food:'../assets/food1.png',
@@ -175,7 +183,7 @@ class App extends React.Component {
     this.changeCommandIcon(command);
     this.setStatus(command);
     this.getCurrent();
-    if (command === 'coding') {
+    if (command === 'codingButton') {
       this.toggleModal();
     }
     if (command === 'question') {
