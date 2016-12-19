@@ -79,7 +79,6 @@ module.exports = {
           pet.mood = 'dead';
           pet.img = urls['lvl' + level]['dead'];
           postLog(user, name, 'dead');
-          console.log(pet, 'died');
           pet.save();
         } 
         //check level before anything else

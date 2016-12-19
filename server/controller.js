@@ -45,13 +45,15 @@ module.exports = {
           res.statusCode = 200;
           console.log('found Pet, current User', req.session.user);
           res.json(pet);
-        } else {
+        } else if (req.session.user){
           Pet.create({ user: req.session.user, name: 'newPetOf' + req.session.user})
           .then(function(pet) {
             console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
             console.log('current User', req.session.user);
             res.send(pet.dataValues);
           });            
+        } else {
+          res.end();
         }
       })
   },
