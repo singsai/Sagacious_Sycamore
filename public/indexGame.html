@@ -15,12 +15,52 @@
 		padding: 15px 18px;
 		margin: 5px;
 	}
+
+	.rules {
+		float: right;
+		border: solid 2px #222;
+		border-radius: 5px;
+		width: 50%;
+		margin-right: 5%;
+		font-weight: normal;
+		margin-left: 10px;
+	}
+
+	.rules h1 {
+		font-weight: normal;	
+	}
+
+	.game {
+		float: left;
+	}
+
+	p {
+		font-size: 28px;
+	}
+
+	span {
+		font-size: 35px;
+		font-weight: bold;
+	}
+
+	.gudeName {
+		font-weight: bold;
+		color: #f3aa43;
+	}
 	</style>
 </head>
 <body>
 </body>
-	<canvas style='display:block;' id='canvas'></canvas>
-	<script src="other/farm.js"></script>
+	<div class='game'>
+		<canvas style='display:block;' id='canvas'></canvas>
+		<script src="other/farm.js"></script>
+	</div>
+
+	<div class='rules'>
+	<h1>Hi! <span class='gudeName'>Gudetama</span> is in a real pickle! Help him avoid falling Starlets, Acid Rain and Meteors!</h1>
+
+	<p>To play: Use the <span>A and D keys</span> to move.</p>
+	</div>
 
 	<a href='/home'>Return Home</a>
 	<a href='/game'>Restart Game</a>
