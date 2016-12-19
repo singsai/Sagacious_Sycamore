@@ -28,8 +28,8 @@ var lvl3 = {
 
 var urls = {
   lvl1: lvl1,
-  lvl2: lvl2,
-  lvl3: lvl3
+  lvl2: lvl1,
+  lvl3: lvl1
 };
 
 module.exports = {

@@ -9,36 +9,36 @@ var moment = require('moment');
 /********** Image Assets **********/
 var lvl1 = {
   coding: "http://i.imgur.com/KTNujjY.gif",
-  sleeping: 'https://media.giphy.com/media/7ZWft74Fqo7aU/giphy.gif', // "http://i.imgur.com/PujjsmB.gif",
+  sleeping: 'http://i.imgur.com/PujjsmB.gif',
   playing: "http://i.imgur.com/T99KqDs.gif",
   eating: "http://i.imgur.com/W8UQN1M.gif"
 };
 
 var lvl2 = {
-  coding: 'http://i.giphy.com/3oriO1ACIKLSY565q0.gif',
-  sleeping: 'http://i.giphy.com/l2JhIsdeKTn5IPQCQ.gif',
-  playing: 'http://i.giphy.com/3oriNVPP3ax7b6Ryg0.gif',
-  eating: 'http://i.giphy.com/l0MYBdxsQBG15bLTq.gif'
+  coding: "http://i.imgur.com/KTNujjY.gif",
+  sleeping: 'http://i.imgur.com/PujjsmB.gif',
+  playing: "http://i.imgur.com/T99KqDs.gif",
+  eating: "http://i.imgur.com/W8UQN1M.gif"
 };
 
 var lvl3 = {
-  coding: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
-  sleeping: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
-  playing: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif',
-  eating: 'http://i.giphy.com/3o7TKVhFwW3ZWiti8g.gif'
+  coding: "http://i.imgur.com/KTNujjY.gif",
+  sleeping: 'http://i.imgur.com/PujjsmB.gif',
+  playing: "http://i.imgur.com/T99KqDs.gif",
+  eating: "http://i.imgur.com/W8UQN1M.gif"
 };
 
 var urls = {
   lvl1: lvl1,
-  lvl2: lvl2,
-  lvl3: lvl3
+  lvl2: lvl1,
+  lvl3: lvl1
 };
 
 var randomName = function() {
   // produces a random pet name. 
   var first = ['Bo', 'Di', 'Fru', 'Ga', 'Mo', 'Dee', 'Soo', 'Joo', 'Mi', 'La'];
   var middle = ['dug', 'lon', 'fin', 'set', 'bug', 'rud', 'din'];
-  var last = ['ing', 'ly', 'na', 'mu', 'apu', 'arino', ' the Powerful', 'the Lamb'];
+  var last = ['ing', 'ly', 'na', 'mu', 'apu', 'arino', ' the Powerful', ' the Lamb'];
 
   var name = first[~~(Math.random() * first.length)] + middle[~~(Math.random() * middle.length)];
   name += last[~~(Math.random() * last.length)];
@@ -55,7 +55,7 @@ module.exports = {
           var pet = query.dataValues;
           res.statusCode = 200;
           res.json(pet);
-        } else {
+        } else if (req.session.user) {
           Pet.create({ user: req.session.user, name: randomName()})
           .then(function(pet) {
             res.send(pet.dataValues);
