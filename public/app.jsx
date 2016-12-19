@@ -241,13 +241,15 @@ class App extends React.Component {
 
       that.setState({question: data});
       console.log('fetched new question', data);
-    })
+    });
   }
   // react-bootstrap toggle modal for challenge question
   toggleModal() {
     console.log('toggle called');
     this.getQuestion();
-    this.setState({showModal: !this.state.showModal});
+    if (this.state.question) {
+      this.setState({showModal: !this.state.showModal});
+    }
   }
   // react-bootstrap toggle for adding a challenge question
   toggleAddQuestionModal() {
@@ -292,33 +294,28 @@ class App extends React.Component {
     return (
       <div className='app container'>
         <div className='row'>
-          <NavigationBar user={this.state.user} />
+          <div className='col-lg-12'>
+            <NavigationBar user={this.state.user} />
+          </div>
         </div>
         <div className='row'>
-          <div className='col-md-12 col-xs-12'>
+          <div className='col-lg-12'>
             <h3>{this.state.name} is currently <span className='status'>{this.state.status}</span>!</h3>
             <Alert bsStyle={bsStyle} style={style} onDismiss={this.handleAlertDismiss.bind(this)}>
               {answerMessage}
             </Alert>
-            <div>
-              <Petbox pet={this.state}/>
-            </div>
-            <h3>Actions</h3>
-            <div className='PetCommand'>{
-              this.state.status !== 'dead' ? (<div>
-                <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
-              </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} user={this.state.user} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
-            }</div>
           </div>
-          <div>
-            <ModalInstance
-              showModal={this.state.showModal}
-              pickAnswer={this.pickAnswer.bind(this)}
-              toggleModalClick={this.toggleModal.bind(this)}
-              submitAnswer={this.submitAnswer.bind(this)}
-              question={this.state.question}
-            >
-            </ModalInstance>
+        </div>
+        <Petbox pet={this.state}/>
+        <h3>Actions</h3>
+        <div className='PetCommand'>{
+          this.state.status !== 'dead' ? (<div>
+            <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
+          </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} user={this.state.user} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
+        }</div>
+        <div className='row'>
+          <div className='col-lg-12'>
+            <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></ModalInstance>
             <AddQuestionModal showModal={this.state.showAddQuestionModal} toggleModalClick={this.toggleAddQuestionModal.bind(this)} handleSubmit={this.handleQuestionSubmit.bind(this)}></AddQuestionModal>
           </div>
         </div>

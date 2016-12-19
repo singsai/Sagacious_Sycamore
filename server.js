@@ -74,13 +74,6 @@ app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-
-
-
-
-
-
-
 // Uncomment to poll database reguarly
 setInterval(poll, 2000);
 
