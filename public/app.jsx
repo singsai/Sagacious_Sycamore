@@ -40,14 +40,13 @@ class App extends React.Component {
         that.getCurrent();
         that.getLog();
       }
-    }, 2000);
+    }, 1000);
   }
 
   componentWillMount() {
     if (browserHistory.currentUser) {
       this.setState({user: browserHistory.currentUser});
     }
-    console.log('Fetching pet status...', browserHistory.currentUser, this.state.user, 'componentWillMount');
     if (!this.state.name) {
       this.newPet
     }
@@ -77,7 +76,6 @@ class App extends React.Component {
   }
 
   getLog() {
-    console.log('Fetching log messages...');
     var that = this;
     $.ajax({
       method: 'POST',
@@ -100,7 +98,6 @@ class App extends React.Component {
       data: {status: status, user: this.state.user}
     })
     .success(function() {
-      console.log('Pet status updated!');
       that.getCurrent();
     })
   }
@@ -120,7 +117,6 @@ class App extends React.Component {
   }
 
   newPet(e) {
-    console.log('new', this.state.user);
     e.preventDefault();
 
     var that = this;
@@ -235,12 +231,7 @@ class App extends React.Component {
           data.arr.push(str);
         }
       });
-      console.log('question', data.arr);
-      // console.log('question', data.question);
-
-
       that.setState({question: data});
-      console.log('fetched new question', data);
     });
   }
   // react-bootstrap toggle modal for challenge question
