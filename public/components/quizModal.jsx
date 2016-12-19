@@ -7,7 +7,6 @@ class ModalInstance extends React.Component {
   }
 
   render() {
-    console.log('question loaded', this.props.question);
     var lines = this.props.question.arr;
     var content = {
         __html: lines ? lines.join('<br />') : ''
