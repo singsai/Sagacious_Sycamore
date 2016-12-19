@@ -12,9 +12,9 @@ var Petbox = (props) => {
     user: props.pet.user
   }
   var bars = {
-    loveBar: { width: props.pet.love/8 * 100 + '%' },
-    energyBar: { width: props.pet.feed/8 * 100 + '%' },
-    healthBar: { width: props.pet.health/8 * 100 + '%' },
+    loveBar: { width: props.pet.love/1000 * 100 + '%' },
+    energyBar: { width: props.pet.feed/1000 * 100 + '%' },
+    healthBar: { width: props.pet.health/1000 * 100 + '%' },
     levelBar:  { width: props.pet.level/3 * 100 + '%' },
     experienceBar: { width: props.pet.experience/5 * 100 + '%' }
   }

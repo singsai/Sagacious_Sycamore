@@ -89,42 +89,42 @@ module.exports = {
             postLog(user, name, 'leveled up');
           }
           //then update values
-          if (pet.health < 3) {
+          if (pet.health < 100) {
             pet.status = 'sick';
             pet.phys = 'sick';
             pet.mood = 'sad';
             pet.img = urls['lvl' + level]['sick'];
             postLog(user, name, 'sick');
             pet.save();
-          } else if (pet.feed < 3) {
+          } else if (pet.feed < 100) {
             pet.status = 'normal';
             pet.phys = 'hungry';
             pet.mood = 'grumpy';
             postLog(user, name, 'hungry');
             pet.img = urls['lvl' + level]['normal'];
             pet.save();
-          } else if (pet.health > 8) {
+          } else if (pet.health > 800) {
             pet.status = 'normal';
             pet.phys = 'healthy';
             pet.mood = 'feeling awesome';
             postLog(user, name, 'healthy');
             pet.img = urls['lvl' + level]['normal'];
             pet.save();
-          } else if (pet.feed > 8) {
+          } else if (pet.feed > 800) {
             pet.status = 'sick';
             pet.phys = 'obese';
             pet.mood = 'bloated';
             postLog(user, name, 'obese');
             pet.img = urls['lvl' + level]['sick'];
             pet.save();
-          } else if (pet.love > 8) {
+          } else if (pet.love > 800) {
             pet.status = 'happy';
             pet.phys = 'great';
             pet.mood = 'feeling loved';
             postLog(user, name, 'happy');
             pet.img = urls['lvl' + level]['happy'];
             pet.save();
-          } else if (pet.love < 2) {
+          } else if (pet.love < 100) {
             pet.status = 'runaway';
             pet.phys = 'unknown';
             pet.mood = 'unknown';

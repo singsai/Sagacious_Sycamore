@@ -17,9 +17,9 @@ var User = db.define('Users', {
 var Pet = db.define('Pets', {
   name: {type: Sequelize.STRING, allowNull: false, defaultValue: 'TestPet8'},
   status: {type: Sequelize.STRING, defaultValue: 'normal'},
-  feed: {type: Sequelize.INTEGER, defaultValue: 5},
-  health: {type: Sequelize.INTEGER, defaultValue: 5},
-  love: {type: Sequelize.INTEGER, defaultValue: 5},
+  feed: {type: Sequelize.INTEGER, defaultValue: 500},
+  health: {type: Sequelize.INTEGER, defaultValue: 500},
+  love: {type: Sequelize.INTEGER, defaultValue: 500},
   experience: {type: Sequelize.INTEGER, defaultValue: 0},
   level: {type: Sequelize.INTEGER, defaultValue: 1},
   mood: {type: Sequelize.STRING, defaultValue: 'normal'},
