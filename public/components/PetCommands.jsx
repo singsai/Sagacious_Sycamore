@@ -1,4 +1,4 @@
-avar PetCommand = (props) => (
+var PetCommand = (props) => (
   <div className="pet-commandbar">
     <img className='command' src={props.cmdImg.food} onClick={() => {props.executeCommand('eating')}}/>
     <img className='command' src={props.cmdImg.love} onClick={() => {props.executeCommand('playing')}}/>
