@@ -62,37 +62,36 @@ module.exports = {
             console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
             res.send(pet.dataValues);
           });            
+        } else {
+          res.end();
         }
       })
   },
-  
+
   post: function(req, res, next) {
     Pet.findOne({where: {user: req.session.user}})
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
           pet.status = newStatus;
-          // console.log('url', urls['lvl'+ pet.level][newStatus]);
           pet.img = urls['lvl'+ pet.level][newStatus];
           pet.save().then(function(data) {
-            // console.log('updated status');
             res.statusCode = 201;
             res.end(JSON.stringify(data.dataValues));
           });
         } else {
-          // console.log('no pets found!');
+          console.log('no pets found!');
         }
       });
   },
   new: function(req, res, next) {
     var name = req.body.name;
     var user = req.session.user;
-    // console.log('new', user);
     Pet.destroy({ where: {user: user}});
     Log.destroy({ where: {user: user} });
     Pet.create({ user: user, name: name})
       .then(function(pet) {
-        // console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
+        console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
         res.send("success");
       });
   },
@@ -103,7 +102,6 @@ module.exports = {
         // Pull a random question
         var randomChoice = ~~(Math.random() * questions.length);
         var question = questions[randomChoice];
-        // console.log('question', question.question);
         question.answer = 0; // Hide the answer until user submites answer
         res.statusCode = 200;
         res.send(question);
@@ -130,15 +128,12 @@ module.exports = {
     var answer = req.body.answer;
     Question.findOne({where: {id: id}})
       .then(function(question) {
-        // // console.log('obj', question);
-        // // console.log('db',question.question, question.answer);
         var obj = {};
         if (question.answer == answer) {
           obj.correct = true;
         } else {
           obj.correct = false;
         }
-        // // console.log('sending obj', obj);
         res.send(obj);
       });
 
@@ -166,12 +161,10 @@ module.exports = {
       if(entry.length === 0){
         Log.create({name: name, action: action, user: user})
         .then(function(log) {
-          // console.log('Created new log.');
         });
       } else if(entry[0].dataValues.action !== 'dead'){
         Log.create({name: name, action: action, user: user})
         .then(function(log) {
-          // console.log('Created new log.');
         });
       }
     })
@@ -187,21 +180,21 @@ module.exports = {
           user = user.dataValues;
           bcrypt.compare(password, user.password, function(err, match) {
             if (err) {
-              // console.log('error')
+              console.log('error')
               throw err;
             } else if (match) {
-              // console.log('Login successful', req.session);
+              console.log('Login successful');
               req.session.regenerate(function() {
                 req.session.user = user.username;
                 res.send(req.session);
               });
             } else {
-              // console.log('Wrong password.');
+              console.log('Wrong password.');
               res.send(req.session.user);
             }
           })
         } else {
-          // console.log('Username not found.');
+          console.log('Username not found.');
           res.send(req.session.user);
         }
       })
@@ -238,7 +231,7 @@ module.exports = {
             }
           })
         } else {
-          // console.log('Account already exists.');
+          console.log('Account already exists.');
           res.send(false);
         }
       });
