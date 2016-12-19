@@ -38,7 +38,6 @@ module.exports = {
     // Iterate through ALL pets. 
     for (var i = 0; i < pets.length; i++) {
       var pet = pets[i];
-      console.log('updating', pet.name);
       var name = pet.name;
       var level = pet.level;
       var user = pet.user
