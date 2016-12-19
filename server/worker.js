@@ -81,67 +81,67 @@ module.exports = {
           postLog(user, name, 'dead');
           // console.log(pet, 'died');
           pet.save();
-        }
-        //check level before anything else
-        if (pet.experience > 5) {
-          pet.level = pet.level + 1;
-          pet.experience = 0;
-          postLog(user, name, 'leveled up');
-        }
-        //then update values
-        if (pet.health < 3) {
-          pet.status = 'sick';
-          pet.phys = 'sick';
-          pet.mood = 'sad';
-          pet.img = urls['lvl' + level]['sick'];
-          postLog(user, name, 'sick');
-          pet.save();
-        } else if (pet.feed < 3) {
-          pet.status = 'normal';
-          pet.phys = 'hungry';
-          pet.mood = 'grumpy';
-          postLog(user, name, 'hungry');
-          pet.img = urls['lvl' + level]['normal'];
-          pet.save();
-        } else if (pet.health > 8) {
-          pet.status = 'normal';
-          pet.phys = 'healthy';
-          pet.mood = 'feeling awesome';
-          postLog(user, name, 'healthy');
-          pet.img = urls['lvl' + level]['normal'];
-          pet.save();
-        } else if (pet.feed > 8) {
-          pet.status = 'sick';
-          pet.phys = 'obese';
-          pet.mood = 'bloated';
-          postLog(user, name, 'obese');
-          pet.img = urls['lvl' + level]['sick'];
-          pet.save();
-        } else if (pet.love > 8) {
-          pet.status = 'happy';
-          pet.phys = 'great';
-          pet.mood = 'feeling loved';
-          postLog(user, name, 'happy');
-          pet.img = urls['lvl' + level]['happy'];
-          pet.save();
-        } else if (pet.love < 2) {
-          pet.status = 'runaway';
-          pet.phys = 'unknown';
-          pet.mood = 'unknown';
-          postLog(user, name, 'runaway');
-          pet.img = urls['lvl' + level]['runaway'];
-          pet.save();
         } else {
-          pet.status = 'normal';
-          pet.mood = 'normal';
-          pet.phys = 'normal';
-          pet.img = urls['lvl' + level]['normal'];
-          pet.save();
+          //check level before anything else
+          if (pet.experience > 5) {
+            pet.level = pet.level + 1;
+            pet.experience = 0;
+            postLog(user, name, 'leveled up');
+          }
+          //then update values
+          if (pet.health < 3) {
+            pet.status = 'sick';
+            pet.phys = 'sick';
+            pet.mood = 'sad';
+            pet.img = urls['lvl' + level]['sick'];
+            postLog(user, name, 'sick');
+            pet.save();
+          } else if (pet.feed < 3) {
+            pet.status = 'normal';
+            pet.phys = 'hungry';
+            pet.mood = 'grumpy';
+            postLog(user, name, 'hungry');
+            pet.img = urls['lvl' + level]['normal'];
+            pet.save();
+          } else if (pet.health > 8) {
+            pet.status = 'normal';
+            pet.phys = 'healthy';
+            pet.mood = 'feeling awesome';
+            postLog(user, name, 'healthy');
+            pet.img = urls['lvl' + level]['normal'];
+            pet.save();
+          } else if (pet.feed > 8) {
+            pet.status = 'sick';
+            pet.phys = 'obese';
+            pet.mood = 'bloated';
+            postLog(user, name, 'obese');
+            pet.img = urls['lvl' + level]['sick'];
+            pet.save();
+          } else if (pet.love > 8) {
+            pet.status = 'happy';
+            pet.phys = 'great';
+            pet.mood = 'feeling loved';
+            postLog(user, name, 'happy');
+            pet.img = urls['lvl' + level]['happy'];
+            pet.save();
+          } else if (pet.love < 2) {
+            pet.status = 'runaway';
+            pet.phys = 'unknown';
+            pet.mood = 'unknown';
+            postLog(user, name, 'runaway');
+            pet.img = urls['lvl' + level]['runaway'];
+            pet.save();
+          } else {
+            pet.status = 'normal';
+            pet.mood = 'normal';
+            pet.phys = 'normal';
+            pet.img = urls['lvl' + level]['normal'];
+            pet.save();
+          }
+          if (pet.health < 0) pet.health = 0;
+          if (pet.feed < 0) pet.feed = 0;
+          if (pet.love < 0) pet.love = 0;
         }
-        if (pet.health < 0) pet.health = 0;
-        if (pet.feed < 0) pet.feed = 0;
-        if (pet.love < 0) pet.love = 0;
-
       }
     });
   }
